@@ -39,15 +39,20 @@ class Post(models.Model):
     title = models.CharField(max_length=200)
     slug = models.SlugField(max_length=200, unique=True)
     content = models.TextField()
-    excerpt = models.TextField(max_length=300, blank=True, help_text="Brief description of the post")
-    featured_image = models.ImageField(upload_to='blog/images/', blank=True, null=True)
-    
-    author = models.ForeignKey(User, on_delete=models.CASCADE, related_name='blog_posts')
-    category = models.ForeignKey(Category, on_delete=models.CASCADE, related_name='posts')
-    
-    status = models.CharField(max_length=10, choices=STATUS_CHOICES, default='draft')
+    excerpt = models.TextField(
+        max_length=300, blank=True, help_text="Brief description of the post")
+    featured_image = models.ImageField(
+        upload_to='blog/images/', blank=True, null=True)
+
+    author = models.ForeignKey(
+        User, on_delete=models.CASCADE, related_name='blog_posts')
+    category = models.ForeignKey(
+        Category, on_delete=models.CASCADE, related_name='posts')
+
+    status = models.CharField(
+        max_length=10, choices=STATUS_CHOICES, default='draft')
     featured = models.BooleanField(default=False)
-    
+
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     published_at = models.DateTimeField(blank=True, null=True)
@@ -87,7 +92,8 @@ class Post(models.Model):
 
 class Comment(models.Model):
     """Blog post comment model."""
-    post = models.ForeignKey(Post, on_delete=models.CASCADE, related_name='comments')
+    post = models.ForeignKey(
+        Post, on_delete=models.CASCADE, related_name='comments')
     author = models.ForeignKey(User, on_delete=models.CASCADE)
     content = models.TextField(max_length=1000)
     created_at = models.DateTimeField(auto_now_add=True)

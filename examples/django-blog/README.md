@@ -73,16 +73,16 @@ docker-compose --profile production up --build
 
 ### Environment Variables
 
-| Variable | Default | Description |
-|----------|---------|-------------|
-| `SECRET_KEY` | `django-insecure...` | Django secret key |
-| `DEBUG` | `false` | Debug mode |
-| `ALLOWED_HOSTS` | `localhost,127.0.0.1` | Allowed hosts |
-| `DB_HOST` | `db` | Database host |
-| `DB_NAME` | `blogdb` | Database name |
-| `DB_USER` | `bloguser` | Database user |
-| `DB_PASSWORD` | `blogpass` | Database password |
-| `USE_SQLITE` | `false` | Use SQLite instead of PostgreSQL |
+| Variable        | Default               | Description                      |
+| --------------- | --------------------- | -------------------------------- |
+| `SECRET_KEY`    | `django-insecure...`  | Django secret key                |
+| `DEBUG`         | `false`               | Debug mode                       |
+| `ALLOWED_HOSTS` | `localhost,127.0.0.1` | Allowed hosts                    |
+| `DB_HOST`       | `db`                  | Database host                    |
+| `DB_NAME`       | `blogdb`              | Database name                    |
+| `DB_USER`       | `bloguser`            | Database user                    |
+| `DB_PASSWORD`   | `blogpass`            | Database password                |
+| `USE_SQLITE`    | `false`               | Use SQLite instead of PostgreSQL |
 
 ### Docker Compose Profiles
 
@@ -102,18 +102,18 @@ docker-compose --profile production up --build
 
 ### API Endpoints
 
-| Method | Endpoint | Description |
-|--------|----------|-------------|
-| GET | `/` | Home page with featured posts |
-| GET | `/posts/` | List all published posts |
-| GET | `/post/<slug>/` | Individual post detail |
-| GET | `/category/<slug>/` | Posts by category |
-| GET | `/tag/<slug>/` | Posts by tag |
-| GET | `/search/` | Search posts |
-| GET | `/api/posts/` | JSON API for posts |
-| GET | `/api/categories/` | JSON API for categories |
-| GET | `/health/` | Health check |
-| GET | `/ready/` | Readiness check |
+| Method | Endpoint            | Description                   |
+| ------ | ------------------- | ----------------------------- |
+| GET    | `/`                 | Home page with featured posts |
+| GET    | `/posts/`           | List all published posts      |
+| GET    | `/post/<slug>/`     | Individual post detail        |
+| GET    | `/category/<slug>/` | Posts by category             |
+| GET    | `/tag/<slug>/`      | Posts by tag                  |
+| GET    | `/search/`          | Search posts                  |
+| GET    | `/api/posts/`       | JSON API for posts            |
+| GET    | `/api/categories/`  | JSON API for categories       |
+| GET    | `/health/`          | Health check                  |
+| GET    | `/ready/`           | Readiness check               |
 
 ### Admin Interface
 
@@ -164,11 +164,11 @@ CMD ["gunicorn", "--chdir", "blogproject", "blogproject.wsgi:application"]
 
 ```yaml
 services:
-  db:          # PostgreSQL database
-  web-prod:    # Django with Gunicorn
-  nginx:       # Static files and reverse proxy
-  redis:       # Caching and sessions
-  migrate:     # Database migrations
+  db: # PostgreSQL database
+  web-prod: # Django with Gunicorn
+  nginx: # Static files and reverse proxy
+  redis: # Caching and sessions
+  migrate: # Database migrations
 ```
 
 ### Build and Deploy

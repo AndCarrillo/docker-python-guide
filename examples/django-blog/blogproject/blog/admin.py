@@ -40,14 +40,15 @@ class CommentInline(admin.TabularInline):
 
 @admin.register(Post)
 class PostAdmin(admin.ModelAdmin):
-    list_display = ['title', 'author', 'category', 'status', 'featured', 'created_at', 'comment_count']
+    list_display = ['title', 'author', 'category',
+                    'status', 'featured', 'created_at', 'comment_count']
     list_filter = ['status', 'featured', 'category', 'created_at', 'author']
     search_fields = ['title', 'content', 'excerpt']
     prepopulated_fields = {'slug': ('title',)}
     readonly_fields = ['created_at', 'updated_at', 'published_at']
     filter_horizontal = ['tags']
     inlines = [CommentInline]
-    
+
     fieldsets = (
         ('Content', {
             'fields': ('title', 'slug', 'content', 'excerpt', 'featured_image')
@@ -79,7 +80,8 @@ class PostAdmin(admin.ModelAdmin):
 
 @admin.register(Comment)
 class CommentAdmin(admin.ModelAdmin):
-    list_display = ['post', 'author', 'content_preview', 'is_approved', 'created_at']
+    list_display = ['post', 'author',
+                    'content_preview', 'is_approved', 'created_at']
     list_filter = ['is_approved', 'created_at', 'post__category']
     search_fields = ['content', 'author__username', 'post__title']
     readonly_fields = ['created_at', 'updated_at']

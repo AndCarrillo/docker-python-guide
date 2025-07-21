@@ -69,8 +69,8 @@ FROM base as production
 
 # Metadata
 LABEL maintainer="your-email@example.com" \
-      description="Django blog application demonstrating container best practices" \
-      version="1.0.0"
+    description="Django blog application demonstrating container best practices" \
+    version="1.0.0"
 
 # Production environment variables
 ENV DJANGO_SETTINGS_MODULE=blogproject.settings \
@@ -113,17 +113,17 @@ HEALTHCHECK --interval=30s --timeout=10s --start-period=30s --retries=3 \
 
 # Production command using Gunicorn
 CMD ["gunicorn", \
-     "--chdir", "blogproject", \
-     "--bind", "0.0.0.0:8000", \
-     "--workers", "4", \
-     "--worker-class", "sync", \
-     "--max-requests", "1000", \
-     "--max-requests-jitter", "100", \
-     "--preload", \
-     "--access-logfile", "-", \
-     "--error-logfile", "-", \
-     "--log-level", "info", \
-     "blogproject.wsgi:application"]
+    "--chdir", "blogproject", \
+    "--bind", "0.0.0.0:8000", \
+    "--workers", "4", \
+    "--worker-class", "sync", \
+    "--max-requests", "1000", \
+    "--max-requests-jitter", "100", \
+    "--preload", \
+    "--access-logfile", "-", \
+    "--error-logfile", "-", \
+    "--log-level", "info", \
+    "blogproject.wsgi:application"]
 
 # ===== MIGRATION STAGE =====
 FROM production as migration

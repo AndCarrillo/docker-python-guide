@@ -11,6 +11,7 @@ from django.conf.urls.static import static
 from django.http import JsonResponse
 from django.views.decorators.http import require_http_methods
 
+
 @require_http_methods(["GET"])
 def health_check(request):
     """Health check endpoint for container monitoring."""
@@ -20,6 +21,7 @@ def health_check(request):
         'version': '1.0.0'
     })
 
+
 @require_http_methods(["GET"])
 def ready_check(request):
     """Readiness check endpoint for container orchestration."""
@@ -28,7 +30,7 @@ def ready_check(request):
         from django.db import connection
         with connection.cursor() as cursor:
             cursor.execute("SELECT 1")
-        
+
         return JsonResponse({
             'status': 'ready',
             'database': 'connected'
@@ -39,6 +41,7 @@ def ready_check(request):
             'error': str(e)
         }, status=503)
 
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('health/', health_check, name='health_check'),
@@ -48,5 +51,7 @@ urlpatterns = [
 
 # Serve media files in development
 if settings.DEBUG:
-    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
-    urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+    urlpatterns += static(settings.MEDIA_URL,
+                          document_root=settings.MEDIA_ROOT)
+    urlpatterns += static(settings.STATIC_URL,
+                          document_root=settings.STATIC_ROOT)

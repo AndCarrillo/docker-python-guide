@@ -33,8 +33,10 @@ class PostListView(ListView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['categories'] = Category.objects.annotate(post_count=Count('posts')).filter(post_count__gt=0)
-        context['featured_posts'] = Post.objects.filter(status='published', featured=True)[:3]
+        context['categories'] = Category.objects.annotate(
+            post_count=Count('posts')).filter(post_count__gt=0)
+        context['featured_posts'] = Post.objects.filter(
+            status='published', featured=True)[:3]
         return context
 
 
@@ -51,16 +53,17 @@ class PostDetailView(DetailView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         post = self.get_object()
-        
+
         # Get approved comments
-        context['comments'] = post.comments.filter(is_approved=True).select_related('author')
-        
+        context['comments'] = post.comments.filter(
+            is_approved=True).select_related('author')
+
         # Get related posts
         context['related_posts'] = Post.objects.filter(
             category=post.category,
             status='published'
         ).exclude(id=post.id)[:3]
-        
+
         return context
 
 
@@ -73,16 +76,16 @@ class CategoryDetailView(DetailView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         category = self.get_object()
-        
+
         posts = Post.objects.filter(
             category=category,
             status='published'
         ).select_related('author').prefetch_related('tags')
-        
+
         paginator = Paginator(posts, 10)
         page_number = self.request.GET.get('page')
         context['posts'] = paginator.get_page(page_number)
-        
+
         return context
 
 
@@ -95,13 +98,14 @@ class TagDetailView(DetailView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         tag = self.get_object()
-        
-        posts = tag.posts.filter(status='published').select_related('author', 'category')
-        
+
+        posts = tag.posts.filter(
+            status='published').select_related('author', 'category')
+
         paginator = Paginator(posts, 10)
         page_number = self.request.GET.get('page')
         context['posts'] = paginator.get_page(page_number)
-        
+
         return context
 
 
@@ -109,23 +113,23 @@ def search_posts(request):
     """Search posts by title and content."""
     query = request.GET.get('q', '')
     posts = []
-    
+
     if query:
         posts = Post.objects.filter(
             Q(title__icontains=query) | Q(content__icontains=query),
             status='published'
         ).select_related('author', 'category').distinct()
-    
+
     paginator = Paginator(posts, 10)
     page_number = request.GET.get('page')
     posts_page = paginator.get_page(page_number)
-    
+
     context = {
         'posts': posts_page,
         'query': query,
         'total_results': posts.count() if posts else 0
     }
-    
+
     return render(request, 'blog/search_results.html', context)
 
 
@@ -133,8 +137,9 @@ def search_posts(request):
 def api_posts(request):
     """API endpoint to get posts as JSON."""
     try:
-        posts = Post.objects.filter(status='published').select_related('author', 'category')[:10]
-        
+        posts = Post.objects.filter(status='published').select_related(
+            'author', 'category')[:10]
+
         posts_data = []
         for post in posts:
             posts_data.append({
@@ -148,15 +153,15 @@ def api_posts(request):
                 'reading_time': post.get_reading_time(),
                 'url': request.build_absolute_uri(post.get_absolute_url())
             })
-        
+
         logger.info(f"API: Retrieved {len(posts_data)} posts")
-        
+
         return JsonResponse({
             'status': 'success',
             'count': len(posts_data),
             'posts': posts_data
         })
-        
+
     except Exception as e:
         logger.error(f"API Error: {str(e)}")
         return JsonResponse({
@@ -172,7 +177,7 @@ def api_categories(request):
         categories = Category.objects.annotate(
             post_count=Count('posts', filter=Q(posts__status='published'))
         ).filter(post_count__gt=0)
-        
+
         categories_data = []
         for category in categories:
             categories_data.append({
@@ -183,15 +188,15 @@ def api_categories(request):
                 'post_count': category.post_count,
                 'url': request.build_absolute_uri(category.get_absolute_url())
             })
-        
+
         logger.info(f"API: Retrieved {len(categories_data)} categories")
-        
+
         return JsonResponse({
             'status': 'success',
             'count': len(categories_data),
             'categories': categories_data
         })
-        
+
     except Exception as e:
         logger.error(f"API Error: {str(e)}")
         return JsonResponse({
@@ -208,26 +213,26 @@ def home(request):
             status='published',
             featured=True
         ).select_related('author', 'category')[:3]
-        
+
         # Get recent posts
         recent_posts = Post.objects.filter(
             status='published'
         ).select_related('author', 'category')[:6]
-        
+
         # Get categories with post counts
         categories = Category.objects.annotate(
             post_count=Count('posts', filter=Q(posts__status='published'))
         ).filter(post_count__gt=0)[:5]
-        
+
         context = {
             'featured_posts': featured_posts,
             'recent_posts': recent_posts,
             'categories': categories,
         }
-        
+
         logger.info("Home page loaded successfully")
         return render(request, 'blog/home.html', context)
-        
+
     except Exception as e:
         logger.error(f"Home page error: {str(e)}")
         return render(request, 'blog/error.html', {
