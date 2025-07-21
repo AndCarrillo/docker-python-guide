@@ -1,431 +1,469 @@
-# 🚀 Comandos de Git para Docker Python Guide
+# 🛠️ Git Workflow Commands
 
-> **💡 Nota importante**: Los comandos en esta guía están optimizados para diferentes shells. Si usas Windows PowerShell, revisa la sección [Comandos para PowerShell](#comandos-para-powershell).
+This guide includes commands for both Unix/Linux/macOS (Bash) and Windows (PowerShell).
 
-## 📋 Configuración Inicial
+## 🏁 Initial Setup
 
-### Bash/Zsh (Linux/Mac/Git Bash):
+### Unix/Linux/macOS (Bash):
 ```bash
-# Clonar el repositorio
-git clone https://github.com/USERNAME/docker-python-guide.git
+# Clone the repository
+git clone https://github.com/AndCarrillo/docker-python-guide.git
 cd docker-python-guide
 
-# Configurar upstream (si es fork)
-git remote add upstream https://github.com/AndCarrillo/docker-python-guide.git
-
-# Verificar remotes
-git remote -v
+# Verify all branches exist
+git branch -a
 ```
 
-### PowerShell (Windows):
+### Windows (PowerShell):
 ```powershell
-# Clonar el repositorio
-git clone https://github.com/USERNAME/docker-python-guide.git
+# Clone the repository
+git clone https://github.com/AndCarrillo/docker-python-guide.git
 Set-Location docker-python-guide
 
-# Configurar upstream (si es fork)
-git remote add upstream https://github.com/AndCarrillo/docker-python-guide.git
-
-# Verificar remotes
-git remote -v
+# Verify all branches exist
+git branch -a
 ```
-
-## 🌿 Trabajo con Branches de Módulos
-
-### Listar Módulos Disponibles
-
-```bash
-# Ver todos los branches de módulos
-git branch -r | grep "module-"
-
-# Ver solo nombres de módulos
-git branch -r | grep "module-" | sed 's/.*origin\///' | sort
-```
-
-### Cambiar a un Módulo Específico
-
-```bash
-# Cambiar al módulo 1
-git checkout module-01-containerize
-
-# Cambiar al módulo 2
-git checkout module-02-develop
-
-# Volver al branch principal
-git checkout main
-```
-
-### Crear Branch de Trabajo desde un Módulo
-
-```bash
-# Trabajar en mejoras del módulo 1
-git checkout module-01-containerize
-git checkout -b feature/module-01-improvements
-
-# Trabajar en nuevo ejemplo para módulo 2
-git checkout module-02-develop
-git checkout -b feature/module-02-flask-example
-```
-
-## 🔄 Sincronización
-
-### Actualizar desde Upstream
-
-```bash
-# Actualizar main
-git checkout main
-git pull upstream main
-
-# Actualizar módulo específico
-git checkout module-01-containerize
-git pull upstream module-01-containerize
-```
-
-### Sincronizar Fork
-
-```bash
-# Actualizar todos los branches principales
-git fetch upstream
-git checkout main
-git merge upstream/main
-git push origin main
-
-# Actualizar módulos
-for module in $(git branch -r | grep "upstream/module-" | sed 's/.*upstream\///'); do
-    git checkout $module 2>/dev/null || git checkout -b $module upstream/$module
-    git pull upstream $module
-    git push origin $module
-done
-```
-
-## 📤 Contribuciones
-
-### Crear Feature Branch
-
-```bash
-# Para mejoras generales
-git checkout main
-git checkout -b feature/improve-documentation
-
-# Para módulo específico
-git checkout module-01-containerize
-git checkout -b feature/add-fastapi-example
-```
-
-### Commit y Push
-
-```bash
-# Agregar cambios
-git add .
-
-# Commit con mensaje descriptivo
-git commit -m "feat: agregar ejemplo de FastAPI con Docker"
-
-# Push al fork
-git push origin feature/add-fastapi-example
-```
-
-### Mantener Branch Actualizado
-
-```bash
-# Rebase con upstream
-git fetch upstream
-git rebase upstream/module-01-containerize
-
-# O merge si prefieres
-git merge upstream/module-01-containerize
-```
-
-## 🏷️ Tags y Releases
-
-### Crear Tags
-
-```bash
-# Tag para version completa
-git tag -a v1.0.0 -m "Primera versión completa de la guía"
-
-# Tag para módulo específico
-git tag -a module-01-v1.0 -m "Módulo 1 completado"
-
-# Push tags
-git push origin --tags
-```
-
-### Listar Tags
-
-```bash
-# Ver todos los tags
-git tag -l
-
-# Ver tags de módulos específicos
-git tag -l "module-*"
-```
-
-## 🔍 Navegación y Búsqueda
-
-### Buscar en el Historial
-
-```bash
-# Buscar commits por mensaje
-git log --grep="docker"
-
-# Buscar cambios en archivos específicos
-git log --follow -- README.md
-
-# Ver cambios entre branches
-git diff main..module-01-containerize
-```
-
-### Buscar Archivos
-
-```bash
-# Buscar archivos por nombre
-git ls-files | grep -i dockerfile
-
-# Buscar contenido en archivos
-git grep -n "docker-compose" -- "*.md"
-```
-
-## 🛠️ Utilidades
-
-### Aliases Útiles
-
-```bash
-# Configurar aliases útiles
-git config alias.co checkout
-git config alias.br branch
-git config alias.ci commit
-git config alias.st status
-git config alias.unstage 'reset HEAD --'
-git config alias.last 'log -1 HEAD'
-git config alias.visual '!gitk'
-
-# Alias específicos para este proyecto
-git config alias.modules 'branch -r | grep module-'
-git config alias.switch-module '!f() { git checkout module-$1-*; }; f'
-```
-
-### Scripts de Automatización
-
-#### Cambiar a Módulo (Función Bash)
-
-```bash
-# Agregar a ~/.bashrc o ~/.zshrc
-switch_module() {
-    if [ -z "$1" ]; then
-        echo "Uso: switch_module <numero>"
-        echo "Ejemplo: switch_module 01"
-        return 1
-    fi
-
-    module_branch=$(git branch -r | grep "module-$1" | head -1 | sed 's/.*origin\///')
-    if [ -n "$module_branch" ]; then
-        git checkout $module_branch
-        echo "Cambiado a: $module_branch"
-    else
-        echo "Módulo $1 no encontrado"
-    fi
-}
-```
-
-#### PowerShell Function
-
-```powershell
-# Agregar a $PROFILE
-function Switch-Module {
-    param([string]$ModuleNumber)
-
-    if (-not $ModuleNumber) {
-        Write-Host "Uso: Switch-Module <numero>"
-        Write-Host "Ejemplo: Switch-Module 01"
-        return
-    }
-
-    $branches = git branch -r | Where-Object { $_ -match "module-$ModuleNumber" }
-    if ($branches) {
-        $branch = ($branches[0] -replace '.*origin/', '').Trim()
-        git checkout $branch
-        Write-Host "Cambiado a: $branch"
-    } else {
-        Write-Host "Módulo $ModuleNumber no encontrado"
-    }
-}
-```
-
-## 📊 Status y Información
-
-### Ver Estado del Proyecto
-
-```bash
-# Estado actual
-echo "Branch actual: $(git branch --show-current)"
-echo "Último commit: $(git log -1 --oneline)"
-echo "Archivos modificados: $(git status --porcelain | wc -l)"
-
-# Módulos disponibles
-echo "Módulos disponibles:"
-git branch -r | grep "module-" | sed 's/.*origin\//  - /'
-```
-
-### Estadísticas
-
-```bash
-# Número de commits por módulo
-for module in $(git branch -r | grep "module-" | sed 's/.*origin\///'); do
-    count=$(git rev-list --count $module)
-    echo "$module: $count commits"
-done
-
-# Contribuidores por módulo
-git shortlog -sn --all | head -10
-```
-
-## 🚨 Solución de Problemas
-
-### Branch no Actualizado
-
-```bash
-# Si el branch local está desactualizado
-git fetch origin
-git reset --hard origin/$(git branch --show-current)
-```
-
-### Conflictos de Merge
-
-```bash
-# Ver archivos con conflictos
-git status
-
-# Resolver y continuar
-git add .
-git commit -m "resolve merge conflicts"
-```
-
-### Limpiar Branches Locales
-
-```bash
-# Eliminar branches mergeados
-git branch --merged | grep -v "\*\|main\|module-" | xargs -n 1 git branch -d
-
-# Limpiar branches remotos eliminados
-git remote prune origin
-```
-
-## 🎯 Mejores Prácticas
-
-1. **Siempre actualizar antes de trabajar**
-
-   ```bash
-   git fetch upstream
-   git checkout main
-   git merge upstream/main
-   ```
-
-2. **Commits pequeños y frecuentes**
-
-   ```bash
-   git add file1.py
-   git commit -m "feat: add function X"
-   git add file2.py
-   git commit -m "docs: update README for function X"
-   ```
-
-3. **Mensajes de commit descriptivos**
-
-   ```bash
-   # ❌ Malo
-   git commit -m "fix stuff"
-
-   # ✅ Bueno
-   git commit -m "fix: resolve Docker build issue with Python 3.11"
-   ```
-
-4. **Revisar cambios antes de commit**
-   ```bash
-   git diff --staged
-   git status
-   ```
 
 ---
 
-## 💻 Comandos para PowerShell
+## 📚 Working with Modules
 
-### Comandos Básicos Adaptados
+### Starting a Module
 
-```powershell
-# Listar módulos disponibles
-git branch -r | Where-Object { $_ -match "module-" }
+#### Unix/Linux/macOS (Bash):
+```bash
+# Update main branch
+git checkout main && git pull origin main
 
-# Cambiar a un módulo específico
+# Switch to module branch
 git checkout module-01-containerize
 
-# Actualizar desde upstream (comandos separados)
-git fetch upstream
-git checkout main
-git merge upstream/main
+# Verify you're on the correct branch
+git branch --show-current
 ```
 
-### Función Helper para PowerShell
+#### Windows (PowerShell):
+```powershell
+# Update main branch
+git checkout main; git pull origin main
 
-Agrega esta función a tu `$PROFILE`:
+# Switch to module branch  
+git checkout module-01-containerize
+
+# Verify you're on the correct branch
+git branch --show-current
+```
+
+### Creating Personal Experiments
+
+#### Unix/Linux/macOS (Bash):
+```bash
+# Create personal branch from module branch
+git checkout module-01-containerize
+git checkout -b my-experiments-01
+
+# Or create from main
+git checkout main
+git checkout -b my-feature-experiment
+```
+
+#### Windows (PowerShell):
+```powershell
+# Create personal branch from module branch
+git checkout module-01-containerize
+git checkout -b my-experiments-01
+
+# Or create from main
+git checkout main  
+git checkout -b my-feature-experiment
+```
+
+---
+
+## 🔄 Contributing Changes
+
+### Before Making Changes
+
+#### Unix/Linux/macOS (Bash):
+```bash
+# Always start with updated main
+git checkout main && git pull origin main
+
+# Create feature branch
+git checkout -b feature/improve-module-01
+
+# Or create from specific module
+git checkout module-01-containerize
+git checkout -b feature/fix-dockerfile-example
+```
+
+#### Windows (PowerShell):
+```powershell
+# Always start with updated main
+git checkout main; git pull origin main
+
+# Create feature branch
+git checkout -b feature/improve-module-01
+
+# Or create from specific module
+git checkout module-01-containerize
+git checkout -b feature/fix-dockerfile-example
+```
+
+### Making and Committing Changes
+
+#### Unix/Linux/macOS (Bash):
+```bash
+# Check status
+git status
+
+# Add specific files
+git add README.md examples/flask-app/
+
+# Or add all changes (be careful)
+git add .
+
+# Commit with descriptive message
+git commit -m "docs: improve Flask containerization examples
+
+- Add production-ready Dockerfile
+- Include security best practices  
+- Update documentation with troubleshooting section"
+
+# Push to your branch
+git push origin feature/improve-module-01
+```
+
+#### Windows (PowerShell):
+```powershell
+# Check status
+git status
+
+# Add specific files
+git add README.md examples/flask-app/
+
+# Or add all changes (be careful)
+git add .
+
+# Commit with descriptive message
+git commit -m "docs: improve Flask containerization examples
+
+- Add production-ready Dockerfile
+- Include security best practices
+- Update documentation with troubleshooting section"
+
+# Push to your branch
+git push origin feature/improve-module-01
+```
+
+---
+
+## 🎯 Branch Management
+
+### List and Navigate Branches
+
+#### Unix/Linux/macOS (Bash):
+```bash
+# List all local branches
+git branch
+
+# List all branches (including remote)
+git branch -a
+
+# Switch between branches
+git checkout main
+git checkout module-02-develop
+git checkout module-03-linting-typing
+```
+
+#### Windows (PowerShell):
+```powershell
+# List all local branches
+git branch
+
+# List all branches (including remote)
+git branch -a
+
+# Switch between branches
+git checkout main
+git checkout module-02-develop  
+git checkout module-03-linting-typing
+```
+
+### Clean Up Branches
+
+#### Unix/Linux/macOS (Bash):
+```bash
+# Delete local branch (safe)
+git branch -d feature/completed-feature
+
+# Force delete local branch
+git branch -D feature/unwanted-feature
+
+# Delete remote branch
+git push origin --delete feature/completed-feature
+
+# Prune remote tracking branches
+git remote prune origin
+```
+
+#### Windows (PowerShell):
+```powershell
+# Delete local branch (safe)
+git branch -d feature/completed-feature
+
+# Force delete local branch
+git branch -D feature/unwanted-feature
+
+# Delete remote branch
+git push origin --delete feature/completed-feature
+
+# Prune remote tracking branches
+git remote prune origin
+```
+
+---
+
+## 🔧 Useful Utilities
+
+### PowerShell Functions (Windows Only)
+
+Add these to your PowerShell profile for easier navigation:
 
 ```powershell
-function Switch-Module {
+# Add to $PROFILE (Microsoft.PowerShell_profile.ps1)
+
+function Switch-DockerGuideModule {
     param([string]$ModuleNumber)
     
-    if (-not $ModuleNumber) {
-        Write-Host "Uso: Switch-Module <numero>"
-        Write-Host "Ejemplo: Switch-Module 01"
-        return
+    $modules = @{
+        "1" = "module-01-containerize"
+        "2" = "module-02-develop"  
+        "3" = "module-03-linting-typing"
+        "4" = "module-04-cicd"
+        "5" = "module-05-deployment"
     }
     
-    $branches = git branch -r | Where-Object { $_ -match "module-$ModuleNumber" }
-    if ($branches) {
-        $branch = ($branches[0] -replace '.*origin/', '').Trim()
-        git checkout $branch
-        Write-Host "Cambiado a: $branch" -ForegroundColor Green
+    if ($modules.ContainsKey($ModuleNumber)) {
+        git checkout $modules[$ModuleNumber]
+        Write-Host "Switched to module: $($modules[$ModuleNumber])" -ForegroundColor Green
     } else {
-        Write-Host "Módulo $ModuleNumber no encontrado" -ForegroundColor Red
+        Write-Host "Available modules: 1, 2, 3, 4, 5" -ForegroundColor Yellow
     }
 }
 
-function Update-FromUpstream {
-    Write-Host "Actualizando desde upstream..." -ForegroundColor Blue
-    git fetch upstream
+# Usage: Switch-DockerGuideModule 1
+Set-Alias -Name sgm -Value Switch-DockerGuideModule
+
+function Update-DockerGuideMain {
+    $currentBranch = git branch --show-current
     git checkout main
-    git merge upstream/main
-    git push origin main
-    Write-Host "Actualización completada" -ForegroundColor Green
+    git pull origin main
+    git checkout $currentBranch
+    Write-Host "Main branch updated. Back to: $currentBranch" -ForegroundColor Green
 }
 
-function Show-ModuleStatus {
-    Write-Host "📚 Módulos disponibles:" -ForegroundColor Green
-    git branch -r | Where-Object { $_ -match "module-" } | ForEach-Object {
-        $branch = ($_ -replace '.*origin/', '').Trim()
-        $current = if ((git branch --show-current) -eq $branch) { " (actual)" } else { "" }
-        Write-Host "  $branch$current" -ForegroundColor Yellow
-    }
-}
+# Usage: Update-DockerGuideMain
+Set-Alias -Name ugm -Value Update-DockerGuideMain
 ```
 
-### Operadores de PowerShell vs Bash
+### Bash Functions (Unix/Linux/macOS Only)
 
-| Bash | PowerShell | Descripción |
-|------|------------|-------------|
-| `&&` | `;` o nueva línea | Ejecutar comandos secuencialmente |
-| `\|` | `\|` | Pipe (funciona igual) |
-| `grep` | `Where-Object` o `Select-String` | Filtrar texto |
-| `cd` | `Set-Location` o `cd` | Cambiar directorio |
-| `ls` | `Get-ChildItem` o `ls` | Listar archivos |
-
-### Ejemplos de Conversión
+Add these to your `.bashrc` or `.zshrc`:
 
 ```bash
-# Bash
-git branch -r | grep "module-" | sed 's/.*origin\///'
+# Docker Guide utilities
+
+# Switch to module branch
+sgm() {
+    case $1 in
+        1) git checkout module-01-containerize ;;
+        2) git checkout module-02-develop ;;
+        3) git checkout module-03-linting-typing ;;
+        4) git checkout module-04-cicd ;;
+        5) git checkout module-05-deployment ;;
+        *) echo "Available modules: 1, 2, 3, 4, 5" ;;
+    esac
+    
+    if [ $? -eq 0 ]; then
+        echo "Switched to module: $(git branch --show-current)"
+    fi
+}
+
+# Update main branch
+ugm() {
+    local current_branch=$(git branch --show-current)
+    git checkout main && git pull origin main && git checkout "$current_branch"
+    echo "Main branch updated. Back to: $current_branch"
+}
 ```
 
-```powershell
-# PowerShell
-git branch -r | Where-Object { $_ -match "module-" } | ForEach-Object { $_ -replace '.*origin/', '' }
+---
+
+## 📋 Common Workflows
+
+### Daily Development Routine
+
+#### Unix/Linux/macOS (Bash):
+```bash
+# 1. Start day: update main
+git checkout main && git pull origin main
+
+# 2. Continue work on feature
+git checkout feature/my-work
+
+# 3. Merge latest main (if needed)
+git merge main
+
+# 4. Work and commit
+# ... make changes ...
+git add . && git commit -m "feat: add new examples"
+
+# 5. Push work
+git push origin feature/my-work
 ```
+
+#### Windows (PowerShell):
+```powershell
+# 1. Start day: update main
+git checkout main; git pull origin main
+
+# 2. Continue work on feature
+git checkout feature/my-work
+
+# 3. Merge latest main (if needed)
+git merge main
+
+# 4. Work and commit
+# ... make changes ...
+git add .; git commit -m "feat: add new examples"
+
+# 5. Push work  
+git push origin feature/my-work
+```
+
+### Module Review Routine
+
+#### Unix/Linux/macOS (Bash):
+```bash
+# 1. Check out module
+git checkout module-01-containerize
+
+# 2. Create review branch
+git checkout -b review/module-01-$(date +%Y%m%d)
+
+# 3. Test examples
+cd examples/basic-flask-app/
+docker build -t test-app .
+
+# 4. Document findings
+# ... edit files ...
+
+# 5. Commit review
+git add . && git commit -m "review: test module 01 examples and update docs"
+```
+
+#### Windows (PowerShell):
+```powershell
+# 1. Check out module
+git checkout module-01-containerize
+
+# 2. Create review branch
+$date = Get-Date -Format "yyyyMMdd"
+git checkout -b "review/module-01-$date"
+
+# 3. Test examples
+Set-Location examples/basic-flask-app/
+docker build -t test-app .
+
+# 4. Document findings
+# ... edit files ...
+
+# 5. Commit review
+git add .; git commit -m "review: test module 01 examples and update docs"
+```
+
+---
+
+## 🚨 Emergency Commands
+
+### Undo Last Commit (Before Push)
+
+#### Unix/Linux/macOS (Bash):
+```bash
+# Undo last commit, keep changes
+git reset --soft HEAD~1
+
+# Undo last commit, discard changes  
+git reset --hard HEAD~1
+```
+
+#### Windows (PowerShell):
+```powershell
+# Undo last commit, keep changes
+git reset --soft HEAD~1
+
+# Undo last commit, discard changes
+git reset --hard HEAD~1
+```
+
+### Discard Local Changes
+
+#### Unix/Linux/macOS (Bash):
+```bash
+# Discard changes to specific file
+git checkout -- filename.txt
+
+# Discard all changes
+git reset --hard HEAD
+
+# Clean untracked files
+git clean -fd
+```
+
+#### Windows (PowerShell):
+```powershell
+# Discard changes to specific file
+git checkout -- filename.txt
+
+# Discard all changes
+git reset --hard HEAD
+
+# Clean untracked files
+git clean -fd
+```
+
+### Sync Fork (If Repository is Forked)
+
+#### Unix/Linux/macOS (Bash):
+```bash
+# Add upstream remote (once)
+git remote add upstream https://github.com/AndCarrillo/docker-python-guide.git
+
+# Sync with upstream
+git checkout main
+git fetch upstream
+git merge upstream/main
+git push origin main
+```
+
+#### Windows (PowerShell):
+```powershell
+# Add upstream remote (once)
+git remote add upstream https://github.com/AndCarrillo/docker-python-guide.git
+
+# Sync with upstream
+git checkout main
+git fetch upstream  
+git merge upstream/main
+git push origin main
+```
+
+---
+
+## 📖 Additional Resources
+
+- [Git Documentation](https://git-scm.com/doc)
+- [GitHub Flow](https://guides.github.com/introduction/flow/)
+- [PowerShell Git Integration](https://docs.microsoft.com/en-us/powershell/scripting/dev-cross-plat/vscode/using-vscode)
+- [Bash Git Completion](https://github.com/git/git/blob/master/contrib/completion/git-completion.bash)

@@ -1,139 +1,139 @@
-# 🐍 Python Docker Guide - Guía Completa
+# 🐍 Python Docker Guide - Complete Guide
 
-Una guía completa para containerizar aplicaciones Python usando Docker, desde conceptos básicos hasta deployment en producción.
+A comprehensive guide to containerize Python applications using Docker, from basic concepts to production deployment.
 
-## 📋 Tabla de Contenidos
+## 📋 Table of Contents
 
-### 🎯 Módulos de la Guía
+### 🎯 Guide Modules
 
-| Módulo                                                                 | Descripción                                   | Branch                     | Estado |
+| Module                                                                 | Description                                   | Branch                     | Status |
 | ---------------------------------------------------------------------- | --------------------------------------------- | -------------------------- | ------ |
-| [**1. Containerize your app**](#módulo-1-containerize-your-app)        | Aprende a containerizar una aplicación Python | `module-01-containerize`   | 🚧     |
-| [**2. Develop your app**](#módulo-2-develop-your-app)                  | Desarrollo local usando contenedores          | `module-02-develop`        | 🚧     |
-| [**3. Linting and typing**](#módulo-3-linting-and-typing)              | Configuración de linting, formato y tipado    | `module-03-linting-typing` | 🚧     |
-| [**4. CI/CD with GitHub Actions**](#módulo-4-cicd-with-github-actions) | Automatización con GitHub Actions             | `module-04-cicd`           | 🚧     |
-| [**5. Test your deployment**](#módulo-5-test-your-deployment)          | Testing y deployment en Kubernetes            | `module-05-deployment`     | 🚧     |
+| [**1. Containerize your app**](#module-1-containerize-your-app)        | Learn to containerize Python applications | `module-01-containerize`   | 🚧     |
+| [**2. Develop your app**](#module-2-develop-your-app)                  | Local development using containers          | `module-02-develop`        | 🚧     |
+| [**3. Linting and typing**](#module-3-linting-and-typing)              | Code quality: linting, formatting and typing    | `module-03-linting-typing` | 🚧     |
+| [**4. CI/CD with GitHub Actions**](#module-4-cicd-with-github-actions) | Automation with GitHub Actions             | `module-04-cicd`           | 🚧     |
+| [**5. Test your deployment**](#module-5-test-your-deployment)          | Testing and deployment in Kubernetes            | `module-05-deployment`     | 🚧     |
 
 ---
 
-## 🎯 Objetivos de Aprendizaje
+## 🎯 Learning Objectives
 
-Al completar esta guía, serás capaz de:
+By completing this guide, you will be able to:
 
-- ✅ Containerizar aplicaciones Python de manera eficiente
-- ✅ Configurar un entorno de desarrollo local con contenedores
-- ✅ Implementar mejores prácticas de código (linting, formatting, typing)
-- ✅ Configurar pipelines de CI/CD automatizados
-- ✅ Desplegar aplicaciones en Kubernetes para testing
+- ✅ Containerize Python applications efficiently
+- ✅ Set up a local development environment with containers
+- ✅ Implement code best practices (linting, formatting, typing)
+- ✅ Configure automated CI/CD pipelines
+- ✅ Deploy applications to Kubernetes for testing
 
 ---
 
-## 📚 Módulos Detallados
+## 📚 Detailed Modules
 
-### Módulo 1: Containerize your app
+### Module 1: Containerize your app
 
 **Branch:** `module-01-containerize`
 
-Aprende los fundamentos de containerización con Docker:
+Learn the fundamentals of containerization with Docker:
 
-- Creación de Dockerfile optimizado para Python
-- Multi-stage builds para reducir tamaño de imagen
-- Configuración de dependencias y requirements
-- Mejores prácticas de seguridad
+- Creating optimized Dockerfiles for Python
+- Multi-stage builds to reduce image size
+- Dependencies and requirements configuration
+- Security best practices
 
-**🔗 [Ir al módulo →](../../tree/module-01-containerize)**
+**🔗 [Go to module →](../../tree/module-01-containerize)**
 
 ---
 
-### Módulo 2: Develop your app
+### Module 2: Develop your app
 
 **Branch:** `module-02-develop`
 
-Configuración de entorno de desarrollo local:
+Local development environment setup:
 
-- Docker Compose para desarrollo
-- Hot reload y debugging
-- Gestión de variables de entorno
-- Integración con bases de datos
+- Docker Compose for development
+- Hot reload and debugging
+- Environment variables management
+- Database integration
 
-**🔗 [Ir al módulo →](../../tree/module-02-develop)**
+**🔗 [Go to module →](../../tree/module-02-develop)**
 
 ---
 
-### Módulo 3: Linting and typing
+### Module 3: Linting and typing
 
 **Branch:** `module-03-linting-typing`
 
-Calidad de código y mejores prácticas:
+Code quality and best practices:
 
-- Configuración de Black, Flake8, isort
-- Type checking con mypy
+- Configuration of Black, Flake8, isort
+- Type checking with mypy
 - Pre-commit hooks
-- Configuración de VS Code
+- VS Code configuration
 
-**🔗 [Ir al módulo →](../../tree/module-03-linting-typing)**
+**🔗 [Go to module →](../../tree/module-03-linting-typing)**
 
 ---
 
-### Módulo 4: CI/CD with GitHub Actions
+### Module 4: CI/CD with GitHub Actions
 
 **Branch:** `module-04-cicd`
 
-Automatización del pipeline de desarrollo:
+Development pipeline automation:
 
-- Workflows de GitHub Actions
-- Testing automatizado
-- Build y push de imágenes Docker
-- Deployment automatizado
+- GitHub Actions workflows
+- Automated testing
+- Docker image build and push
+- Automated deployment
 
-**🔗 [Ir al módulo →](../../tree/module-04-cicd)**
+**🔗 [Go to module →](../../tree/module-04-cicd)**
 
 ---
 
-### Módulo 5: Test your deployment
+### Module 5: Test your deployment
 
 **Branch:** `module-05-deployment`
 
-Testing y deployment en Kubernetes:
+Testing and deployment in Kubernetes:
 
-- Configuración local de Kubernetes
-- Manifiestos YAML
-- Testing de deployment
-- Monitoring y debugging
+- Local Kubernetes configuration
+- YAML manifests
+- Deployment testing
+- Monitoring and debugging
 
-**🔗 [Ir al módulo →](../../tree/module-05-deployment)**
+**🔗 [Go to module →](../../tree/module-05-deployment)**
 
 ---
 
-## 🚀 Cómo usar esta guía
+## 🚀 How to use this guide
 
-### Prerequisitos
+### Prerequisites
 
-- Docker Desktop instalado
-- Python 3.9+ instalado
-- Git configurado
-- Editor de código (recomendado: VS Code)
+- Docker Desktop installed
+- Python 3.9+ installed
+- Git configured
+- Code editor (recommended: VS Code)
 
-### Navegación
+### Navigation
 
-1. **Secuencial**: Sigue los módulos en orden para un aprendizaje progresivo
-2. **Por temas**: Ve directamente al módulo que te interese
-3. **Práctica**: Cada módulo incluye ejercicios prácticos
+1. **Sequential**: Follow modules in order for progressive learning
+2. **By topics**: Go directly to the module that interests you
+3. **Practical**: Each module includes hands-on exercises
 
-### Estructura de branches
+### Branch structure
 
 ```
 main/
-├── module-01-containerize/     # Containerización básica
-├── module-02-develop/          # Desarrollo local
-├── module-03-linting-typing/   # Calidad de código
+├── module-01-containerize/     # Basic containerization
+├── module-02-develop/          # Local development
+├── module-03-linting-typing/   # Code quality
 ├── module-04-cicd/            # CI/CD Pipeline
-└── module-05-deployment/      # Testing y Deployment
+└── module-05-deployment/      # Testing and Deployment
 ```
 
 ---
 
-## 📖 Recursos Adicionales
+## 📖 Additional Resources
 
 - [Docker Documentation](https://docs.docker.com/)
 - [Python Docker Best Practices](https://docs.docker.com/language/python/)
@@ -142,21 +142,21 @@ main/
 
 ---
 
-## 🤝 Contribuciones
+## 🤝 Contributing
 
-¿Encontraste un error o tienes una sugerencia? ¡Contribuye!
+Found an error or have a suggestion? Contribute!
 
-1. Fork el proyecto
-2. Crea una rama para tu feature (`git checkout -b feature/nueva-funcionalidad`)
-3. Commit tus cambios (`git commit -m 'Agrega nueva funcionalidad'`)
-4. Push a la rama (`git push origin feature/nueva-funcionalidad`)
-5. Abre un Pull Request
+1. Fork the project
+2. Create a feature branch (`git checkout -b feature/new-feature`)
+3. Commit your changes (`git commit -m 'Add new feature'`)
+4. Push to the branch (`git push origin feature/new-feature`)
+5. Open a Pull Request
 
 ---
 
-## 📝 Licencia
+## 📝 License
 
-Este proyecto está bajo la Licencia MIT - ver el archivo [LICENSE](LICENSE) para más detalles.
+This project is under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 ---
 
@@ -166,5 +166,5 @@ Este proyecto está bajo la Licencia MIT - ver el archivo [LICENSE](LICENSE) par
 
 ---
 
-**📅 Última actualización:** Julio 2025
-**👨‍💻 Mantenido por:** Andrea Carrillo - [GitHub](https://github.com/AndCarrillo)
+**📅 Last updated:** July 2025
+**👨‍💻 Maintained by:** Andrea Carrillo - [GitHub](https://github.com/AndCarrillo)

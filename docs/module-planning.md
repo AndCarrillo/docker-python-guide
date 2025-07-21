@@ -1,36 +1,36 @@
-# 📋 Planificación Detallada de Módulos
+# 📋 Detailed Module Planning
 
-## 🎯 Estructura General
+## 🎯 General Structure
 
-Cada módulo tendrá su propio branch y seguirá una estructura consistente:
+Each module will have its own branch and follow a consistent structure:
 
 ```
 module-XX-name/
-├── README.md              # Documentación principal del módulo
-├── docs/                  # Documentación adicional
-│   ├── setup.md          # Instrucciones de configuración
-│   ├── troubleshooting.md # Resolución de problemas
-│   └── resources.md      # Recursos adicionales
-├── examples/             # Ejemplos prácticos
-├── exercises/            # Ejercicios para el estudiante
-├── src/                  # Código fuente principal
-└── tests/               # Tests específicos del módulo
+├── README.md              # Main module documentation
+├── docs/                  # Additional documentation
+│   ├── setup.md          # Setup instructions
+│   ├── troubleshooting.md # Troubleshooting
+│   └── resources.md      # Additional resources
+├── examples/             # Practical examples
+├── exercises/            # Student exercises
+├── src/                  # Main source code
+└── tests/               # Module-specific tests
 ```
 
 ---
 
-## 📚 Módulo 1: Containerize your app
+## 📚 Module 1: Containerize your app
 
 **Branch:** `module-01-containerize`
 
-### Objetivos
+### Objectives
 
-- Crear un Dockerfile optimizado para Python
-- Entender multi-stage builds
-- Implementar mejores prácticas de seguridad
-- Optimizar el tamaño de la imagen
+- Create an optimized Dockerfile for Python
+- Understand multi-stage builds
+- Implement security best practices
+- Optimize image size
 
-### Contenido
+### Content
 
 ```
 module-01-containerize/
@@ -64,30 +64,30 @@ module-01-containerize/
     └── run.sh
 ```
 
-### Temas cubiertos
+### Topics covered
 
 - Python base images comparison
-- Dockerfile syntax y comandos
+- Dockerfile syntax and commands
 - Multi-stage builds
-- Gestión de dependencias
-- Variables de entorno
-- Usuarios no-root
+- Dependency management
+- Environment variables
+- Non-root users
 - Health checks
 
 ---
 
-## 🛠️ Módulo 2: Develop your app
+## 🛠️ Module 2: Develop your app
 
 **Branch:** `module-02-develop`
 
-### Objetivos
+### Objectives
 
-- Configurar Docker Compose para desarrollo
-- Implementar hot reload
-- Configurar debugging
-- Gestionar bases de datos y servicios externos
+- Configure Docker Compose for development
+- Implement hot reload
+- Configure debugging
+- Manage databases and external services
 
-### Contenido
+### Content
 
 ```
 module-02-develop/
@@ -120,7 +120,7 @@ module-02-develop/
     └── db-migrate.sh
 ```
 
-### Temas cubiertos
+### Topics covered
 
 - Docker Compose basics
 - Volume mounting
@@ -132,18 +132,18 @@ module-02-develop/
 
 ---
 
-## 🔍 Módulo 3: Linting and typing
+## 🔍 Module 3: Linting and typing
 
 **Branch:** `module-03-linting-typing`
 
-### Objetivos
+### Objectives
 
-- Configurar herramientas de calidad de código
-- Implementar type checking
-- Configurar pre-commit hooks
-- Integrar con editores
+- Configure code quality tools
+- Implement type checking
+- Configure pre-commit hooks
+- Integrate with editors
 
-### Contenido
+### Content
 
 ```
 module-03-linting-typing/
@@ -174,7 +174,7 @@ module-03-linting-typing/
     └── run-checks.sh
 ```
 
-### Temas cubiertos
+### Topics covered
 
 - Black (formatting)
 - Flake8 (linting)
@@ -186,18 +186,18 @@ module-03-linting-typing/
 
 ---
 
-## ⚙️ Módulo 4: CI/CD with GitHub Actions
+## ⚙️ Module 4: CI/CD with GitHub Actions
 
 **Branch:** `module-04-cicd`
 
-### Objetivos
+### Objectives
 
-- Crear workflows de GitHub Actions
-- Implementar testing automatizado
-- Configurar build y push de imágenes
-- Deploy automatizado
+- Create GitHub Actions workflows
+- Implement automated testing
+- Configure image build and push
+- Automated deployment
 
-### Contenido
+### Content
 
 ```
 module-04-cicd/
@@ -225,7 +225,7 @@ module-04-cicd/
     └── deploy.sh
 ```
 
-### Temas cubiertos
+### Topics covered
 
 - GitHub Actions workflows
 - Matrix builds
@@ -237,18 +237,18 @@ module-04-cicd/
 
 ---
 
-## 🚀 Módulo 5: Test your deployment
+## 🚀 Module 5: Test your deployment
 
 **Branch:** `module-05-deployment`
 
-### Objetivos
+### Objectives
 
-- Configurar Kubernetes local
-- Crear manifiestos de deployment
-- Implementar health checks
-- Configurar monitoring
+- Configure local Kubernetes
+- Create deployment manifests
+- Implement health checks
+- Configure monitoring
 
-### Contenido
+### Content
 
 ```
 module-05-deployment/
@@ -277,72 +277,72 @@ module-05-deployment/
     └── cleanup.sh
 ```
 
-### Temas cubiertos
+### Topics covered
 
 - Kubernetes basics
 - Pod, Service, Deployment
-- ConfigMaps y Secrets
+- ConfigMaps and Secrets
 - Ingress controllers
 - Health checks
 - Resource limits
-- Monitoring y logging
+- Monitoring and logging
 
 ---
 
-## 🔄 Flujo de Trabajo
+## 🔄 Workflow
 
-### Para el instructor/mantenedor:
+### For instructor/maintainer:
 
-1. Crear branch desde main: `git checkout -b module-XX-name`
-2. Desarrollar contenido del módulo
-3. Crear PR hacia main con el contenido completado
-4. Mantener branch activo para futuras actualizaciones
+1. Create branch from main: `git checkout -b module-XX-name`
+2. Develop module content
+3. Create PR to main with completed content
+4. Keep branch active for future updates
 
-### Para el estudiante:
+### For student:
 
-#### En Unix/Linux/Mac (Bash):
+#### In Unix/Linux/Mac (Bash):
 ```bash
-# Comenzar desde main branch
+# Start from main branch
 git checkout main
 git pull origin main
 
-# Cambiar al módulo deseado
+# Switch to desired module
 git checkout module-XX-name
 
-# Seguir la guía del README.md del módulo
+# Follow the module README.md guide
 ```
 
-#### En Windows (PowerShell):
+#### In Windows (PowerShell):
 ```powershell
-# Comenzar desde main branch
+# Start from main branch
 git checkout main
 git pull origin main
 
-# Cambiar al módulo deseado  
+# Switch to desired module  
 git checkout module-XX-name
 
-# Seguir la guía del README.md del módulo
+# Follow the module README.md guide
 ```
 
-**Pasos generales:**
-1. Comenzar desde main branch
-2. Seguir enlaces del README.md
-3. Hacer checkout al branch del módulo
-4. Seguir la guía del README.md del módulo
-5. Completar ejercicios
-6. Opcional: crear branch personal para experimentos
+**General steps:**
+1. Start from main branch
+2. Follow README.md links
+3. Checkout to module branch
+4. Follow module README.md guide
+5. Complete exercises
+6. Optional: create personal branch for experiments
 
 ---
 
-## 📊 Tracking de Progreso
+## 📊 Progress Tracking
 
-Cada módulo incluirá:
+Each module will include:
 
-- [ ] Checklist de objetivos completados
-- [ ] Ejercicios prácticos con validación
-- [ ] Tests automatizados para verificar comprensión
-- [ ] Enlaces al siguiente módulo
+- [ ] Checklist of completed objectives
+- [ ] Practical exercises with validation
+- [ ] Automated tests to verify understanding
+- [ ] Links to next module
 
 ---
 
-**Próximo paso:** Comenzar con la implementación del Módulo 1
+**Next step:** Start with Module 1 implementation

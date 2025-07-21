@@ -1,142 +1,142 @@
-# 🤝 Guía de Contribución
+# 🤝 Contributing Guide
 
-¡Gracias por tu interés en contribuir a la **Docker Python Guide**! Esta guía te ayudará a entender cómo puedes contribuir efectivamente a este proyecto.
+Thank you for your interest in contributing to the **Docker Python Guide**! This guide will help you understand how you can effectively contribute to this project.
 
-## 📋 Tabla de Contenidos
+## 📋 Table of Contents
 
-- [Código de Conducta](#código-de-conducta)
-- [Cómo Contribuir](#cómo-contribuir)
-- [Estructura del Proyecto](#estructura-del-proyecto)
-- [Proceso de Desarrollo](#proceso-de-desarrollo)
-- [Estándares de Código](#estándares-de-código)
-- [Reporte de Issues](#reporte-de-issues)
+- [Code of Conduct](#code-of-conduct)
+- [How to Contribute](#how-to-contribute)
+- [Project Structure](#project-structure)
+- [Development Process](#development-process)
+- [Code Standards](#code-standards)
+- [Reporting Issues](#reporting-issues)
 - [Pull Requests](#pull-requests)
 
-## 📜 Código de Conducta
+## 📜 Code of Conduct
 
-Este proyecto adhiere a un código de conducta que esperamos que todos los participantes respeten. Por favor, lee el [Código de Conducta](CODE_OF_CONDUCT.md) antes de participar.
+This project adheres to a code of conduct that we expect all participants to respect. Please read the [Code of Conduct](CODE_OF_CONDUCT.md) before participating.
 
-## 🎯 Cómo Contribuir
+## 🎯 How to Contribute
 
-Hay varias formas de contribuir a este proyecto:
+There are several ways to contribute to this project:
 
-### 📝 Documentación
+### 📝 Documentation
 
-- Mejorar README files de módulos
-- Corregir errores tipográficos
-- Agregar ejemplos adicionales
-- Traducir contenido
-- Mejorar instrucciones de setup
+- Improve module README files
+- Fix typos
+- Add additional examples
+- Translate content
+- Improve setup instructions
 
-### 💻 Código
+### 💻 Code
 
-- Crear nuevos ejemplos prácticos
-- Mejorar ejercicios existentes
-- Agregar scripts de automatización
-- Optimizar Dockerfiles
-- Agregar tests
+- Create new practical examples
+- Improve existing exercises
+- Add automation scripts
+- Optimize Dockerfiles
+- Add tests
 
-### 🐛 Reporte de Bugs
+### 🐛 Bug Reports
 
-- Encontrar y reportar errores
-- Validar fixes
-- Probar en diferentes plataformas
+- Find and report errors
+- Validate fixes
+- Test on different platforms
 
-### 💡 Ideas y Sugerencias
+### 💡 Ideas and Suggestions
 
-- Proponer nuevos módulos
-- Sugerir mejoras en el contenido
-- Compartir mejores prácticas
+- Propose new modules
+- Suggest content improvements
+- Share best practices
 
-## 🏗️ Estructura del Proyecto
+## 🏗️ Project Structure
 
 ```
 docker-python-guide/
-├── README.md              # Documentación principal (menú)
-├── docs/                  # Documentación general
-├── scripts/               # Scripts de automatización
-│   ├── setup.sh          # Setup para Linux/Mac
-│   └── setup.ps1         # Setup para Windows
-├── module-01-containerize/    # Branch separado
-├── module-02-develop/         # Branch separado
-├── module-03-linting-typing/  # Branch separado
-├── module-04-cicd/           # Branch separado
-└── module-05-deployment/     # Branch separado
+├── README.md              # Main documentation (menu)
+├── docs/                  # General documentation
+├── scripts/               # Automation scripts
+│   ├── setup.sh          # Setup for Linux/Mac
+│   └── setup.ps1         # Setup for Windows
+├── module-01-containerize/    # Separate branch
+├── module-02-develop/         # Separate branch
+├── module-03-linting-typing/  # Separate branch
+├── module-04-cicd/           # Separate branch
+└── module-05-deployment/     # Separate branch
 ```
 
-### Branches por Módulo
+### Module Branches
 
-Cada módulo tiene su propio branch con la siguiente estructura:
+Each module has its own branch with the following structure:
 
 ```
 module-XX-name/
-├── README.md              # Documentación del módulo
-├── docs/                  # Documentación específica
-├── examples/              # Ejemplos prácticos
-├── exercises/             # Ejercicios para estudiantes
-├── src/                   # Código fuente
-└── tests/                # Tests del módulo
+├── README.md              # Module documentation
+├── docs/                  # Specific documentation
+├── examples/              # Practical examples
+├── exercises/             # Exercises for students
+├── src/                   # Source code
+└── tests/                # Module tests
 ```
 
-## 🔄 Proceso de Desarrollo
+## 🔄 Development Process
 
-### 1. Fork y Clone
+### 1. Fork and Clone
 
 ```bash
-# Fork el proyecto en GitHub
-git clone https://github.com/TU-USERNAME/docker-python-guide.git
+# Fork the project on GitHub
+git clone https://github.com/YOUR-USERNAME/docker-python-guide.git
 cd docker-python-guide
 ```
 
-### 2. Configurar Upstream
+### 2. Configure Upstream
 
 ```bash
 git remote add upstream https://github.com/AndCarrillo/docker-python-guide.git
 ```
 
-### 3. Crear Branch de Trabajo
+### 3. Create Working Branch
 
 ```bash
-# Para contribuciones generales
-git checkout -b feature/tu-feature-name
+# For general contributions
+git checkout -b feature/your-feature-name
 
-# Para módulos específicos
+# For module-specific contributions
 git checkout module-01-containerize
 git checkout -b feature/module-01-improvement
 ```
 
-### 4. Hacer Cambios
+### 4. Make Changes
 
-- Sigue las convenciones de código
-- Agrega tests si es aplicable
-- Actualiza documentación
-- Prueba tus cambios
+- Follow code conventions
+- Add tests if applicable
+- Update documentation
+- Test your changes
 
-### 5. Commit y Push
+### 5. Commit and Push
 
 ```bash
 git add .
-git commit -m "feat: descripción clara del cambio"
-git push origin feature/tu-feature-name
+git commit -m "feat: clear description of the change"
+git push origin feature/your-feature-name
 ```
 
-### 6. Crear Pull Request
+### 6. Create Pull Request
 
-- Describe claramente los cambios
-- Referencia issues relacionados
-- Incluye capturas de pantalla si es visual
+- Clearly describe the changes
+- Reference related issues
+- Include screenshots if visual
 
-## 📏 Estándares de Código
+## 📏 Code Standards
 
 ### Python
 
-- **Estilo**: Seguir PEP 8
-- **Formatting**: Usar Black
-- **Imports**: Usar isort
-- **Type hints**: Usar cuando sea posible
-- **Docstrings**: Estilo Google
+- **Style**: Follow PEP 8
+- **Formatting**: Use Black
+- **Imports**: Use isort
+- **Type hints**: Use when possible
+- **Docstrings**: Google style
 
-Ejemplo:
+Example:
 
 ```python
 def calculate_image_size(base_size: int, layers: int) -> int:
@@ -160,12 +160,12 @@ def calculate_image_size(base_size: int, layers: int) -> int:
 
 ### Docker
 
-- **Multi-stage builds**: Cuando sea apropiado
-- **Orden de comandos**: Optimizar para cache
-- **Security**: No usar root user
-- **Size**: Minimizar tamaño de imagen
+- **Multi-stage builds**: When appropriate
+- **Command order**: Optimize for cache
+- **Security**: Don't use root user
+- **Size**: Minimize image size
 
-Ejemplo de Dockerfile:
+Example Dockerfile:
 
 ```dockerfile
 # Multi-stage build example
@@ -190,140 +190,140 @@ EXPOSE 8000
 CMD ["python", "app.py"]
 ```
 
-### Documentación
+### Documentation
 
-- **Markdown**: Usar sintaxis estándar
-- **Estructura**: Headers consistentes
-- **Ejemplos**: Incluir código ejecutable
-- **Enlaces**: Verificar que funcionen
+- **Markdown**: Use standard syntax
+- **Structure**: Consistent headers
+- **Examples**: Include executable code
+- **Links**: Verify they work
 
-### Mensajes de Commit
+### Commit Messages
 
-Usar formato Conventional Commits:
+Use Conventional Commits format:
 
 ```
-feat: agregar ejemplo de FastAPI con PostgreSQL
-fix: corregir Dockerfile para Python 3.11
-docs: actualizar README del módulo 2
-test: agregar tests para ejercicio de Docker Compose
-chore: actualizar dependencias
+feat: add FastAPI example with PostgreSQL
+fix: correct Dockerfile for Python 3.11
+docs: update module 2 README
+test: add tests for Docker Compose exercise
+chore: update dependencies
 ```
 
-Tipos válidos:
+Valid types:
 
-- `feat`: Nueva funcionalidad
-- `fix`: Corrección de bug
-- `docs`: Cambios en documentación
-- `test`: Agregar o modificar tests
-- `chore`: Tareas de mantenimiento
-- `refactor`: Refactoring de código
-- `style`: Cambios de formato
+- `feat`: New functionality
+- `fix`: Bug fix
+- `docs`: Documentation changes
+- `test`: Add or modify tests
+- `chore`: Maintenance tasks
+- `refactor`: Code refactoring
+- `style`: Format changes
 
-## 🐛 Reporte de Issues
+## 🐛 Reporting Issues
 
-### Antes de Reportar
+### Before Reporting
 
-1. Busca issues existentes
-2. Verifica que no sea un problema local
-3. Prueba con la última versión
+1. Search existing issues
+2. Verify it's not a local problem
+3. Test with the latest version
 
-### Template de Issue
+### Issue Template
 
 ```markdown
-## 🐛 Descripción del Bug
+## 🐛 Bug Description
 
-Descripción clara y concisa del problema.
+Clear and concise description of the problem.
 
-## 🔄 Pasos para Reproducir
+## 🔄 Steps to Reproduce
 
-1. Ve a '...'
-2. Ejecuta '...'
-3. Observa el error
+1. Go to '...'
+2. Run '...'
+3. Observe the error
 
-## ✅ Comportamiento Esperado
+## ✅ Expected Behavior
 
-Descripción de qué debería pasar.
+Description of what should happen.
 
-## 📱 Entorno
+## 📱 Environment
 
-- OS: [ej. Windows 11]
-- Docker version: [ej. 24.0.0]
-- Python version: [ej. 3.11]
-- Branch/Módulo: [ej. module-01-containerize]
+- OS: [e.g. Windows 11]
+- Docker version: [e.g. 24.0.0]
+- Python version: [e.g. 3.11]
+- Branch/Module: [e.g. module-01-containerize]
 
-## 📎 Información Adicional
+## 📎 Additional Information
 
-Logs, capturas de pantalla, etc.
+Logs, screenshots, etc.
 ```
 
 ## 🔀 Pull Requests
 
-### Checklist antes de Enviar
+### Checklist Before Submitting
 
-- [ ] Código sigue los estándares establecidos
-- [ ] Tests pasan (si aplica)
-- [ ] Documentación actualizada
-- [ ] Commits siguen convención
-- [ ] Branch actualizado con upstream
-- [ ] PR template completado
+- [ ] Code follows established standards
+- [ ] Tests pass (if applicable)
+- [ ] Documentation updated
+- [ ] Commits follow convention
+- [ ] Branch updated with upstream
+- [ ] PR template completed
 
-### Template de PR
+### PR Template
 
 ```markdown
-## 📝 Descripción
+## 📝 Description
 
-Descripción clara de los cambios realizados.
+Clear description of the changes made.
 
-## 🎯 Tipo de Cambio
+## 🎯 Type of Change
 
 - [ ] Bug fix
-- [ ] Nueva funcionalidad
-- [ ] Cambio breaking
-- [ ] Documentación
+- [ ] New functionality
+- [ ] Breaking change
+- [ ] Documentation
 
 ## 🧪 Testing
 
-- [ ] Tests existentes pasan
-- [ ] Nuevos tests agregados
-- [ ] Probado manualmente
+- [ ] Existing tests pass
+- [ ] New tests added
+- [ ] Manually tested
 
 ## 📋 Checklist
 
-- [ ] Código sigue estándares del proyecto
-- [ ] Self-review completado
-- [ ] Documentación actualizada
-- [ ] Commits siguen convención
+- [ ] Code follows project standards
+- [ ] Self-review completed
+- [ ] Documentation updated
+- [ ] Commits follow convention
 
-## 🔗 Issues Relacionados
+## 🔗 Related Issues
 
 Closes #123
 ```
 
 ## 🏷️ Labels
 
-Usamos los siguientes labels:
+We use the following labels:
 
-- `bug`: Algo no funciona
-- `enhancement`: Nueva funcionalidad
-- `documentation`: Mejoras en documentación
-- `good first issue`: Bueno para principiantes
-- `help wanted`: Ayuda extra bienvenida
-- `module-01`: Relacionado con módulo 1
-- `module-02`: Relacionado con módulo 2
+- `bug`: Something doesn't work
+- `enhancement`: New functionality
+- `documentation`: Documentation improvements
+- `good first issue`: Good for beginners
+- `help wanted`: Extra help welcome
+- `module-01`: Related to module 1
+- `module-02`: Related to module 2
 - etc.
 
-## 🎉 Reconocimiento
+## 🎉 Recognition
 
-Todos los contribuidores serán reconocidos en:
+All contributors will be recognized in:
 
-- README principal
-- Lista de contribuidores
+- Main README
+- Contributors list
 - Release notes
 
-## ❓ ¿Necesitas Ayuda?
+## ❓ Need Help?
 
-- Abre un issue con label `question`
-- Discute en GitHub Discussions
-- Revisa la documentación existente
+- Open an issue with `question` label
+- Discuss in GitHub Discussions
+- Review existing documentation
 
-¡Gracias por contribuir a la Docker Python Guide! 🚀
+Thank you for contributing to the Docker Python Guide! 🚀
