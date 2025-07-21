@@ -1,14 +1,30 @@
 # 🚀 Comandos de Git para Docker Python Guide
 
+> **💡 Nota importante**: Los comandos en esta guía están optimizados para diferentes shells. Si usas Windows PowerShell, revisa la sección [Comandos para PowerShell](#comandos-para-powershell).
+
 ## 📋 Configuración Inicial
 
+### Bash/Zsh (Linux/Mac/Git Bash):
 ```bash
 # Clonar el repositorio
 git clone https://github.com/USERNAME/docker-python-guide.git
 cd docker-python-guide
 
 # Configurar upstream (si es fork)
-git remote add upstream https://github.com/ORIGINAL-OWNER/docker-python-guide.git
+git remote add upstream https://github.com/AndCarrillo/docker-python-guide.git
+
+# Verificar remotes
+git remote -v
+```
+
+### PowerShell (Windows):
+```powershell
+# Clonar el repositorio
+git clone https://github.com/USERNAME/docker-python-guide.git
+Set-Location docker-python-guide
+
+# Configurar upstream (si es fork)
+git remote add upstream https://github.com/AndCarrillo/docker-python-guide.git
 
 # Verificar remotes
 git remote -v
@@ -329,3 +345,87 @@ git remote prune origin
    git diff --staged
    git status
    ```
+
+---
+
+## 💻 Comandos para PowerShell
+
+### Comandos Básicos Adaptados
+
+```powershell
+# Listar módulos disponibles
+git branch -r | Where-Object { $_ -match "module-" }
+
+# Cambiar a un módulo específico
+git checkout module-01-containerize
+
+# Actualizar desde upstream (comandos separados)
+git fetch upstream
+git checkout main
+git merge upstream/main
+```
+
+### Función Helper para PowerShell
+
+Agrega esta función a tu `$PROFILE`:
+
+```powershell
+function Switch-Module {
+    param([string]$ModuleNumber)
+    
+    if (-not $ModuleNumber) {
+        Write-Host "Uso: Switch-Module <numero>"
+        Write-Host "Ejemplo: Switch-Module 01"
+        return
+    }
+    
+    $branches = git branch -r | Where-Object { $_ -match "module-$ModuleNumber" }
+    if ($branches) {
+        $branch = ($branches[0] -replace '.*origin/', '').Trim()
+        git checkout $branch
+        Write-Host "Cambiado a: $branch" -ForegroundColor Green
+    } else {
+        Write-Host "Módulo $ModuleNumber no encontrado" -ForegroundColor Red
+    }
+}
+
+function Update-FromUpstream {
+    Write-Host "Actualizando desde upstream..." -ForegroundColor Blue
+    git fetch upstream
+    git checkout main
+    git merge upstream/main
+    git push origin main
+    Write-Host "Actualización completada" -ForegroundColor Green
+}
+
+function Show-ModuleStatus {
+    Write-Host "📚 Módulos disponibles:" -ForegroundColor Green
+    git branch -r | Where-Object { $_ -match "module-" } | ForEach-Object {
+        $branch = ($_ -replace '.*origin/', '').Trim()
+        $current = if ((git branch --show-current) -eq $branch) { " (actual)" } else { "" }
+        Write-Host "  $branch$current" -ForegroundColor Yellow
+    }
+}
+```
+
+### Operadores de PowerShell vs Bash
+
+| Bash | PowerShell | Descripción |
+|------|------------|-------------|
+| `&&` | `;` o nueva línea | Ejecutar comandos secuencialmente |
+| `\|` | `\|` | Pipe (funciona igual) |
+| `grep` | `Where-Object` o `Select-String` | Filtrar texto |
+| `cd` | `Set-Location` o `cd` | Cambiar directorio |
+| `ls` | `Get-ChildItem` o `ls` | Listar archivos |
+
+### Ejemplos de Conversión
+
+```bash
+# Bash
+git branch -r | grep "module-" | sed 's/.*origin\///'
+```
+
+```powershell
+# PowerShell
+git branch -r | Where-Object { $_ -match "module-" } | ForEach-Object { $_ -replace '.*origin/', '' }
+```

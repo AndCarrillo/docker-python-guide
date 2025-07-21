@@ -300,9 +300,34 @@ module-05-deployment/
 
 ### Para el estudiante:
 
+#### En Unix/Linux/Mac (Bash):
+```bash
+# Comenzar desde main branch
+git checkout main
+git pull origin main
+
+# Cambiar al módulo deseado
+git checkout module-XX-name
+
+# Seguir la guía del README.md del módulo
+```
+
+#### En Windows (PowerShell):
+```powershell
+# Comenzar desde main branch
+git checkout main
+git pull origin main
+
+# Cambiar al módulo deseado  
+git checkout module-XX-name
+
+# Seguir la guía del README.md del módulo
+```
+
+**Pasos generales:**
 1. Comenzar desde main branch
 2. Seguir enlaces del README.md
-3. Hacer checkout al branch del módulo: `git checkout module-XX-name`
+3. Hacer checkout al branch del módulo
 4. Seguir la guía del README.md del módulo
 5. Completar ejercicios
 6. Opcional: crear branch personal para experimentos
