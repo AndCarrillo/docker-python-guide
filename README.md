@@ -1,170 +1,230 @@
-# 🐍 Python Docker Guide - Guía Completa
+# 📦 Module 1: Containerize your app
 
-Una guía completa para containerizar aplicaciones Python usando Docker, desde conceptos básicos hasta deployment en producción.
+Learn the fundamentals of containerizing Python applications with Docker, from basic concepts to production-ready containers.
 
-## 📋 Tabla de Contenidos
+## 🎯 Learning Objectives
 
-### 🎯 Módulos de la Guía
+By completing this module, you will be able to:
 
-| Módulo                                                                 | Descripción                                   | Branch                     | Estado |
-| ---------------------------------------------------------------------- | --------------------------------------------- | -------------------------- | ------ |
-| [**1. Containerize your app**](#módulo-1-containerize-your-app)        | Aprende a containerizar una aplicación Python | `module-01-containerize`   | 🚧     |
-| [**2. Develop your app**](#módulo-2-develop-your-app)                  | Desarrollo local usando contenedores          | `module-02-develop`        | 🚧     |
-| [**3. Linting and typing**](#módulo-3-linting-and-typing)              | Configuración de linting, formato y tipado    | `module-03-linting-typing` | 🚧     |
-| [**4. CI/CD with GitHub Actions**](#módulo-4-cicd-with-github-actions) | Automatización con GitHub Actions             | `module-04-cicd`           | 🚧     |
-| [**5. Test your deployment**](#módulo-5-test-your-deployment)          | Testing y deployment en Kubernetes            | `module-05-deployment`     | 🚧     |
+- ✅ Write optimized Dockerfiles for Python applications
+- ✅ Implement multi-stage builds to reduce image size
+- ✅ Apply security best practices for containers
+- ✅ Optimize container images for production use
+- ✅ Configure proper Python dependency management in containers
 
----
+## 📋 Module Contents
 
-## 🎯 Objetivos de Aprendizaje
+### 📚 Documentation
 
-Al completar esta guía, serás capaz de:
+- [**Dockerfile Best Practices**](docs/dockerfile-guide.md) - Complete guide to writing optimal Dockerfiles
+- [**Security Considerations**](docs/security-guide.md) - Container security best practices
+- [**Image Optimization**](docs/optimization-guide.md) - Techniques to reduce image size and improve performance
 
-- ✅ Containerizar aplicaciones Python de manera eficiente
-- ✅ Configurar un entorno de desarrollo local con contenedores
-- ✅ Implementar mejores prácticas de código (linting, formatting, typing)
-- ✅ Configurar pipelines de CI/CD automatizados
-- ✅ Desplegar aplicaciones en Kubernetes para testing
+### 💡 Practical Examples
 
----
+- [**Flask Basic**](examples/flask-basic/) - Simple Flask application containerization
+- [**FastAPI Advanced**](examples/fastapi-advanced/) - Advanced FastAPI with multi-stage build
+- [**Django Production**](examples/django-production/) - Production-ready Django container
 
-## 📚 Módulos Detallados
+### 🎓 Hands-on Exercises
 
-### Módulo 1: Containerize your app
+- [**Exercise 1: Basic Dockerfile**](exercises/01-basic-dockerfile/) - Create your first Python container
+- [**Exercise 2: Multi-stage Build**](exercises/02-multistage-build/) - Optimize with multi-stage builds
+- [**Exercise 3: Security & Optimization**](exercises/03-optimization/) - Apply security and optimization techniques
 
-**Branch:** `module-01-containerize`
+### 🔧 Templates
 
-Aprende los fundamentos de containerización con Docker:
-
-- Creación de Dockerfile optimizado para Python
-- Multi-stage builds para reducir tamaño de imagen
-- Configuración de dependencias y requirements
-- Mejores prácticas de seguridad
-
-**🔗 [Ir al módulo →](../../tree/module-01-containerize)**
+- [**Dockerfile Templates**](templates/) - Ready-to-use Dockerfile templates for different scenarios
 
 ---
 
-### Módulo 2: Develop your app
+## 🚀 Getting Started
 
-**Branch:** `module-02-develop`
+### Prerequisites
 
-Configuración de entorno de desarrollo local:
+Before starting this module, ensure you have:
 
-- Docker Compose para desarrollo
-- Hot reload y debugging
-- Gestión de variables de entorno
-- Integración con bases de datos
+- ✅ Docker Desktop installed and running
+- ✅ Python 3.9+ installed
+- ✅ Basic understanding of Python applications
+- ✅ Text editor or IDE (VS Code recommended)
 
-**🔗 [Ir al módulo →](../../tree/module-02-develop)**
+### Quick Start
 
----
+1. **Clone and navigate to this module:**
 
-### Módulo 3: Linting and typing
+   ```bash
+   git clone https://github.com/AndCarrillo/docker-python-guide.git
+   cd docker-python-guide
+   git checkout module-01-containerize
+   ```
 
-**Branch:** `module-03-linting-typing`
+2. **Start with the Flask example:**
 
-Calidad de código y mejores prácticas:
+   ```bash
+   cd examples/flask-basic
+   # Follow the README instructions in that folder
+   ```
 
-- Configuración de Black, Flake8, isort
-- Type checking con mypy
-- Pre-commit hooks
-- Configuración de VS Code
-
-**🔗 [Ir al módulo →](../../tree/module-03-linting-typing)**
-
----
-
-### Módulo 4: CI/CD with GitHub Actions
-
-**Branch:** `module-04-cicd`
-
-Automatización del pipeline de desarrollo:
-
-- Workflows de GitHub Actions
-- Testing automatizado
-- Build y push de imágenes Docker
-- Deployment automatizado
-
-**🔗 [Ir al módulo →](../../tree/module-04-cicd)**
+3. **Or jump to exercises:**
+   ```bash
+   cd exercises/01-basic-dockerfile
+   # Follow the exercise instructions
+   ```
 
 ---
 
-### Módulo 5: Test your deployment
+## 📖 Study Path
 
-**Branch:** `module-05-deployment`
+### 🎯 Recommended Learning Sequence
 
-Testing y deployment en Kubernetes:
+1. **📚 Read Documentation First**
 
-- Configuración local de Kubernetes
-- Manifiestos YAML
-- Testing de deployment
-- Monitoring y debugging
+   - Start with [Dockerfile Best Practices](docs/dockerfile-guide.md)
+   - Review [Security Considerations](docs/security-guide.md)
 
-**🔗 [Ir al módulo →](../../tree/module-05-deployment)**
+2. **💡 Explore Examples**
 
----
+   - Begin with [Flask Basic Example](examples/flask-basic/)
+   - Progress to [FastAPI Advanced](examples/fastapi-advanced/)
+   - Study [Django Production](examples/django-production/)
 
-## 🚀 Cómo usar esta guía
+3. **🎓 Complete Exercises**
 
-### Prerequisitos
+   - Exercise 1: [Basic Dockerfile](exercises/01-basic-dockerfile/)
+   - Exercise 2: [Multi-stage Build](exercises/02-multistage-build/)
+   - Exercise 3: [Optimization](exercises/03-optimization/)
 
-- Docker Desktop instalado
-- Python 3.9+ instalado
-- Git configurado
-- Editor de código (recomendado: VS Code)
-
-### Navegación
-
-1. **Secuencial**: Sigue los módulos en orden para un aprendizaje progresivo
-2. **Por temas**: Ve directamente al módulo que te interese
-3. **Práctica**: Cada módulo incluye ejercicios prácticos
-
-### Estructura de branches
-
-```
-main/
-├── module-01-containerize/     # Containerización básica
-├── module-02-develop/          # Desarrollo local
-├── module-03-linting-typing/   # Calidad de código
-├── module-04-cicd/            # CI/CD Pipeline
-└── module-05-deployment/      # Testing y Deployment
-```
+4. **🔧 Use Templates**
+   - Apply [templates](templates/) to your own projects
 
 ---
 
-## 📖 Recursos Adicionales
+## 🏗️ What You'll Build
 
-- [Docker Documentation](https://docs.docker.com/)
-- [Python Docker Best Practices](https://docs.docker.com/language/python/)
-- [Kubernetes Documentation](https://kubernetes.io/docs/)
-- [GitHub Actions Documentation](https://docs.github.com/en/actions)
+Throughout this module, you'll containerize three different types of Python applications:
 
----
+### 🌐 Flask Web Application
 
-## 🤝 Contribuciones
+- **Basic containerization** with essential dependencies
+- **Environment configuration** and best practices
+- **Health checks** and proper logging
 
-¿Encontraste un error o tienes una sugerencia? ¡Contribuye!
+### ⚡ FastAPI API Server
 
-1. Fork el proyecto
-2. Crea una rama para tu feature (`git checkout -b feature/nueva-funcionalidad`)
-3. Commit tus cambios (`git commit -m 'Agrega nueva funcionalidad'`)
-4. Push a la rama (`git push origin feature/nueva-funcionalidad`)
-5. Abre un Pull Request
+- **Multi-stage build** for optimized production image
+- **Advanced dependency management** with Poetry
+- **Security scanning** and vulnerability testing
 
----
+### 🎨 Django Full Application
 
-## 📝 Licencia
-
-Este proyecto está bajo la Licencia MIT - ver el archivo [LICENSE](LICENSE) para más detalles.
+- **Production-ready** configuration
+- **Static files** handling
+- **Database integration** preparation
+- **Comprehensive optimization** techniques
 
 ---
 
-## 🏷️ Tags
+## 🔍 Key Concepts Covered
 
-`#docker` `#python` `#containerization` `#devops` `#cicd` `#kubernetes` `#github-actions` `#development`
+### 🐳 Docker Fundamentals
+
+- **Image layers** and caching strategies
+- **Build context** optimization
+- **Registry best practices**
+
+### 🐍 Python-Specific Optimizations
+
+- **Requirements management** (pip, Poetry, pipenv)
+- **Virtual environments** in containers
+- **Bytecode compilation** strategies
+- **Package installation** optimization
+
+### 🔒 Security & Production
+
+- **Non-root users** configuration
+- **Secrets management** basics
+- **Image scanning** integration
+- **Runtime security** considerations
 
 ---
 
-**📅 Última actualización:** Julio 2025
-**👨‍💻 Mantenido por:** Andrea Carrillo - [GitHub](https://github.com/AndCarrillo)
+## 📊 Module Progress Tracker
+
+Track your progress through the module:
+
+- [ ] **Documentation Review** (Estimated: 45 minutes)
+
+  - [ ] Dockerfile Best Practices
+  - [ ] Security Considerations
+  - [ ] Image Optimization
+
+- [ ] **Examples Study** (Estimated: 90 minutes)
+
+  - [ ] Flask Basic Example
+  - [ ] FastAPI Advanced Example
+  - [ ] Django Production Example
+
+- [ ] **Hands-on Exercises** (Estimated: 120 minutes)
+
+  - [ ] Exercise 1: Basic Dockerfile
+  - [ ] Exercise 2: Multi-stage Build
+  - [ ] Exercise 3: Security & Optimization
+
+- [ ] **Template Application** (Estimated: 30 minutes)
+  - [ ] Apply templates to personal project
+
+**Total Estimated Time: ~5 hours**
+
+---
+
+## 🎯 Learning Outcomes Validation
+
+After completing this module, you should be able to:
+
+### ✅ Technical Skills
+
+- [ ] Write a Dockerfile from scratch for any Python application
+- [ ] Implement multi-stage builds to reduce image size by 50%+
+- [ ] Configure non-root users for security
+- [ ] Optimize image layers for faster builds
+- [ ] Handle Python dependencies efficiently in containers
+
+### ✅ Best Practices Knowledge
+
+- [ ] Explain why certain Dockerfile instructions are preferred
+- [ ] Identify security vulnerabilities in container configurations
+- [ ] Choose appropriate base images for different use cases
+- [ ] Implement proper logging and health checks
+
+### ✅ Production Readiness
+
+- [ ] Create production-ready container images
+- [ ] Configure proper environment variable handling
+- [ ] Implement basic security scanning
+- [ ] Optimize for container registry efficiency
+
+---
+
+## 🔗 Next Steps
+
+After mastering this module, you'll be ready for:
+
+- **[Module 2: Develop your app](../module-02-develop/)** - Local development with Docker Compose
+- Apply containerization to your own Python projects
+- Explore advanced Docker features and optimization techniques
+
+---
+
+## 🤝 Need Help?
+
+- 📖 Review the [documentation](docs/) for detailed explanations
+- 💡 Check the [examples](examples/) for working code
+- 🎓 Practice with the [exercises](exercises/) for hands-on learning
+- 🔧 Use [templates](templates/) as starting points
+
+---
+
+**📅 Module Duration:** ~5 hours  
+**🎯 Difficulty Level:** Beginner to Intermediate  
+**📋 Prerequisites:** Basic Python knowledge, Docker installed
