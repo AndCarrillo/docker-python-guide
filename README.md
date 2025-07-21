@@ -6,13 +6,13 @@ A comprehensive guide to containerize Python applications using Docker, from bas
 
 ### 🎯 Guide Modules
 
-| Module                                                                 | Description                                   | Branch                     | Status |
-| ---------------------------------------------------------------------- | --------------------------------------------- | -------------------------- | ------ |
-| [**1. Containerize your app**](#module-1-containerize-your-app)        | Learn to containerize Python applications | `module-01-containerize`   | 🚧     |
-| [**2. Develop your app**](#module-2-develop-your-app)                  | Local development using containers          | `module-02-develop`        | 🚧     |
-| [**3. Linting and typing**](#module-3-linting-and-typing)              | Code quality: linting, formatting and typing    | `module-03-linting-typing` | 🚧     |
-| [**4. CI/CD with GitHub Actions**](#module-4-cicd-with-github-actions) | Automation with GitHub Actions             | `module-04-cicd`           | 🚧     |
-| [**5. Test your deployment**](#module-5-test-your-deployment)          | Testing and deployment in Kubernetes            | `module-05-deployment`     | 🚧     |
+| Module                                                                 | Description                                  | Branch                     | Status |
+| ---------------------------------------------------------------------- | -------------------------------------------- | -------------------------- | ------ |
+| [**1. Containerize your app**](#module-1-containerize-your-app)        | Learn to containerize Python applications    | `module-01-containerize`   | 🚧     |
+| [**2. Develop your app**](#module-2-develop-your-app)                  | Local development using containers           | `module-02-develop`        | 🚧     |
+| [**3. Linting and typing**](#module-3-linting-and-typing)              | Code quality: linting, formatting and typing | `module-03-linting-typing` | 🚧     |
+| [**4. CI/CD with GitHub Actions**](#module-4-cicd-with-github-actions) | Automation with GitHub Actions               | `module-04-cicd`           | 🚧     |
+| [**5. Test your deployment**](#module-5-test-your-deployment)          | Testing and deployment in Kubernetes         | `module-05-deployment`     | 🚧     |
 
 ---
 
