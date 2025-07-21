@@ -16,8 +16,9 @@ You'll containerize a simple Python calculator application that performs basic m
 ## 🏗️ What You'll Build
 
 A command-line Python calculator that:
+
 - Accepts two numbers and an operation
-- Performs basic math operations (+, -, *, /)
+- Performs basic math operations (+, -, \*, /)
 - Returns the result
 - Includes error handling
 
@@ -47,12 +48,12 @@ def divide(a, b):
 def main():
     print("🧮 Python Calculator")
     print("Operations: +, -, *, /")
-    
+
     try:
         num1 = float(input("Enter first number: "))
         operation = input("Enter operation (+, -, *, /): ").strip()
         num2 = float(input("Enter second number: "))
-        
+
         if operation == '+':
             result = add(num1, num2)
         elif operation == '-':
@@ -64,9 +65,9 @@ def main():
         else:
             print("❌ Invalid operation!")
             return
-        
+
         print(f"✅ Result: {num1} {operation} {num2} = {result}")
-        
+
     except ValueError as e:
         print(f"❌ Error: {e}")
     except KeyboardInterrupt:
@@ -150,6 +151,7 @@ docker run -it python-calculator
 ### 3. Test the Calculator
 
 Try different operations:
+
 - Addition: `5 + 3`
 - Division: `10 / 2`
 - Error case: `5 / 0`
@@ -181,14 +183,17 @@ Once you have a working solution, try these enhancements:
 ### 🏆 Advanced Features
 
 1. **Add Environment Variables**
+
    - Set a `CALCULATOR_VERSION` environment variable
    - Display it when the calculator starts
 
 2. **Optimize Image Size**
+
    - Try using `python:3.11-alpine` instead
    - Compare the final image sizes
 
 3. **Add Health Check**
+
    - Create a simple health check script
    - Add it to your Dockerfile
 
@@ -199,6 +204,7 @@ Once you have a working solution, try these enhancements:
 ## 🔍 Common Issues and Solutions
 
 ### Build Fails
+
 ```bash
 # Check Docker is running
 docker info
@@ -208,12 +214,14 @@ cat Dockerfile
 ```
 
 ### Permission Denied
+
 ```bash
 # Make sure you're using a non-root user in the Dockerfile
 # Check the USER instruction is present
 ```
 
 ### Container Exits Immediately
+
 ```bash
 # Check if you're using the correct command
 # For interactive apps, use: docker run -it <image>

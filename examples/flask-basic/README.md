@@ -53,6 +53,7 @@ curl http://localhost:5000/health
 ```
 
 **Expected output:**
+
 ```json
 {
   "message": "Hello from Dockerized Flask!",
@@ -66,52 +67,64 @@ curl http://localhost:5000/health
 Let's break down each section of the Dockerfile:
 
 ### Base Image Selection
+
 ```dockerfile
 FROM python:3.11-slim
 ```
+
 - Uses **Python 3.11 slim** for smaller image size
 - Slim images exclude unnecessary packages
 - Good balance between functionality and size
 
 ### Working Directory
+
 ```dockerfile
 WORKDIR /app
 ```
+
 - Sets `/app` as the working directory
 - All subsequent commands run from this directory
 
 ### Dependency Installation
+
 ```dockerfile
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 ```
+
 - **Copy requirements first** for better layer caching
 - `--no-cache-dir` reduces image size
 - If requirements don't change, this layer is cached
 
 ### Application Code
+
 ```dockerfile
 COPY app.py .
 ```
+
 - Copy application code after dependencies
 - Changes to code don't invalidate dependency cache
 
 ### Security Configuration
+
 ```dockerfile
 RUN adduser --disabled-password --gecos '' --shell /bin/bash appuser && \
     chown -R appuser:appuser /app
 USER appuser
 ```
+
 - Creates **non-root user** for security
 - Changes ownership of app directory
 - Runs container as non-root user
 
 ### Port and Health Check
+
 ```dockerfile
 EXPOSE 5000
 HEALTHCHECK --interval=30s --timeout=30s --start-period=5s --retries=3 \
     CMD curl -f http://localhost:5000/health || exit 1
 ```
+
 - **Exposes port 5000** for documentation
 - **Health check** monitors application status
 - Docker can restart unhealthy containers
@@ -164,21 +177,25 @@ docker run -p 8080:5000 flask-basic-app
 This example demonstrates:
 
 ### ✅ Docker Fundamentals
+
 - **Layer caching** optimization
 - **Multi-step builds** basics
 - **Port mapping** concepts
 
 ### ✅ Security Best Practices
+
 - **Non-root user** execution
 - **Minimal base images**
 - **Proper file permissions**
 
 ### ✅ Python-Specific Patterns
+
 - **Requirements management**
 - **Application structure**
 - **Environment configuration**
 
 ### ✅ Production Readiness
+
 - **Health checks** implementation
 - **Proper logging** setup
 - **Graceful shutdown** preparation
@@ -186,6 +203,7 @@ This example demonstrates:
 ## 🐛 Troubleshooting
 
 ### Container Won't Start
+
 ```bash
 # Check container logs
 docker logs <container-id>
@@ -195,12 +213,14 @@ docker run -it flask-basic-app bash
 ```
 
 ### Port Already in Use
+
 ```bash
 # Use different port
 docker run -p 5001:5000 flask-basic-app
 ```
 
 ### Permission Issues
+
 ```bash
 # Check if running as non-root
 docker exec <container-id> whoami
@@ -212,10 +232,12 @@ docker exec <container-id> whoami
 After mastering this basic example:
 
 1. **Try the advanced examples:**
+
    - [FastAPI Advanced](../fastapi-advanced/) - Multi-stage builds
    - [Django Production](../django-production/) - Full production setup
 
 2. **Complete the exercises:**
+
    - [Exercise 1](../../exercises/01-basic-dockerfile/) - Build your own
    - [Exercise 2](../../exercises/02-multistage-build/) - Optimize further
 
