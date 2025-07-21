@@ -16,21 +16,20 @@ By completing this module, you will be able to:
 
 ### 📚 Documentation
 
-- [**Dockerfile Best Practices**](docs/dockerfile-guide.md) - Complete guide to writing optimal Dockerfiles
-- [**Security Considerations**](docs/security-guide.md) - Container security best practices
+- [**Dockerfile Best Practices**](docs/dockerfile-guide.md) - Complete guide to writing optimal Dockerfiles (400+ lines)
+- [**Security Considerations**](docs/security-guide.md) - Container security best practices and implementation
 - [**Image Optimization**](docs/optimization-guide.md) - Techniques to reduce image size and improve performance
 
 ### 💡 Practical Examples
 
-- [**Flask Basic**](examples/flask-basic/) - Simple Flask application containerization
-- [**FastAPI Advanced**](examples/fastapi-advanced/) - Advanced FastAPI with multi-stage build
-- [**Django Production**](examples/django-production/) - Production-ready Django container
+- [**Flask Basic**](examples/flask-basic/) - Simple Flask application with health checks and security
+- [**FastAPI API**](examples/fastapi-api/) - Production-ready API with authentication and monitoring
+- [**Django Blog**](examples/django-blog/) - Full-stack blog with PostgreSQL, static files, and Nginx
 
 ### 🎓 Hands-on Exercises
 
 - [**Exercise 1: Basic Dockerfile**](exercises/01-basic-dockerfile/) - Create your first Python container
-- [**Exercise 2: Multi-stage Build**](exercises/02-multistage-build/) - Optimize with multi-stage builds
-- [**Exercise 3: Security & Optimization**](exercises/03-optimization/) - Apply security and optimization techniques
+- [**Exercise 2: Multi-stage Builds**](exercises/02-multi-stage-builds/) - Optimize with multi-stage builds
 
 ### 🔧 Templates
 
