@@ -114,6 +114,20 @@ Testing and deployment in Kubernetes:
 - Git configured
 - Code editor (recommended: VS Code)
 
+### 🛠️ Technologies & Tools Covered
+
+| Category | Tools |
+|----------|-------|
+| **Containerization** | Docker, Docker Compose, Multi-stage builds |
+| **Python Frameworks** | Flask, FastAPI, Django |
+| **Web Servers** | Gunicorn, Uvicorn, Nginx |
+| **Code Quality** | Black, Flake8, isort, mypy, Bandit, Pylint |
+| **Testing** | pytest, unittest, coverage |
+| **CI/CD** | GitHub Actions, Automated testing, Docker registry |
+| **Orchestration** | Kubernetes, kubectl, YAML manifests |
+| **Development** | VS Code, Git workflows, Pre-commit hooks |
+| **Security** | Non-root users, Secrets management, Vulnerability scanning |
+
 ### Navigation
 
 1. **Sequential**: Follow modules in order for progressive learning
@@ -162,7 +176,23 @@ This project is under the MIT License - see the [LICENSE](LICENSE) file for deta
 
 ## 🏷️ Tags
 
-`#docker` `#python` `#containerization` `#devops` `#cicd` `#kubernetes` `#github-actions` `#development`
+### Core Technologies
+`#docker` `#python` `#containerization` `#kubernetes` `#docker-compose`
+
+### Development Tools
+`#flask` `#fastapi` `#django` `#gunicorn` `#uvicorn` `#nginx`
+
+### Code Quality & Linting
+`#black` `#flake8` `#isort` `#mypy` `#bandit` `#pre-commit` `#pylint`
+
+### CI/CD & DevOps
+`#github-actions` `#cicd` `#devops` `#automation` `#testing` `#pytest`
+
+### Development Environment
+`#vscode` `#git` `#powershell` `#bash` `#cross-platform`
+
+### Security & Best Practices
+`#security` `#multistage-builds` `#non-root` `#secrets-management`
 
 ---
 
