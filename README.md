@@ -1,230 +1,266 @@
-# 📦 Module 1: Containerize your app
+# Containerize your app
 
-Learn the fundamentals of containerizing Python applications with Docker, from basic concepts to production-ready containers.
+> **Module branch:** `module-01-containerize`
 
-## 🎯 Learning Objectives
+Learn how to containerize a Python application.
 
-By completing this module, you will be able to:
+## What you'll learn
 
-- ✅ Write optimized Dockerfiles for Python applications
-- ✅ Implement multi-stage builds to reduce image size
-- ✅ Apply security best practices for containers
-- ✅ Optimize container images for production use
-- ✅ Configure proper Python dependency management in containers
+In this module, you will:
 
-## 📋 Module Contents
+- ✅ Create optimized Dockerfiles for Python applications
+- ✅ Implement security best practices and non-root users
+- ✅ Use multi-stage builds to reduce image size
+- ✅ Configure health checks and monitoring
 
-### 📚 Documentation
+## Examples
 
-- [**Dockerfile Best Practices**](docs/dockerfile-guide.md) - Complete guide to writing optimal Dockerfiles (400+ lines)
-- [**Security Considerations**](docs/security-guide.md) - Container security best practices and implementation
-- [**Image Optimization**](docs/optimization-guide.md) - Techniques to reduce image size and improve performance
+This module includes two progressive examples:
 
-### 💡 Practical Examples
+### 🌶️ Flask Basic Example
+**Location:** `examples/flask-basic/`
 
-Progressive examples showing increasing complexity:
+A simple Flask application that demonstrates the fundamental concepts of containerization.
 
-- [**01-flask-basic**](examples/01-flask-basic/) - Essential Flask containerization fundamentals
-- [**02-fastapi-modern**](examples/02-fastapi-modern/) - Advanced FastAPI with production features
+### ⚡ FastAPI Modern Example  
+**Location:** `examples/fastapi-modern/`
 
-### 🎓 Hands-on Exercises
+An advanced FastAPI application that showcases multi-stage builds and production optimization.
 
-- [**Exercise 1: Basic Dockerfile**](exercises/01-basic-dockerfile/) - Create your first Python container
-- [**Exercise 2: Multi-stage Builds**](exercises/02-multi-stage-builds/) - Optimize with multi-stage builds
+## Prerequisites
 
-### 🔧 Templates
+Before starting this module, make sure you have:
+- Docker Desktop installed and running
+- Python 3.9+ installed
+- Basic understanding of Python and web frameworks
 
-- [**Dockerfile Templates**](templates/) - Ready-to-use Dockerfile templates for different scenarios
+## Getting Started
 
----
-
-## 🚀 Getting Started
-
-### Prerequisites
-
-Before starting this module, ensure you have:
-
-- ✅ Docker Desktop installed and running
-- ✅ Python 3.9+ installed
-- ✅ Basic understanding of Python applications
-- ✅ Text editor or IDE (VS Code recommended)
-
-### Quick Start
-
-1. **Clone and navigate to this module:**
-
+1. **Clone and switch to this module:**
    ```bash
    git clone https://github.com/AndCarrillo/docker-python-guide.git
    cd docker-python-guide
    git checkout module-01-containerize
    ```
 
-2. **Start with the Flask example:**
+2. **Follow the step-by-step guide below** ⬇️
+---
 
-   ```bash
-   cd examples/flask-basic
-   # Follow the README instructions in that folder
+## 📚 Step-by-Step Guide
+
+### Step 1: Understanding Python Base Images
+
+Before creating a Dockerfile, you need to choose the right Python base image. Docker offers several options:
+
+- **`python:3.11-slim`** - Recommended for most applications (smaller size)
+- **`python:3.11`** - Full featured but larger
+- **`python:3.11-alpine`** - Smallest but may have compatibility issues
+
+**Best Practice:** Use `python:3.11-slim` for a good balance of size and compatibility.
+
+### Step 2: Basic Dockerfile Structure
+
+A Python Dockerfile typically follows this structure:
+
+```dockerfile
+# 1. Choose base image
+FROM python:3.11-slim
+
+# 2. Set working directory
+WORKDIR /app
+
+# 3. Copy requirements first (for better caching)
+COPY requirements.txt .
+
+# 4. Install dependencies
+RUN pip install --no-cache-dir -r requirements.txt
+
+# 5. Copy application code
+COPY . .
+
+# 6. Expose port
+EXPOSE 5000
+
+# 7. Define startup command
+CMD ["python", "app.py"]
+```
+
+### Step 3: Security Best Practices
+
+Always implement these security measures:
+
+1. **Run as non-root user:**
+   ```dockerfile
+   RUN adduser --disabled-password --gecos '' appuser
+   USER appuser
    ```
 
-3. **Or jump to exercises:**
-   ```bash
-   cd exercises/01-basic-dockerfile
-   # Follow the exercise instructions
+2. **Use specific versions:**
+   ```dockerfile
+   FROM python:3.11-slim
+   # Not: FROM python:latest
    ```
 
----
+3. **Minimize attack surface:**
+   ```dockerfile
+   RUN apt-get update && apt-get install -y --no-install-recommends \
+       && rm -rf /var/lib/apt/lists/*
+   ```
 
-## 📖 Study Path
+### Step 4: Multi-stage Builds
 
-### 🎯 Recommended Learning Sequence
+For production applications, use multi-stage builds to reduce image size:
 
-1. **📚 Read Documentation First**
+```dockerfile
+# Build stage
+FROM python:3.11-slim as builder
+WORKDIR /app
+COPY requirements.txt .
+RUN pip install --user --no-cache-dir -r requirements.txt
 
-   - Start with [Dockerfile Best Practices](docs/dockerfile-guide.md)
-   - Review [Security Considerations](docs/security-guide.md)
-
-2. **💡 Explore Examples**
-
-   - Begin with [Flask Basic Example](examples/flask-basic/)
-   - Progress to [FastAPI Advanced](examples/fastapi-advanced/)
-   - Study [Django Production](examples/django-production/)
-
-3. **🎓 Complete Exercises**
-
-   - Exercise 1: [Basic Dockerfile](exercises/01-basic-dockerfile/)
-   - Exercise 2: [Multi-stage Build](exercises/02-multistage-build/)
-   - Exercise 3: [Optimization](exercises/03-optimization/)
-
-4. **🔧 Use Templates**
-   - Apply [templates](templates/) to your own projects
-
----
-
-## 🏗️ What You'll Build
-
-Throughout this module, you'll containerize three different types of Python applications:
-
-### 🌐 Flask Web Application
-
-- **Basic containerization** with essential dependencies
-- **Environment configuration** and best practices
-- **Health checks** and proper logging
-
-### ⚡ FastAPI API Server
-
-- **Multi-stage build** for optimized production image
-- **Advanced dependency management** with Poetry
-- **Security scanning** and vulnerability testing
-
-### 🎨 Django Full Application
-
-- **Production-ready** configuration
-- **Static files** handling
-- **Database integration** preparation
-- **Comprehensive optimization** techniques
+# Production stage
+FROM python:3.11-slim
+WORKDIR /app
+COPY --from=builder /root/.local /root/.local
+COPY . .
+CMD ["python", "app.py"]
+```
 
 ---
 
-## 🔍 Key Concepts Covered
+## 🧩 Examples
 
-### 🐳 Docker Fundamentals
+### Flask Basic Example
 
-- **Image layers** and caching strategies
-- **Build context** optimization
-- **Registry best practices**
+**Purpose:** Learn containerization fundamentals with a simple Flask application.
 
-### 🐍 Python-Specific Optimizations
+**Key concepts:**
+- Basic Dockerfile structure
+- Security with non-root user
+- Health checks
+- Environment variables
 
-- **Requirements management** (pip, Poetry, pipenv)
-- **Virtual environments** in containers
-- **Bytecode compilation** strategies
-- **Package installation** optimization
+**Files:**
+```
+examples/flask-basic/
+├── app.py              # Simple Flask application
+├── requirements.txt    # Python dependencies
+├── Dockerfile         # Basic containerization
+├── .dockerignore      # Files to exclude
+└── README.md          # Example instructions
+```
 
-### 🔒 Security & Production
+**Try it:**
+```bash
+cd examples/flask-basic
+docker build -t flask-basic .
+docker run -p 5000:5000 flask-basic
+# Visit http://localhost:5000
+```
 
-- **Non-root users** configuration
-- **Secrets management** basics
-- **Image scanning** integration
-- **Runtime security** considerations
+### FastAPI Modern Example
 
----
+**Purpose:** Advanced containerization with multi-stage builds and production optimization.
 
-## 📊 Module Progress Tracker
+**Key concepts:**
+- Multi-stage builds
+- Production optimizations
+- Health checks and monitoring
+- Async application patterns
 
-Track your progress through the module:
+**Files:**
+```
+examples/fastapi-modern/
+├── main.py            # FastAPI application with async endpoints
+├── requirements.txt   # Production dependencies
+├── Dockerfile        # Multi-stage build
+├── .dockerignore     # Optimized exclusions
+└── README.md         # Advanced instructions
+```
 
-- [ ] **Documentation Review** (Estimated: 45 minutes)
-
-  - [ ] Dockerfile Best Practices
-  - [ ] Security Considerations
-  - [ ] Image Optimization
-
-- [ ] **Examples Study** (Estimated: 90 minutes)
-
-  - [ ] Flask Basic Example
-  - [ ] FastAPI Advanced Example
-  - [ ] Django Production Example
-
-- [ ] **Hands-on Exercises** (Estimated: 120 minutes)
-
-  - [ ] Exercise 1: Basic Dockerfile
-  - [ ] Exercise 2: Multi-stage Build
-  - [ ] Exercise 3: Security & Optimization
-
-- [ ] **Template Application** (Estimated: 30 minutes)
-  - [ ] Apply templates to personal project
-
-**Total Estimated Time: ~5 hours**
-
----
-
-## 🎯 Learning Outcomes Validation
-
-After completing this module, you should be able to:
-
-### ✅ Technical Skills
-
-- [ ] Write a Dockerfile from scratch for any Python application
-- [ ] Implement multi-stage builds to reduce image size by 50%+
-- [ ] Configure non-root users for security
-- [ ] Optimize image layers for faster builds
-- [ ] Handle Python dependencies efficiently in containers
-
-### ✅ Best Practices Knowledge
-
-- [ ] Explain why certain Dockerfile instructions are preferred
-- [ ] Identify security vulnerabilities in container configurations
-- [ ] Choose appropriate base images for different use cases
-- [ ] Implement proper logging and health checks
-
-### ✅ Production Readiness
-
-- [ ] Create production-ready container images
-- [ ] Configure proper environment variable handling
-- [ ] Implement basic security scanning
-- [ ] Optimize for container registry efficiency
+**Try it:**
+```bash
+cd examples/fastapi-modern
+docker build -t fastapi-modern .
+docker run -p 8000:8000 fastapi-modern
+# Visit http://localhost:8000/docs
+```
 
 ---
 
-## 🔗 Next Steps
+## � Hands-on Exercises
 
-After mastering this module, you'll be ready for:
+### Exercise 1: Basic Flask Container
 
-- **[Module 2: Develop your app](../module-02-develop/)** - Local development with Docker Compose
-- Apply containerization to your own Python projects
-- Explore advanced Docker features and optimization techniques
+1. Navigate to `examples/flask-basic/`
+2. Examine the Dockerfile and understand each instruction
+3. Build the image: `docker build -t my-flask-app .`
+4. Run the container: `docker run -p 5000:5000 my-flask-app`
+5. Test the application at http://localhost:5000
+
+**Questions to explore:**
+- What base image is used and why?
+- How is the non-root user implemented?
+- What files are excluded by .dockerignore?
+
+### Exercise 2: FastAPI Multi-stage Build
+
+1. Navigate to `examples/fastapi-modern/`
+2. Study the multi-stage Dockerfile
+3. Build the image: `docker build -t my-fastapi-app .`
+4. Run the container: `docker run -p 8000:8000 my-fastapi-app`
+5. Explore the automatic API docs at http://localhost:8000/docs
+
+**Questions to explore:**
+- How does the multi-stage build reduce image size?
+- What production optimizations are implemented?
+- How do health checks work?
+
+### Exercise 3: Optimization Challenge
+
+1. Compare the image sizes:
+   ```bash
+   docker images | grep flask-basic
+   docker images | grep fastapi-modern
+   ```
+2. Try building without multi-stage build
+3. Measure the difference in size and build time
+
+---
+
+## 🎯 Key Takeaways
+
+After completing this module, you should understand:
+
+1. **Base Image Selection** - How to choose the right Python base image
+2. **Dockerfile Best Practices** - Security, optimization, and maintainability
+3. **Multi-stage Builds** - Reducing production image size
+4. **Security** - Running as non-root, minimal attack surface
+5. **Health Checks** - Monitoring container health
+
+## � Next Steps
+
+Ready for the next module? Continue with:
+
+**[Module 2: Develop your app](../../tree/module-02-develop)** - Learn how to set up a local development environment with containers.
+
+---
+
+## 📚 Additional Resources
+
+- [Docker Dockerfile Reference](https://docs.docker.com/engine/reference/builder/)
+- [Python Docker Best Practices](https://docs.docker.com/language/python/best-practices/)
+- [Docker Security Best Practices](https://docs.docker.com/develop/security-best-practices/)
+- [Multi-stage Builds](https://docs.docker.com/develop/dev-best-practices/)
 
 ---
 
 ## 🤝 Need Help?
 
-- 📖 Review the [documentation](docs/) for detailed explanations
-- 💡 Check the [examples](examples/) for working code
-- 🎓 Practice with the [exercises](exercises/) for hands-on learning
-- 🔧 Use [templates](templates/) as starting points
+- 📖 Check the [main README](../../README.md) for general guidance
+- � [Open an issue](../../issues) if you find problems
+- � [Start a discussion](../../discussions) for questions
 
 ---
 
-**📅 Module Duration:** ~5 hours  
-**🎯 Difficulty Level:** Beginner to Intermediate  
-**📋 Prerequisites:** Basic Python knowledge, Docker installed
+**⬅️ [Back to main guide](../../README.md)**

@@ -1,23 +1,25 @@
-# 🌐 Flask Basic Example
+# Flask Basic Example
 
-A simple Flask web application demonstrating basic Docker containerization concepts.
+This example demonstrates the fundamental concepts of containerizing a simple Flask application.
 
-## 📋 What's Included
+## What you'll learn
 
-- **Simple Flask app** with health check endpoint
-- **Basic Dockerfile** with security best practices
-- **Requirements management** with pip
-- **Non-root user** configuration
-- **Health checks** for container monitoring
+- Basic Dockerfile structure for Python applications
+- Security best practices with non-root users
+- Health checks implementation
+- Environment variables handling
+- Docker build optimization
 
-## 🏗️ Project Structure
+## Application Structure
 
 ```
 flask-basic/
-├── app.py              # Main Flask application
+├── app.py              # Simple Flask application
 ├── requirements.txt    # Python dependencies
 ├── Dockerfile         # Container configuration
-├── .dockerignore      # Files to ignore during build
+├── .dockerignore      # Files to exclude from build
+└── README.md          # This file
+```
 └── README.md          # This file
 ```
 
