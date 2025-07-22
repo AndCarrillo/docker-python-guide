@@ -1,2 +1,0 @@
-# No external dependencies for this basic calculator
-# This file exists for demonstration purposes
