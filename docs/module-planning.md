@@ -291,6 +291,7 @@ module-05-deployment/
 ### For student:
 
 #### In Unix/Linux/Mac (Bash):
+
 ```bash
 # Start from main branch
 git checkout main
@@ -303,18 +304,20 @@ git checkout module-XX-name
 ```
 
 #### In Windows (PowerShell):
+
 ```powershell
 # Start from main branch
 git checkout main
 git pull origin main
 
-# Switch to desired module  
+# Switch to desired module
 git checkout module-XX-name
 
 # Follow the module README.md guide
 ```
 
 **General steps:**
+
 1. Start from main branch
 2. Follow README.md links
 3. Checkout to module branch
