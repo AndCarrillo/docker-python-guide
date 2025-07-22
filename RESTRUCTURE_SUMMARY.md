@@ -2,7 +2,7 @@
 
 ## ✅ Lo que se logró
 
-Hemos reestructurado exitosamente el proyecto `docker-python-guide` para **mantener un nivel de complejidad bajo** y enfocarnos únicamente en **Flask y FastAPI**, eliminando toda la complejidad relacionada con Django.
+Hemos reestructurado exitosamente el proyecto `docker-python-guide` para **mantener un nivel de complejidad bajo** y enfocarnos únicamente en **Flask y FastAPI**.
 
 ## 📁 Nueva Estructura de Ejemplos
 
@@ -50,7 +50,6 @@ examples/
 
 ### Simplificación de Complejidad
 
-- ❌ **Eliminado**: Django y toda su complejidad asociada
 - ✅ **Mantenido**: Solo Flask y FastAPI para un aprendizaje progresivo
 - ✅ **Estructura**: Numeración progresiva para facilitar el aprendizaje
 

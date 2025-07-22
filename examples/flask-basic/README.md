@@ -238,7 +238,6 @@ After mastering this basic example:
 1. **Try the advanced examples:**
 
    - [FastAPI Advanced](../fastapi-advanced/) - Multi-stage builds
-   - [Django Production](../django-production/) - Full production setup
 
 2. **Complete the exercises:**
 
