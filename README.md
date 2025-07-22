@@ -24,6 +24,25 @@ Este proyecto incluye **todas las configuraciones Docker** desde básicas hasta 
 - 🧪 **Testing automatizado**
 - 🚀 **Despliegue en producción**
 
+## 🔄 Flujo de Aprendizaje
+
+Este repositorio tiene **3 ramas principales** para el aprendizaje progresivo:
+
+### 🌱 `starter-clean` → 🎯 `module-01-complete` → 🚀 `project-complete`
+
+```bash
+# 1. Empezar desde cero (sin Docker)
+git checkout starter-clean
+
+# 2. Ver Módulo 1 completado
+git checkout module-01-complete
+
+# 3. Ver proyecto final completo (estás aquí!)
+git checkout project-complete
+```
+
+📖 **[Ver guía completa del flujo →](BRANCH-WORKFLOW.md)**
+
 ## Prerequisites
 
 Before starting this module, make sure you have:
