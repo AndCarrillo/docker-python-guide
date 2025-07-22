@@ -29,6 +29,7 @@ Advanced GitHub Actions Pipeline
 ## 📋 Features
 
 ### Application Features
+
 - ✅ Async FastAPI with SQLAlchemy 2.0
 - ✅ PostgreSQL with async drivers (asyncpg)
 - ✅ Redis async client for caching
@@ -41,6 +42,7 @@ Advanced GitHub Actions Pipeline
 - ✅ Error handling and validation
 
 ### CI/CD Features
+
 - ✅ Matrix testing across Python versions
 - ✅ Performance testing with Locust
 - ✅ Advanced security scanning (Safety, Bandit, Semgrep)
@@ -55,11 +57,13 @@ Advanced GitHub Actions Pipeline
 ### Local Development
 
 1. **Clone and navigate to the example:**
+
    ```bash
    cd examples/fastapi-cicd
    ```
 
 2. **Start the development environment:**
+
    ```bash
    docker-compose up --build
    ```
@@ -74,11 +78,13 @@ Advanced GitHub Actions Pipeline
 ### Manual Setup (without Docker)
 
 1. **Install dependencies:**
+
    ```bash
    pip install -r requirements-dev.txt
    ```
 
 2. **Set up environment variables:**
+
    ```bash
    export DATABASE_URL="postgresql+asyncpg://postgres:password@localhost:5432/fastapicd"
    export REDIS_URL="redis://localhost:6379/0"
@@ -92,16 +98,19 @@ Advanced GitHub Actions Pipeline
 ## 🧪 Testing
 
 ### Run All Tests
+
 ```bash
 pytest tests/ -v
 ```
 
 ### Run Async Tests with Coverage
+
 ```bash
 pytest tests/ -v --cov=app --cov-report=html
 ```
 
 ### Performance Testing
+
 ```bash
 # Install Locust
 pip install locust
@@ -111,6 +120,7 @@ locust --headless --users 100 --spawn-rate 10 --run-time 60s --host http://local
 ```
 
 ### Code Quality Checks
+
 ```bash
 # Linting and formatting
 ruff check .
@@ -121,6 +131,7 @@ pyright .
 ```
 
 ### Security Scanning
+
 ```bash
 # Dependency vulnerability scanning
 safety check -r requirements.txt
@@ -135,16 +146,19 @@ semgrep --config=auto .
 ## 🐳 Docker Commands
 
 ### Development Build
+
 ```bash
 docker build --target development -t fastapi-cicd:dev .
 ```
 
 ### Production Build
+
 ```bash
 docker build --target production -t fastapi-cicd:prod .
 ```
 
 ### Run Production Container
+
 ```bash
 docker run -p 8000:8000 \
   -e DATABASE_URL="postgresql+asyncpg://your-db-url" \
@@ -155,20 +169,24 @@ docker run -p 8000:8000 \
 ## 📊 API Endpoints
 
 ### Health & Monitoring
+
 - `GET /health` - Basic health check with version info
 - `GET /ready` - Comprehensive readiness check (database + Redis)
 
 ### Application API
+
 - `GET /` - API information and navigation
 - `GET /api/items` - List all items with pagination (cached)
 - `POST /api/items` - Create a new item (with background task)
 - `GET /api/items/{item_id}` - Get specific item (cached)
 
 ### Documentation
+
 - `GET /docs` - Interactive API documentation (Swagger UI)
 - `GET /redoc` - Alternative API documentation (ReDoc)
 
 ### Example API Usage
+
 ```bash
 # Get API info
 curl http://localhost:8000/
@@ -191,30 +209,35 @@ open http://localhost:8000/docs
 ## 🔄 Advanced CI/CD Pipeline
 
 ### 1. Matrix Testing Job
+
 - Tests across Python 3.10, 3.11, and 3.12
 - Async test execution with pytest-asyncio
 - Comprehensive coverage reporting
 - Type checking and linting
 
 ### 2. Performance Testing Job
+
 - Load testing with Locust
 - Configurable user load and duration
 - Performance regression detection
 - Response time analysis
 
 ### 3. Security Scanning Job
+
 - Dependency vulnerability scanning (Safety)
 - Static security analysis (Bandit)
 - Advanced security patterns (Semgrep)
 - Security report artifacts
 
 ### 4. Build and Push Job
+
 - Multi-stage Docker builds
 - Container registry integration
 - Build caching optimization
 - Image vulnerability scanning
 
 ### 5. Deployment Job
+
 - Production environment deployment
 - Post-deployment smoke tests
 - Health check verification
@@ -239,11 +262,13 @@ fastapi-cicd/
 ## 🔧 Configuration
 
 ### Environment Variables
+
 - `DATABASE_URL` - PostgreSQL async connection string
 - `REDIS_URL` - Redis connection string
 - `LOG_LEVEL` - Logging level (DEBUG, INFO, WARNING, ERROR)
 
 ### Docker Compose Services
+
 - `web` - FastAPI application (port 8000)
 - `db` - PostgreSQL database (port 5433)
 - `redis` - Redis cache (port 6380)
@@ -251,6 +276,7 @@ fastapi-cicd/
 ## 📈 Production Considerations
 
 ### Performance
+
 - Async/await patterns for non-blocking operations
 - Connection pooling for database and Redis
 - Response caching with TTL
@@ -258,6 +284,7 @@ fastapi-cicd/
 - Uvicorn with multiple workers
 
 ### Security
+
 - Input validation with Pydantic
 - SQL injection prevention with SQLAlchemy
 - CORS configuration
@@ -265,6 +292,7 @@ fastapi-cicd/
 - Dependency vulnerability monitoring
 
 ### Monitoring
+
 - Structured JSON logging
 - Health and readiness endpoints
 - Performance metrics collection
@@ -272,6 +300,7 @@ fastapi-cicd/
 - APM (Application Performance Monitoring) ready
 
 ### Scalability
+
 - Horizontal scaling with multiple workers
 - Database connection pooling
 - Redis clustering support
@@ -280,14 +309,14 @@ fastapi-cicd/
 
 ## 🆚 FastAPI vs Flask Comparison
 
-| Feature | FastAPI (This Example) | Flask (Previous Example) |
-|---------|----------------------|-------------------------|
-| **Async Support** | ✅ Native async/await | ❌ Sync only |
-| **API Documentation** | ✅ Auto-generated (OpenAPI) | ❌ Manual setup |
-| **Type Hints** | ✅ Pydantic integration | ⚠️ Manual validation |
-| **Performance** | ✅ Higher throughput | ⚠️ Good but sync |
-| **Learning Curve** | ⚠️ Steeper | ✅ Gentler |
-| **Ecosystem** | ⚠️ Newer | ✅ Mature |
+| Feature               | FastAPI (This Example)      | Flask (Previous Example) |
+| --------------------- | --------------------------- | ------------------------ |
+| **Async Support**     | ✅ Native async/await       | ❌ Sync only             |
+| **API Documentation** | ✅ Auto-generated (OpenAPI) | ❌ Manual setup          |
+| **Type Hints**        | ✅ Pydantic integration     | ⚠️ Manual validation     |
+| **Performance**       | ✅ Higher throughput        | ⚠️ Good but sync         |
+| **Learning Curve**    | ⚠️ Steeper                  | ✅ Gentler               |
+| **Ecosystem**         | ⚠️ Newer                    | ✅ Mature                |
 
 ## 🔗 Related Examples
 

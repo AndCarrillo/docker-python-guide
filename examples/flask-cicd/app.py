@@ -22,7 +22,7 @@ app = Flask(__name__)
 
 # Configuration
 app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv(
-    'DATABASE_URL', 
+    'DATABASE_URL',
     'postgresql://user:password@localhost:5432/flaskcicd'
 )
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
@@ -39,7 +39,7 @@ redis_client = redis.from_url(app.config['REDIS_URL'])
 # Models
 class Task(db.Model):
     """Task model for demonstration purposes."""
-    
+
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(100), nullable=False)
     description = db.Column(db.Text, nullable=True)
@@ -64,10 +64,10 @@ def health_check() -> Dict[str, str]:
     try:
         # Check database connection
         db.session.execute('SELECT 1')
-        
+
         # Check Redis connection
         redis_client.ping()
-        
+
         return jsonify({'status': 'healthy', 'version': '1.0.0'})
     except Exception as e:
         logger.error(f"Health check failed: {e}")
@@ -93,23 +93,23 @@ def create_task() -> Dict[str, Any]:
     """Create a new task."""
     try:
         data = request.get_json()
-        
+
         if not data or 'title' not in data:
             return jsonify({'error': 'Title is required'}), 400
-        
+
         task = Task(
             title=data['title'],
             description=data.get('description', '')
         )
-        
+
         db.session.add(task)
         db.session.commit()
-        
+
         # Cache the task count
         redis_client.set('task_count', Task.query.count())
-        
+
         return jsonify(task.to_dict()), 201
-        
+
     except Exception as e:
         logger.error(f"Error creating task: {e}")
         db.session.rollback()
@@ -122,21 +122,21 @@ def update_task(task_id: int) -> Dict[str, Any]:
     try:
         task = Task.query.get_or_404(task_id)
         data = request.get_json()
-        
+
         if not data:
             return jsonify({'error': 'No data provided'}), 400
-        
+
         if 'title' in data:
             task.title = data['title']
         if 'description' in data:
             task.description = data['description']
         if 'completed' in data:
             task.completed = data['completed']
-        
+
         db.session.commit()
-        
+
         return jsonify(task.to_dict())
-        
+
     except Exception as e:
         logger.error(f"Error updating task {task_id}: {e}")
         db.session.rollback()
@@ -150,12 +150,12 @@ def delete_task(task_id: int) -> Dict[str, str]:
         task = Task.query.get_or_404(task_id)
         db.session.delete(task)
         db.session.commit()
-        
+
         # Update cached task count
         redis_client.set('task_count', Task.query.count())
-        
+
         return jsonify({'message': 'Task deleted successfully'})
-        
+
     except Exception as e:
         logger.error(f"Error deleting task {task_id}: {e}")
         db.session.rollback()
@@ -168,22 +168,22 @@ def get_stats() -> Dict[str, Any]:
     try:
         # Try to get from cache first
         cached_count = redis_client.get('task_count')
-        
+
         if cached_count:
             total_tasks = int(cached_count)
         else:
             total_tasks = Task.query.count()
             redis_client.set('task_count', total_tasks)
-        
+
         completed_tasks = Task.query.filter_by(completed=True).count()
-        
+
         return jsonify({
             'total_tasks': total_tasks,
             'completed_tasks': completed_tasks,
             'pending_tasks': total_tasks - completed_tasks,
             'completion_rate': round(completed_tasks / total_tasks * 100, 2) if total_tasks > 0 else 0
         })
-        
+
     except Exception as e:
         logger.error(f"Error getting stats: {e}")
         return jsonify({'error': 'Failed to get statistics'}), 500
@@ -193,7 +193,7 @@ if __name__ == '__main__':
     # Create tables
     with app.app_context():
         db.create_all()
-    
+
     # Run the app
     app.run(
         host='0.0.0.0',

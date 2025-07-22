@@ -27,6 +27,7 @@ Production Deployment
 ## 📋 Features
 
 ### Application Features
+
 - ✅ RESTful API with Flask
 - ✅ PostgreSQL database integration
 - ✅ Redis caching layer
@@ -36,6 +37,7 @@ Production Deployment
 - ✅ Type hints with Pyright
 
 ### CI/CD Features
+
 - ✅ Automated testing with pytest
 - ✅ Code quality checks (Ruff, Pyright)
 - ✅ Security scanning (Safety, Bandit)
@@ -49,11 +51,13 @@ Production Deployment
 ### Local Development
 
 1. **Clone and navigate to the example:**
+
    ```bash
    cd examples/flask-cicd
    ```
 
 2. **Start the development environment:**
+
    ```bash
    docker-compose up --build
    ```
@@ -66,11 +70,13 @@ Production Deployment
 ### Manual Setup (without Docker)
 
 1. **Install dependencies:**
+
    ```bash
    pip install -r requirements-dev.txt
    ```
 
 2. **Set up environment variables:**
+
    ```bash
    export DATABASE_URL="postgresql://postgres:password@localhost:5432/flaskcicd"
    export REDIS_URL="redis://localhost:6379/0"
@@ -84,16 +90,19 @@ Production Deployment
 ## 🧪 Testing
 
 ### Run All Tests
+
 ```bash
 pytest tests/ -v
 ```
 
 ### Run with Coverage
+
 ```bash
 pytest tests/ -v --cov=app --cov-report=html
 ```
 
 ### Code Quality Checks
+
 ```bash
 # Linting and formatting
 ruff check .
@@ -104,6 +113,7 @@ pyright .
 ```
 
 ### Security Scanning
+
 ```bash
 # Dependency vulnerability scanning
 safety check -r requirements.txt
@@ -115,16 +125,19 @@ bandit -r . -f json
 ## 🐳 Docker Commands
 
 ### Development Build
+
 ```bash
 docker build --target development -t flask-cicd:dev .
 ```
 
 ### Production Build
+
 ```bash
 docker build --target production -t flask-cicd:prod .
 ```
 
 ### Run Production Container
+
 ```bash
 docker run -p 5000:5000 \
   -e DATABASE_URL="your-db-url" \
@@ -135,15 +148,18 @@ docker run -p 5000:5000 \
 ## 📊 API Endpoints
 
 ### Health & Monitoring
+
 - `GET /health` - Basic health check
 - `GET /ready` - Readiness check (includes database and Redis)
 
 ### Application API
+
 - `GET /` - API information
 - `GET /api/items` - List all items (cached)
 - `POST /api/items` - Create a new item
 
 ### Example API Usage
+
 ```bash
 # Get API info
 curl http://localhost:5000/
@@ -162,6 +178,7 @@ curl http://localhost:5000/api/items
 The GitHub Actions pipeline includes:
 
 ### 1. Test Job
+
 - Sets up Python 3.11
 - Installs dependencies
 - Runs linting (Ruff)
@@ -170,17 +187,20 @@ The GitHub Actions pipeline includes:
 - Uploads coverage to Codecov
 
 ### 2. Security Job
+
 - Scans dependencies for vulnerabilities (Safety)
 - Performs static security analysis (Bandit)
 - Uploads security scan results
 
 ### 3. Build and Push Job
+
 - Builds multi-stage Docker image
 - Pushes to GitHub Container Registry
 - Uses caching for faster builds
 - Tags images appropriately
 
 ### 4. Deploy Job
+
 - Runs only on main branch
 - Deploys to production environment
 - Includes environment protection rules
@@ -203,11 +223,13 @@ flask-cicd/
 ## 🔧 Configuration
 
 ### Environment Variables
+
 - `DATABASE_URL` - PostgreSQL connection string
 - `REDIS_URL` - Redis connection string
 - `FLASK_ENV` - Flask environment (development/production)
 
 ### Docker Compose Services
+
 - `web` - Flask application
 - `db` - PostgreSQL database
 - `redis` - Redis cache
@@ -215,18 +237,21 @@ flask-cicd/
 ## 📈 Production Considerations
 
 ### Performance
+
 - Multi-stage Docker builds for smaller production images
 - Redis caching for API responses
 - Connection pooling for database
 - Gunicorn WSGI server for production
 
 ### Security
+
 - Dependency vulnerability scanning
 - Static security analysis
 - Non-root container user
 - Health check endpoints for monitoring
 
 ### Monitoring
+
 - Structured logging with JSON format
 - Health and readiness endpoints
 - Error tracking and reporting
