@@ -9,10 +9,13 @@ Este repositorio está organizado con **ramas modulares** que representan difere
 Cada módulo representa un nivel específico de conocimiento y habilidades:
 
 ### 🐳 **module-01-containerize**
+
 ```bash
 git checkout module-01-containerize
 ```
+
 **Estado:** Aprende containerización básica
+
 - ✅ Conceptos fundamentales de Docker
 - ✅ Creación de Dockerfiles
 - ✅ Build y run de contenedores
@@ -21,10 +24,13 @@ git checkout module-01-containerize
 ---
 
 ### 🔧 **module-02-develop**
+
 ```bash
 git checkout module-02-develop
 ```
+
 **Estado:** Desarrollo local con Docker
+
 - ✅ Docker Compose multi-servicios
 - ✅ Hot reload y debugging
 - ✅ Integración con bases de datos
@@ -33,10 +39,13 @@ git checkout module-02-develop
 ---
 
 ### ✨ **module-03-linting-typing**
+
 ```bash
 git checkout module-03-linting-typing
 ```
+
 **Estado:** Calidad de código
+
 - ✅ Linting con Black, Flake8
 - ✅ Type checking con mypy
 - ✅ Pre-commit hooks
@@ -45,10 +54,13 @@ git checkout module-03-linting-typing
 ---
 
 ### 🚀 **module-04-cicd**
+
 ```bash
 git checkout module-04-cicd
 ```
+
 **Estado:** CI/CD Pipeline
+
 - ✅ GitHub Actions workflows
 - ✅ Testing automatizado
 - ✅ Build y push automático
@@ -57,10 +69,13 @@ git checkout module-04-cicd
 ---
 
 ### 🏗️ **module-05-deployment**
+
 ```bash
 git checkout module-05-deployment
 ```
+
 **Estado:** Deployment y testing
+
 - ✅ Kubernetes local
 - ✅ Manifiestos YAML
 - ✅ Testing de deployment
@@ -69,10 +84,13 @@ git checkout module-05-deployment
 ---
 
 ### 🏆 **project-complete**
+
 ```bash
 git checkout project-complete
 ```
+
 **Estado:** Proyecto final completo
+
 - ✅ Todas las configuraciones optimizadas
 - ✅ Mejores prácticas implementadas
 - ✅ Listo para producción
@@ -87,7 +105,7 @@ graph LR
     C --> D[module-04-cicd]
     D --> E[module-05-deployment]
     E --> F[project-complete]
-    
+
     style A fill:#e1f5fe
     style B fill:#f3e5f5
     style C fill:#fff3e0
@@ -98,37 +116,43 @@ graph LR
 
 ### Progresión Paso a Paso
 
-#### **Nivel 1: Fundamentos** 
+#### **Nivel 1: Fundamentos**
+
 ```bash
 git checkout module-01-containerize
 # Aprende los conceptos básicos de Docker
 ```
 
 #### **Nivel 2: Desarrollo**
+
 ```bash
 git checkout module-02-develop
 # Domina el desarrollo local con Docker
 ```
 
 #### **Nivel 3: Calidad**
+
 ```bash
 git checkout module-03-linting-typing
 # Implementa mejores prácticas de código
 ```
 
 #### **Nivel 4: Automatización**
+
 ```bash
 git checkout module-04-cicd
 # Configura CI/CD completo
 ```
 
 #### **Nivel 5: Deployment**
+
 ```bash
 git checkout module-05-deployment
 # Deploy y testing en Kubernetes
 ```
 
 #### **Nivel Final: Proyecto Completo**
+
 ```bash
 git checkout project-complete
 # Referencia del proyecto final optimizado
