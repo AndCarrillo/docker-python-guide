@@ -18,11 +18,13 @@ In this module, you will:
 This module includes two progressive examples:
 
 ### 🌶️ Flask Basic Example
+
 **Location:** `examples/flask-basic/`
 
 A simple Flask application that demonstrates the fundamental concepts of containerization.
 
-### ⚡ FastAPI Modern Example  
+### ⚡ FastAPI Modern Example
+
 **Location:** `examples/fastapi-modern/`
 
 An advanced FastAPI application that showcases multi-stage builds and production optimization.
@@ -30,6 +32,7 @@ An advanced FastAPI application that showcases multi-stage builds and production
 ## Prerequisites
 
 Before starting this module, make sure you have:
+
 - Docker Desktop installed and running
 - Python 3.9+ installed
 - Basic understanding of Python and web frameworks
@@ -37,6 +40,7 @@ Before starting this module, make sure you have:
 ## Getting Started
 
 1. **Clone and switch to this module:**
+
    ```bash
    git clone https://github.com/AndCarrillo/docker-python-guide.git
    cd docker-python-guide
@@ -44,6 +48,7 @@ Before starting this module, make sure you have:
    ```
 
 2. **Follow the step-by-step guide below** ⬇️
+
 ---
 
 ## 📚 Step-by-Step Guide
@@ -90,12 +95,14 @@ CMD ["python", "app.py"]
 Always implement these security measures:
 
 1. **Run as non-root user:**
+
    ```dockerfile
    RUN adduser --disabled-password --gecos '' appuser
    USER appuser
    ```
 
 2. **Use specific versions:**
+
    ```dockerfile
    FROM python:3.11-slim
    # Not: FROM python:latest
@@ -135,12 +142,14 @@ CMD ["python", "app.py"]
 **Purpose:** Learn containerization fundamentals with a simple Flask application.
 
 **Key concepts:**
+
 - Basic Dockerfile structure
 - Security with non-root user
 - Health checks
 - Environment variables
 
 **Files:**
+
 ```
 examples/flask-basic/
 ├── app.py              # Simple Flask application
@@ -151,6 +160,7 @@ examples/flask-basic/
 ```
 
 **Try it:**
+
 ```bash
 cd examples/flask-basic
 docker build -t flask-basic .
@@ -163,12 +173,14 @@ docker run -p 5000:5000 flask-basic
 **Purpose:** Advanced containerization with multi-stage builds and production optimization.
 
 **Key concepts:**
+
 - Multi-stage builds
 - Production optimizations
 - Health checks and monitoring
 - Async application patterns
 
 **Files:**
+
 ```
 examples/fastapi-modern/
 ├── main.py            # FastAPI application with async endpoints
@@ -179,6 +191,7 @@ examples/fastapi-modern/
 ```
 
 **Try it:**
+
 ```bash
 cd examples/fastapi-modern
 docker build -t fastapi-modern .
@@ -199,6 +212,7 @@ docker run -p 8000:8000 fastapi-modern
 5. Test the application at http://localhost:5000
 
 **Questions to explore:**
+
 - What base image is used and why?
 - How is the non-root user implemented?
 - What files are excluded by .dockerignore?
@@ -212,6 +226,7 @@ docker run -p 8000:8000 fastapi-modern
 5. Explore the automatic API docs at http://localhost:8000/docs
 
 **Questions to explore:**
+
 - How does the multi-stage build reduce image size?
 - What production optimizations are implemented?
 - How do health checks work?

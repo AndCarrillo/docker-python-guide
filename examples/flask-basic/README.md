@@ -20,8 +20,10 @@ flask-basic/
 ├── .dockerignore      # Files to exclude from build
 └── README.md          # This file
 ```
-└── README.md          # This file
-```
+
+└── README.md # This file
+
+````
 
 ## 🚀 Quick Start
 
@@ -33,7 +35,7 @@ cd examples/flask-basic
 
 # Build the Docker image
 docker build -t flask-basic-app .
-```
+````
 
 ### 2. Run the Container
 
