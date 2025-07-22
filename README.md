@@ -13,25 +13,15 @@ Before starting this module, make sure you have:
 - ✅ **Git client** - Command-line or GUI client
 - ✅ **Code Editor** - [VS Code](https://code.visualstudio.com/) (recommended)
 
-## 📋 Table of Contents
+## � Choose Your Framework
 
-| Section                                                          | Description                                   | Difficulty   | Time    |
-| ---------------------------------------------------------------- | --------------------------------------------- | ------------ | ------- |
-| [🌱 Path A: Flask Basic](#-path-a-flask-basic-start-here)       | Docker fundamentals with simple web framework | **Beginner** | ~30 min |
-| [⚡ Path B: FastAPI Modern](#-path-b-fastapi-modern-advanced)   | Advanced containerization patterns            | **Advanced** | ~45 min |
-| [🎯 Key Takeaways](#-key-takeaways)                            | Summary of learning objectives                | -            | 5 min   |
-| [🔍 Understanding Docker Assets](#-understanding-docker-assets) | Deep dive into files created                  | -            | 10 min  |
-| [🆘 Troubleshooting](#-troubleshooting)                        | Common issues and solutions                   | -            | -       |
+| Framework | Description | Difficulty | Time | Start Learning |
+| --------- | ----------- | ---------- | ---- | -------------- |
+| 🌱 **Flask** | Simple web framework, perfect for Docker beginners | **Beginner** | ~30 min | [→ Start Flask Tutorial](#-flask-tutorial) |
+| ⚡ **FastAPI** | Modern async framework with advanced Docker patterns | **Advanced** | ~45 min | [→ Start FastAPI Tutorial](#-fastapi-tutorial) |
 
----
-
-## 🎯 Choose Your Learning Path
-
-| Experience Level                   | Recommended Path                                             | What You'll Learn                                         |
-| ---------------------------------- | ------------------------------------------------------------ | --------------------------------------------------------- |
-| 🌱 **New to Docker**               | → [Path A: Flask Basic](#-path-a-flask-basic-start-here)     | Dockerfile basics, security fundamentals, Docker commands |
-| ⚡ **Have Docker experience**      | → [Path B: FastAPI Modern](#-path-b-fastapi-modern-advanced) | Multi-stage builds, health checks, production patterns    |
-| 🎓 **Want comprehensive learning** | → Path A → Path B → [Deep Dive Docs](docs/)                  | Complete containerization mastery                         |
+> **New to Docker?** → Choose Flask  
+> **Have Docker experience?** → Choose FastAPI
 
 ## What you'll learn
 
@@ -55,9 +45,9 @@ git checkout module-01-containerize
 
 ---
 
-# 🌱 Path A: Flask Basic (Start Here)
+# 🌱 Flask Tutorial
 
-**Recommended for**: Docker beginners, those new to containerization
+**Step-by-step containerization with Flask**
 
 ### What you'll build
 
@@ -219,32 +209,31 @@ services:
 docker compose up --build
 ```
 
-### ✅ Flask Path Complete!
+### ✅ Flask Tutorial Complete!
 
-You've successfully containerized a Flask application! You learned:
+You've successfully containerized a Flask application! 
 
-- ✅ Basic Dockerfile structure
-- ✅ Security with non-root user
+**What you learned:**
+- ✅ Basic Dockerfile structure and best practices
+- ✅ Security with non-root user configuration
 - ✅ Docker build and run commands
-- ✅ Docker Compose basics
+- ✅ Docker Compose for development
 
 ---
 
-## 🚀 What's Next?
+### 🎯 Next Steps
 
-| Option                                                        | Description             | Time     |
-| ------------------------------------------------------------- | ----------------------- | -------- |
-| ⚡ [Path B: FastAPI Modern](#-path-b-fastapi-modern-advanced) | Learn advanced patterns | ~45 min  |
-| 🎯 [Key Takeaways](#-key-takeaways)                           | Summarize learnings     | ~5 min   |
-| 📚 [Additional Resources](#-additional-resources)             | Deep dive docs          | Variable |
-
-**Recommended:** Continue to Path B to master advanced containerization techniques!
+| Option | Description | Link |
+| ------ | ----------- | ---- |
+| ⚡ **Try FastAPI** | Learn advanced patterns | [→ FastAPI Tutorial](#-fastapi-tutorial) |
+| 📚 **Deep Dive** | Explore advanced concepts | [→ Additional Resources](#-additional-resources) |
+| 🚀 **Next Module** | Continue learning | [Module 2: Develop your app](../../tree/module-02-develop) |
 
 ---
 
-# ⚡ Path B: FastAPI Modern (Advanced)
+# ⚡ FastAPI Tutorial
 
-**Recommended for**: Those comfortable with async Python, after completing Path A
+**Advanced containerization with FastAPI**
 
 ### What you'll build
 
@@ -378,94 +367,37 @@ services:
 docker compose up --build
 ```
 
-### ✅ FastAPI Path Complete!
+### ✅ FastAPI Tutorial Complete!
 
-You've mastered advanced containerization! You learned:
+You've mastered advanced containerization with FastAPI!
 
-- ✅ Multi-stage builds for optimization
-- ✅ Health checks and monitoring
-- ✅ Production-ready patterns
-- ✅ Advanced Docker Compose configurations
-
----
-
-## 🎉 Module Complete!
-
-| Next Action        | Description                | Link                                                       |
-| ------------------ | -------------------------- | ---------------------------------------------------------- |
-| 🎯 **Review**      | Summarize what you learned | [Key Takeaways](#-key-takeaways)                           |
-| 📚 **Deep Dive**   | Explore advanced concepts  | [Additional Resources](#-additional-resources)             |
-| 🚀 **Next Module** | Continue your journey      | [Module 2: Develop your app](../../tree/module-02-develop) |
+**What you learned:**
+- ✅ Multi-stage builds for optimization and security
+- ✅ Health checks and container monitoring
+- ✅ Production-ready patterns and configurations  
+- ✅ Advanced Docker Compose with health checks
 
 ---
 
-# 🎯 Key Takeaways
+### 🎯 Next Steps
 
-After completing this module, you should understand:
+| Option | Description | Link |
+| ------ | ----------- | ---- |
+| 🌱 **Try Flask** | Learn the basics first | [→ Flask Tutorial](#-flask-tutorial) |
+| 📚 **Deep Dive** | Explore advanced concepts | [→ Additional Resources](#-additional-resources) |
+| 🚀 **Next Module** | Continue learning | [Module 2: Develop your app](../../tree/module-02-develop) |
 
-1. **Base Image Selection** - How to choose the right Python base image (`python:3.11-slim`)
-   - 📋 **Official Images**: Find verified Python images at [Docker Hub Python Official Images](https://hub.docker.com/_/python)
-   - 🏷️ **Image Tags**: Choose appropriate tags (e.g., `python:3.11-slim`, `python:3.11-alpine`, `python:3.11-bullseye`)
-   - ⚡ **Performance**: Slim images are ~5x smaller than full images while including essential Python tools
-2. **Dockerfile Structure** - Layer optimization, security practices, and best patterns
-3. **Security Basics** - Running as non-root user and excluding sensitive files
-4. **Container Operations** - Building, running, and managing containers
-5. **Docker Compose** - Multi-service orchestration and environment management
-
-## 🔍 Understanding Docker Assets
-
-### Essential Files You Created
-
-**Dockerfile** - Instructions for building your container:
-
-- **Base image selection** - Choose from [Docker Hub Python Official Images](https://hub.docker.com/_/python)
-  - `python:3.11-slim` - Lightweight, production-ready (~50MB)
-  - `python:3.11-alpine` - Ultra-minimal (~20MB, more complex setup)
-  - `python:3.11` - Full image with all tools (~380MB)
-- Dependencies installation
-- Security configuration (non-root user)
-- Application setup
-
-**.dockerignore** - Files to exclude from build context:
-
-- Development files (`__pycache__`, `.venv`)
-- Version control (`.git`)
-- Documentation (`*.md`)
-
-**compose.yaml** - Multi-container orchestration:
-
-- Service definitions
-- Port mapping
-- Environment variables
-- Health checks
-
-### Docker Commands You Learned
-
-```bash
-# Build an image
-docker build -t my-app .
-
-# Run a container
-docker run -p 5000:5000 my-app
-
-# Use Docker Compose (recommended)
-docker compose up --build
-docker compose up -d          # Run in background
-docker compose down           # Stop services
-
-# Useful commands
-docker images                 # List images
-docker ps                     # List running containers
-docker logs <container-name>  # View logs
-```
+---
 
 ## 📚 Additional Resources
 
-**For deeper learning:**
+Choose your learning level:
 
-- 📖 [Dockerfile Best Practices Guide](docs/dockerfile-guide.md) - Advanced Dockerfile patterns
-- 🔒 [Container Security Basics](docs/security-guide.md) - Security fundamentals
-- ⚡ [Container Optimization Guide](docs/optimization-guide.md) - Performance tips
+| Resource Type | Description | Link |
+| ------------- | ----------- | ---- |
+| 📖 **Dockerfile Guide** | Advanced patterns and optimization | [docs/dockerfile-guide.md](docs/dockerfile-guide.md) |
+| 🔒 **Security Guide** | Container security fundamentals | [docs/security-guide.md](docs/security-guide.md) |
+| ⚡ **Optimization Guide** | Performance and efficiency tips | [docs/optimization-guide.md](docs/optimization-guide.md) |
 
 **Official Documentation:**
 
@@ -474,12 +406,13 @@ docker logs <container-name>  # View logs
 - [Docker Compose Reference](https://docs.docker.com/compose/compose-file/)
 - [Python Docker Best Practices](https://docs.docker.com/language/python/best-practices/)
 
+---
+
 ## 🆘 Troubleshooting
 
 **Common issues and solutions:**
 
 **Port already in use:**
-
 ```bash
 # Find what's using the port
 lsof -i :5000  # macOS/Linux
@@ -490,7 +423,6 @@ docker run -p 5001:5000 my-app
 ```
 
 **Permission denied:**
-
 ```bash
 # Make sure Docker is running
 docker version
@@ -500,21 +432,21 @@ sudo usermod -aG docker $USER
 ```
 
 **Build fails:**
-
 ```bash
 # Check Dockerfile syntax
 # Ensure requirements.txt exists
 # Verify file paths in COPY commands
 ```
 
-## 🚀 Next Steps
+---
 
-Ready for the next module?
+## 🚀 Next Module
+
+Ready to continue your Docker journey?
 
 **[Module 2: Develop your app](../../tree/module-02-develop)**
-
 - Development environment with containers
-- Code quality and debugging
+- Code quality and debugging  
 - Hot reload and development workflows
 
 ---
