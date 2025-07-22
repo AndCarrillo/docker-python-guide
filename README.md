@@ -1,53 +1,52 @@
-# 🐍 Python Docker Guide - Guía Completa
+# Automate your builds with GitHub Actions
 
-Una guía completa para containerizar aplicaciones Python usando Docker, desde conceptos básicos hasta deployment en producción.
+> **Module branch:** `module-04-cicd`
 
-## 📋 Tabla de Contenidos
+Learn how to configure CI/CD using GitHub Actions for your Python application.
 
-### 🎯 Módulos de la Guía
+## What you'll learn
 
-| Módulo                                                                 | Descripción                                   | Branch                     | Estado |
-| ---------------------------------------------------------------------- | --------------------------------------------- | -------------------------- | ------ |
-| [**1. Containerize your app**](#módulo-1-containerize-your-app)        | Aprende a containerizar una aplicación Python | `module-01-containerize`   | 🚧     |
-| [**2. Develop your app**](#módulo-2-develop-your-app)                  | Desarrollo local usando contenedores          | `module-02-develop`        | 🚧     |
-| [**3. Linting and typing**](#módulo-3-linting-and-typing)              | Configuración de linting, formato y tipado    | `module-03-linting-typing` | 🚧     |
-| [**4. CI/CD with GitHub Actions**](#módulo-4-cicd-with-github-actions) | Automatización con GitHub Actions             | `module-04-cicd`           | 🚧     |
-| [**5. Test your deployment**](#módulo-5-test-your-deployment)          | Testing y deployment en Kubernetes            | `module-05-deployment`     | 🚧     |
+In this module, you will:
 
----
+- ✅ Create automated test and build pipelines
+- ✅ Configure Docker image building and pushing to registries
+- ✅ Set up automated deployment workflows
+- ✅ Implement security scanning and vulnerability checks
+- ✅ Configure multi-environment deployments (dev, staging, prod)
+- ✅ Set up automated code quality checks
 
-## 🎯 Objetivos de Aprendizaje
+## Prerequisites
 
-Al completar esta guía, serás capaz de:
+Before starting this module, make sure you have completed:
 
-- ✅ Containerizar aplicaciones Python de manera eficiente
-- ✅ Configurar un entorno de desarrollo local con contenedores
-- ✅ Implementar mejores prácticas de código (linting, formatting, typing)
-- ✅ Configurar pipelines de CI/CD automatizados
-- ✅ Desplegar aplicaciones en Kubernetes para testing
+- [Module 3: Linting and typing](../../tree/module-03-linting-typing)
+- GitHub account with repository access
+- Docker Hub or GitHub Container Registry account
+- Basic understanding of GitHub Actions concepts
 
----
+## Examples
 
-## 📚 Módulos Detallados
+This module includes comprehensive CI/CD setups:
 
-### Módulo 1: Containerize your app
+### �️ Flask CI/CD Pipeline
 
-**Branch:** `module-01-containerize`
+**Location:** `examples/flask-cicd/`
 
-Aprende los fundamentos de containerización con Docker:
+A complete GitHub Actions workflow for Flask applications including:
+- Automated testing with pytest
+- Code quality checks with Ruff and Pyright
+- Docker image building and pushing
+- Multi-environment deployment
 
-- Creación de Dockerfile optimizado para Python
-- Multi-stage builds para reducir tamaño de imagen
-- Configuración de dependencias y requirements
-- Mejores prácticas de seguridad
+### ⚡ FastAPI Advanced Pipeline
 
-**🔗 [Ir al módulo →](../../tree/module-01-containerize)**
+**Location:** `examples/fastapi-cicd/`
 
----
-
-### Módulo 2: Develop your app
-
-**Branch:** `module-02-develop`
+An advanced FastAPI CI/CD setup featuring:
+- Matrix testing across Python versions
+- Security scanning with Trivy
+- Automated API documentation deployment
+- Blue-green deployment strategies
 
 Configuración de entorno de desarrollo local:
 
