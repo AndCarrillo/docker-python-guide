@@ -22,9 +22,12 @@ By completing this module, you will be able to:
 
 ### 💡 Practical Examples
 
-- [**Flask Basic**](examples/flask-basic/) - Simple Flask application with health checks and security
-- [**FastAPI API**](examples/fastapi-api/) - Production-ready API with authentication and monitoring
-- [**Django Blog**](examples/django-blog/) - Full-stack blog with PostgreSQL, static files, and Nginx
+Progressive examples showing increasing complexity:
+
+- [**01-flask-basic**](examples/01-flask-basic/) - Simple Flask app with health checks
+- [**02-flask-advanced**](examples/02-flask-advanced/) - Flask with SQLite database and volumes
+- [**03-fastapi-basic**](examples/03-fastapi-basic/) - Simple FastAPI with async endpoints
+- [**04-fastapi-advanced**](examples/04-fastapi-advanced/) - Production-ready FastAPI with authentication
 
 ### 🎓 Hands-on Exercises
 

@@ -93,6 +93,10 @@ CMD ["gunicorn", "app:app", \
 # ===== DEVELOPMENT STAGE =====
 FROM builder as development
 
+# Install main dependencies first
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
+
 # Install development dependencies
 COPY requirements-dev.txt* ./
 RUN if [ -f requirements-dev.txt ]; then \
