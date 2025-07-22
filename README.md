@@ -4,13 +4,12 @@
 [![Docker](https://img.shields.io/badge/docker-24.0+-blue.svg)](https://docs.docker.com/)
 [![Flask](https://img.shields.io/badge/Flask-3.0+-green.svg)](https://flask.palletsprojects.com/)
 [![FastAPI](https://img.shields.io/badge/FastAPI-0.116.0+-green.svg)](https://fastapi.tiangolo.com)
-[![Django](https://img.shields.io/badge/Django-5.0+-green.svg)](https://www.djangoproject.com/)
 [![GitHub Actions](https://img.shields.io/badge/GitHub%20Actions-enabled-brightgreen.svg)](https://github.com/features/actions)
 [![Docker Hub](https://img.shields.io/badge/Docker%20Hub-registry-blue.svg)](https://hub.docker.com/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Contributions Welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg)](CONTRIBUTING.md)
 
-A comprehensive guide to containerize Python applications using Docker, from basic concepts to production deployment.
+A comprehensive guide to containerize Python applications (Flask and FastAPI) using Docker, from basic concepts to production deployment.
 
 ## 📋 Table of Contents
 
@@ -35,6 +34,15 @@ By completing this guide, you will be able to:
 - ✅ Implement code best practices (linting, formatting, typing)
 - ✅ Configure automated CI/CD pipelines
 - ✅ Deploy applications with best practices and monitoring
+
+## 🏗️ Framework Focus
+
+This guide focuses on **Flask and FastAPI** - two of the most popular Python web frameworks:
+
+- **Flask**: Simple, flexible, and perfect for learning containerization fundamentals
+- **FastAPI**: Modern, fast, with automatic API documentation and async support
+
+Each module provides progressive examples that build complexity gradually, making it easy to learn Docker concepts while working with real Python applications.
 
 ---
 
