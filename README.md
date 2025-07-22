@@ -1,4 +1,12 @@
-# 🐳 Docker Python Guide
+# 🐳 Docker Python - ☸️ **Deploy with Kubernetes** locally
+
+## 📚 Learning P## 📋 Module Overview
+
+### 📦 [Module 1: Containerize](../../tree/module-01-containerize)
+
+Create optimized Docker images for Python applications.
+| Module | Topic                | Level        | Time | Branch                                                            |
+| ------ | -------------------- | ------------ | ---- | ----------------------------------------------------------------- |
 
 [![Python 3.9+](https://img.shields.io/badge/python-3.9+-blue.svg)](https://www.python.org/downloads/)
 [![Docker](https://img.shields.io/badge/docker-24.0+-blue.svg)](https://docs.docker.com/)
@@ -21,13 +29,13 @@ Master Docker for Python development through practical, progressive modules:
 
 ## � Learning Path
 
-| Module | Topic | Level | Time | Branch |
-|--------|-------|--------|------|--------|
-| **01** | 🐳 Containerization | Beginner | 45m | [`module-01-containerize`](../../tree/module-01-containerize) |
-| **02** | 🔧 Development Setup | Intermediate | 60m | [`module-02-develop`](../../tree/module-02-develop) |
-| **03** | ✨ Code Quality | Intermediate | 45m | [`module-03-linting-typing`](../../tree/module-03-linting-typing) |
-| **04** | 🚀 CI/CD Pipeline | Advanced | 90m | [`module-04-cicd`](../../tree/module-04-cicd) |
-| **05** | ☸️ Deployment | Advanced | 75m | [`module-05-deployment`](../../tree/module-05-deployment) |
+| Module | Topic                | Level        | Time | Branch                                                            |
+| ------ | -------------------- | ------------ | ---- | ----------------------------------------------------------------- |
+| **01** | 🐳 Containerization  | Beginner     | 45m  | [`module-01-containerize`](../../tree/module-01-containerize)     |
+| **02** | 🔧 Development Setup | Intermediate | 60m  | [`module-02-develop`](../../tree/module-02-develop)               |
+| **03** | ✨ Code Quality      | Intermediate | 45m  | [`module-03-linting-typing`](../../tree/module-03-linting-typing) |
+| **04** | 🚀 CI/CD Pipeline    | Advanced     | 90m  | [`module-04-cicd`](../../tree/module-04-cicd)                     |
+| **05** | ☸️ Deployment        | Advanced     | 75m  | [`module-05-deployment`](../../tree/module-05-deployment)         |
 
 **🏆 Final Project:** [`project-complete`](../../tree/project-complete) - Complete implementation with all optimizations
 
@@ -58,10 +66,10 @@ git checkout module-01-containerize
 
 ### Frameworks
 
-| Framework | Purpose | Learning Focus |
-|-----------|---------|----------------|
-| 🌱 **Flask** | Simple web framework | Fundamentals, SQL databases, traditional patterns |
-| ⚡ **FastAPI** | Modern async framework | Performance, async/await, auto-documentation |
+| Framework      | Purpose                | Learning Focus                                    |
+| -------------- | ---------------------- | ------------------------------------------------- |
+| 🌱 **Flask**   | Simple web framework   | Fundamentals, SQL databases, traditional patterns |
+| ⚡ **FastAPI** | Modern async framework | Performance, async/await, auto-documentation      |
 
 ### Progressive Examples
 
@@ -74,35 +82,45 @@ git checkout module-01-containerize
 ## 📋 Module Overview
 
 ### � [Module 1: Containerize](../../tree/module-01-containerize)
+
 Create optimized Docker images for Python applications.
+
 - Dockerfiles and best practices
-- Security and non-root users  
+- Security and non-root users
 - Multi-stage builds
 - Health checks
 
 ### 🛠️ [Module 2: Develop](../../tree/module-02-develop)
+
 Set up local development environment.
+
 - Docker Compose for development
 - Hot reload and debugging
 - Environment variables and secrets
 - Database integration
 
 ### ✨ [Module 3: Code Quality](../../tree/module-03-linting-typing)
+
 Implement linting, formatting, and type checking.
+
 - Ruff for linting and formatting
 - mypy for type checking
 - Pre-commit hooks
 - VS Code integration
 
 ### 🚀 [Module 4: CI/CD](../../tree/module-04-cicd)
+
 Automate builds with GitHub Actions.
+
 - Automated testing and building
 - Docker image publishing
 - Multi-environment deployment
 - Security scanning
 
 ### ☸️ [Module 5: Deployment](../../tree/module-05-deployment)
+
 Deploy and test with Kubernetes.
+
 - Local Kubernetes setup
 - Health checks and monitoring
 - Rolling updates and rollbacks
@@ -127,8 +145,9 @@ Deploy and test with Kubernetes.
 ## 🤝 Contributing
 
 Contributions welcome! See [Contributing Guide](CONTRIBUTING.md) for:
+
 - Reporting issues
-- Submitting improvements  
+- Submitting improvements
 - Code standards
 - Development workflow
 
