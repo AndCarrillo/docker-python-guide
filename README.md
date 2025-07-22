@@ -24,10 +24,8 @@ By completing this module, you will be able to:
 
 Progressive examples showing increasing complexity:
 
-- [**01-flask-basic**](examples/01-flask-basic/) - Simple Flask app with health checks
-- [**02-flask-advanced**](examples/02-flask-advanced/) - Flask with SQLite database and volumes
-- [**03-fastapi-basic**](examples/03-fastapi-basic/) - Simple FastAPI with async endpoints
-- [**04-fastapi-advanced**](examples/04-fastapi-advanced/) - Production-ready FastAPI with authentication
+- [**01-flask-basic**](examples/01-flask-basic/) - Essential Flask containerization fundamentals
+- [**02-fastapi-modern**](examples/02-fastapi-modern/) - Advanced FastAPI with production features
 
 ### 🎓 Hands-on Exercises
 
