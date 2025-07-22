@@ -13,7 +13,7 @@ Before starting this module, make sure you have:
 - ✅ **Git client** - Command-line or GUI client
 - ✅ **Code Editor** - [VS Code](https://code.visualstudio.com/) (recommended)
 
-## � Choose Your Framework
+## 🚀 Choose Your Framework
 
 | Framework      | Description                                          | Difficulty   | Time    | Start Learning                                 |
 | -------------- | ---------------------------------------------------- | ------------ | ------- | ---------------------------------------------- |
@@ -169,6 +169,7 @@ docker compose up --build
 ```
 
 **Test your application:**
+
 - Open http://localhost:5000 in your browser
 - Check health: http://localhost:5000/health
 - Stop: Press `Ctrl+C`
@@ -287,11 +288,12 @@ CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]
 docker build -t fastapi-modern .
 docker run -p 8000:8000 fastapi-modern
 
-# Or use Docker Compose (recommended)  
+# Or use Docker Compose (recommended)
 docker compose up --build
 ```
 
 **Test your application:**
+
 - Open http://localhost:8000 in your browser
 - API docs: http://localhost:8000/docs
 - Health check: http://localhost:8000/health
@@ -322,11 +324,11 @@ You've mastered advanced containerization with FastAPI!
 
 ## 📚 Additional Resources
 
-| Type | Description | Link |
-|------|-------------|------|
-| 📖 **Advanced Guides** | Dockerfile, Security, Optimization | [docs/](docs/) |
-| 🐳 **Official Docs** | Docker Hub Python Images | [hub.docker.com/_/python](https://hub.docker.com/_/python) |
-| 📘 **References** | Dockerfile & Compose docs | [docs.docker.com](https://docs.docker.com) |
+| Type                   | Description                        | Link                                                        |
+| ---------------------- | ---------------------------------- | ----------------------------------------------------------- |
+| 📖 **Advanced Guides** | Dockerfile, Security, Optimization | [docs/](docs/)                                              |
+| 🐳 **Official Docs**   | Docker Hub Python Images           | [hub.docker.com/\_/python](https://hub.docker.com/_/python) |
+| 📘 **References**      | Dockerfile & Compose docs          | [docs.docker.com](https://docs.docker.com)                  |
 
 ---
 
