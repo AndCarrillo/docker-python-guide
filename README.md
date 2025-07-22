@@ -2,7 +2,7 @@
 
 > **Module branch:** `module-01-containerize`
 
-Learn how to containerize a Python application using Docker with practical Flask and FastAPI examples.
+Learn how to containerize a simple Python Flask application using Docker. This module focuses on the fundamentals of containerization.
 
 ## Prerequisites
 
@@ -13,14 +13,17 @@ Before starting this module, make sure you have:
 - ✅ **Git client** - Command-line or GUI client
 - ✅ **Code Editor** - [VS Code](https://code.visualstudio.com/) (recommended)
 
-## 🚀 Choose Your Framework
+## What You'll Learn
 
-| Framework      | Description                                          | Difficulty   | Time    | Start Learning                                 |
-| -------------- | ---------------------------------------------------- | ------------ | ------- | ---------------------------------------------- |
-| 🌱 **Flask**   | Simple web framework, perfect for Docker beginners   | **Beginner** | ~30 min | [→ Start Flask Tutorial](#-flask-tutorial)     |
-| ⚡ **FastAPI** | Modern async framework with advanced Docker patterns | **Advanced** | ~45 min | [→ Start FastAPI Tutorial](#-fastapi-tutorial) |
+In this module, you will:
 
-> **New to Docker?** → Choose Flask | **Have Docker experience?** → Choose FastAPI
+- 🐳 Create a simple Flask application
+- 📦 Write a basic Dockerfile
+- �️ Build your first Docker image
+- 🚀 Run your containerized application
+- 🔍 Understand Docker fundamentals
+
+**Time Required:** ~30 minutes
 
 ## Getting Started
 
@@ -34,20 +37,18 @@ git checkout module-01-containerize
 
 ---
 
-# 🌱 Flask Tutorial
-
-**Step-by-step containerization with Flask**
+# 🌱 Flask Containerization Tutorial
 
 ### What you'll build
 
-A simple Flask web application with health checks and basic API endpoints.
+A simple Flask web application that returns "Hello from Docker! 🐳"
 
 ### Step 1: Navigate to Flask Example
 
 ```bash
 cd examples/flask-basic
 ls -la
-# You'll see: app.py, requirements.txt, Dockerfile, .dockerignore
+# You'll see: app.py, requirements.txt, Dockerfile
 ```
 
 ### Step 2: Understand the Application
@@ -189,136 +190,20 @@ You've successfully containerized a Flask application!
 
 ### 🎯 Next Steps
 
-| Option             | Description               | Link                                                       |
-| ------------------ | ------------------------- | ---------------------------------------------------------- |
-| ⚡ **Try FastAPI** | Learn advanced patterns   | [→ FastAPI Tutorial](#-fastapi-tutorial)                   |
-| 📚 **Deep Dive**   | Explore advanced concepts | [→ Additional Resources](#-additional-resources)           |
-| 🚀 **Next Module** | Continue learning         | [Module 2: Develop your app](../../tree/module-02-develop) |
-
----
-
-# ⚡ FastAPI Tutorial
-
-**Advanced containerization with FastAPI**
-
-### What you'll build
-
-A modern FastAPI application with multi-stage builds, advanced optimization, and production patterns.
-
-### Step 1: Navigate to FastAPI Example
-
-```bash
-cd examples/fastapi-modern
-ls -la
-# You'll see: main.py, requirements.txt, Dockerfile, .dockerignore
-```
-
-### Step 2: Understand the Application
-
-**main.py** - FastAPI with async patterns:
-
-```python
-from fastapi import FastAPI
-from pydantic import BaseModel
-import asyncio
-
-app = FastAPI(title="Task Manager", version="1.0.0")
-
-# Sample data store
-tasks = []
-
-@app.get("/")
-async def root():
-    return {"message": "Hello from FastAPI in Docker!", "tasks_count": len(tasks)}
-
-@app.get("/health")
-async def health():
-    return {"status": "healthy", "service": "task-manager"}
-
-@app.post("/tasks")
-async def create_task(task: dict):
-    task_id = len(tasks) + 1
-    new_task = {"id": task_id, **task}
-    tasks.append(new_task)
-    return new_task
-```
-
-### Step 3: Create Advanced Docker Assets
-
-**Create `Dockerfile` (Multi-stage):**
-
-```dockerfile
-# Build stage
-FROM python:3.11-slim as builder
-WORKDIR /app
-COPY requirements.txt .
-RUN pip install --user --no-cache-dir -r requirements.txt
-
-# Production stage
-FROM python:3.11-slim
-ENV PYTHONDONTWRITEBYTECODE=1
-ENV PYTHONUNBUFFERED=1
-
-WORKDIR /app
-
-# Create non-root user
-RUN adduser --disabled-password --gecos '' --shell /bin/bash appuser
-
-# Copy installed packages from builder stage
-COPY --from=builder /root/.local /root/.local
-ENV PATH=/root/.local/bin:$PATH
-
-# Copy application
-COPY --chown=appuser:appuser . .
-
-USER appuser
-EXPOSE 8000
-
-# Health check
-HEALTHCHECK --interval=30s --timeout=10s --start-period=5s --retries=3 \
-    CMD python -c "import urllib.request; urllib.request.urlopen('http://localhost:8000/health')"
-
-CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]
-```
-
-### Step 4: Build and Run FastAPI App
-
-```bash
-# Build and run
-docker build -t fastapi-modern .
-docker run -p 8000:8000 fastapi-modern
-
-# Or use Docker Compose (recommended)
-docker compose up --build
-```
-
-**Test your application:**
-
-- Open http://localhost:8000 in your browser
-- API docs: http://localhost:8000/docs
-- Health check: http://localhost:8000/health
-- Stop: Press `Ctrl+C`
-
-### ✅ FastAPI Tutorial Complete!
-
-You've mastered advanced containerization with FastAPI!
+**Congratulations! You've successfully containerized your first Python application!**
 
 **What you learned:**
+- ✅ Created a simple Flask application
+- ✅ Written a basic Dockerfile
+- ✅ Built your first Docker image
+- ✅ Run a containerized application
 
-- ✅ Multi-stage builds for optimization and security
-- ✅ Health checks and container monitoring
-- ✅ Production-ready patterns and configurations
-- ✅ Advanced Docker Compose with health checks
+**Continue your Docker journey:**
 
----
-
-### 🎯 Next Steps
-
-| Option             | Description               | Link                                                       |
-| ------------------ | ------------------------- | ---------------------------------------------------------- |
-| 🌱 **Try Flask**   | Learn the basics first    | [→ Flask Tutorial](#-flask-tutorial)                       |
-| 📚 **Deep Dive**   | Explore advanced concepts | [→ Additional Resources](#-additional-resources)           |
-| 🚀 **Next Module** | Continue learning         | [Module 2: Develop your app](../../tree/module-02-develop) |
+| Next Step           | Description                    | Link                                                       |
+| ------------------- | ------------------------------ | ---------------------------------------------------------- |
+| 🚀 **Next Module** | Learn development with Docker  | [Module 2: Develop](../../tree/module-02-develop)         |
+| 📚 **Resources**    | Docker documentation          | [Docker Docs](https://docs.docker.com)                   |
 
 ---
 
@@ -326,28 +211,21 @@ You've mastered advanced containerization with FastAPI!
 
 | Type                   | Description                        | Link                                                        |
 | ---------------------- | ---------------------------------- | ----------------------------------------------------------- |
-| 📖 **Advanced Guides** | Dockerfile, Security, Optimization | [docs/](docs/)                                              |
 | 🐳 **Official Docs**   | Docker Hub Python Images           | [hub.docker.com/\_/python](https://hub.docker.com/_/python) |
-| 📘 **References**      | Dockerfile & Compose docs          | [docs.docker.com](https://docs.docker.com)                  |
+| 📘 **References**      | Dockerfile documentation           | [docs.docker.com](https://docs.docker.com)                  |
 
 ---
 
 ## 🐳 Docker Commands Reference
 
 ```bash
-# Build and run
-docker build -t my-app .
-docker run -p 5000:5000 my-app
-
-# Docker Compose (recommended)
-docker compose up --build
-docker compose up -d          # Run in background
-docker compose down           # Stop services
-
-# Useful commands
-docker images                 # List images
-docker ps                     # List running containers
-docker logs <container-name>  # View logs
+# Essential commands used in this module
+docker build -t flask-basic .        # Build image
+docker run -p 5000:5000 flask-basic  # Run container
+docker images                        # List images
+docker ps                           # List running containers
+docker logs <container-name>        # View logs
+docker stop <container-name>        # Stop container
 ```
 
 ---
@@ -357,48 +235,41 @@ docker logs <container-name>  # View logs
 **Common issues and solutions:**
 
 **Port already in use:**
-
 ```bash
 # Find what's using the port
-lsof -i :5000  # macOS/Linux
 netstat -ano | findstr :5000  # Windows
+lsof -i :5000                 # macOS/Linux
 
 # Use a different port
-docker run -p 5001:5000 my-app
-```
-
-**Permission denied:**
-
-```bash
-# Make sure Docker is running
-docker version
-
-# On Linux, add user to docker group
-sudo usermod -aG docker $USER
+docker run -p 5001:5000 flask-basic
 ```
 
 **Build fails:**
+- Check that Docker Desktop is running
+- Ensure `requirements.txt` exists in the same directory
+- Verify all file names are correct in the Dockerfile
 
-```bash
-# Check Dockerfile syntax
-# Ensure requirements.txt exists
-# Verify file paths in COPY commands
-```
+**Container won't start:**
+- Check logs: `docker logs <container-name>`
+- Ensure your app runs locally first: `python app.py`
 
 ---
 
 ## 🚀 Next Module
 
-Ready to continue your Docker journey?
+Ready to set up a development environment with Docker?
 
-**[Module 2: Develop your app](../../tree/module-02-develop)**
+**[Module 2: Development Setup](../../tree/module-02-develop)**
 
-- Development environment with containers
-- Code quality and debugging
-- Hot reload and development workflows
+Learn how to:
+- Use Docker Compose for development
+- Set up hot reload
+- Work with databases in containers
+- Debug containerized applications
 
 ---
 
 ## 🤝 Need Help?
 
 - 📖 Check the [main README](../../README.md) for general guidance
+- 💬 Open an issue if you encounter problems
