@@ -14,7 +14,7 @@
 Este curso modular te enseña desde cero hasta nivel avanzado:
 
 - 🐳 **Containerizar aplicaciones Python** con Flask y FastAPI
-- 🔧 **Configurar entorno de desarrollo** local con Docker Compose  
+- 🔧 **Configurar entorno de desarrollo** local con Docker Compose
 - ✨ **Aplicar mejores prácticas** de linting, formatting y typing
 - 🚀 **Implementar CI/CD completo** con GitHub Actions
 - 🏗️ **Desplegar en Kubernetes** y testing de deployment
@@ -23,15 +23,16 @@ Este curso modular te enseña desde cero hasta nivel avanzado:
 
 ### 🚀 Ruta de Aprendizaje Recomendada
 
-| Módulo | Tema | Nivel | Tiempo | Branch |
-|--------|------|-------|--------|--------|
-| **01** | 🐳 **Containerización** | Principiante | ~45 min | [`module-01-containerize`](../../tree/module-01-containerize) |
-| **02** | 🔧 **Desarrollo Local** | Intermedio | ~60 min | [`module-02-develop`](../../tree/module-02-develop) |  
-| **03** | ✨ **Calidad de Código** | Intermedio | ~45 min | [`module-03-linting-typing`](../../tree/module-03-linting-typing) |
-| **04** | 🚀 **CI/CD Pipeline** | Avanzado | ~90 min | [`module-04-cicd`](../../tree/module-04-cicd) |
-| **05** | 🏗️ **Deployment** | Avanzado | ~75 min | [`module-05-deployment`](../../tree/module-05-deployment) |
+| Módulo | Tema                     | Nivel        | Tiempo  | Branch                                                            |
+| ------ | ------------------------ | ------------ | ------- | ----------------------------------------------------------------- |
+| **01** | 🐳 **Containerización**  | Principiante | ~45 min | [`module-01-containerize`](../../tree/module-01-containerize)     |
+| **02** | 🔧 **Desarrollo Local**  | Intermedio   | ~60 min | [`module-02-develop`](../../tree/module-02-develop)               |
+| **03** | ✨ **Calidad de Código** | Intermedio   | ~45 min | [`module-03-linting-typing`](../../tree/module-03-linting-typing) |
+| **04** | 🚀 **CI/CD Pipeline**    | Avanzado     | ~90 min | [`module-04-cicd`](../../tree/module-04-cicd)                     |
+| **05** | 🏗️ **Deployment**        | Avanzado     | ~75 min | [`module-05-deployment`](../../tree/module-05-deployment)         |
 
 ### 🏆 Proyecto Final
+
 - 📦 **[`project-complete`](../../tree/project-complete)** - Proyecto final con todas las configuraciones optimizadas
 
 By completing this guide, you will be able to:
@@ -56,6 +57,7 @@ Para completar esta guía necesitas:
 ### 🎓 Cómo usar esta guía
 
 #### **Opción 1: Flujo Secuencial** (Recomendado)
+
 Sigue los módulos en orden para una experiencia de aprendizaje completa:
 
 ```bash
@@ -69,6 +71,7 @@ git checkout module-01-containerize
 ```
 
 #### **Opción 2: Módulos Específicos**
+
 Ve directamente al tema que te interese:
 
 ```bash
@@ -77,6 +80,7 @@ git checkout module-04-cicd
 ```
 
 #### **Opción 3: Proyecto Final**
+
 Ve el resultado final optimizado:
 
 ```bash
@@ -89,9 +93,9 @@ git checkout project-complete
 
 ### 🐍 **Frameworks Python Incluidos**
 
-| Framework | Descripción | Uso en el Curso |
-|-----------|-------------|-----------------|
-| **🌱 Flask** | Framework simple y directo | Ejemplos básicos, ideal para principiantes |
+| Framework      | Descripción                | Uso en el Curso                            |
+| -------------- | -------------------------- | ------------------------------------------ |
+| **🌱 Flask**   | Framework simple y directo | Ejemplos básicos, ideal para principiantes |
 | **⚡ FastAPI** | Framework moderno y rápido | Ejemplos avanzados, patrones de producción |
 
 ### 🗂️ **Ejemplos Prácticos**
