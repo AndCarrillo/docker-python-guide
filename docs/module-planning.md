@@ -50,11 +50,6 @@ module-01-containerize/
 │   │   ├── requirements.txt
 │   │   ├── Dockerfile.multistage
 │   │   └── .dockerignore
-│   └── django-app/
-│       ├── manage.py
-│       ├── requirements.txt
-│       ├── Dockerfile.production
-│       └── .dockerignore
 ├── exercises/
 │   ├── exercise-1-basic-dockerfile.md
 │   ├── exercise-2-multistage-build.md
@@ -102,15 +97,10 @@ module-02-develop/
 │   │   ├── docker-compose.yml
 │   │   ├── docker-compose.dev.yml
 │   │   └── .env.example
-│   ├── fastapi-redis/
-│   │   ├── app/
-│   │   ├── docker-compose.yml
-│   │   └── Dockerfile.dev
-│   └── django-full-stack/
-│       ├── backend/
-│       ├── frontend/
+│   └── fastapi-redis/
+│       ├── app/
 │       ├── docker-compose.yml
-│       └── nginx.conf
+│       └── Dockerfile.dev
 ├── exercises/
 │   ├── exercise-1-compose-setup.md
 │   ├── exercise-2-hot-reload.md
