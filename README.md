@@ -60,12 +60,12 @@ git checkout module-01-containerize
 
 | Framework      | Purpose                | Learning Focus                                    |
 | -------------- | ---------------------- | ------------------------------------------------- |
-| 🌱 **Flask**   | Simple web framework   | Fundamentals, SQL databases, traditional patterns |
+| 🧪 **Flask**   | Simple web framework   | Fundamentals, SQL databases, traditional patterns |
 | ⚡ **FastAPI** | Modern async framework | Performance, async/await, auto-documentation      |
 
 ### Progressive Examples
 
-- **📦 Flask + PostgreSQL** - Traditional web app with relational database
+- **🧪 Flask + PostgreSQL** - Traditional web app with relational database
 - **⚡ FastAPI + Redis** - Modern API with caching and async operations
 - **🔧 Multi-stage builds** - Optimized Docker images
 - **🚀 Complete CI/CD** - Automated pipelines with GitHub Actions
