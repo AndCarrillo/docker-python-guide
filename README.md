@@ -9,6 +9,7 @@ Learn how to containerize a Python application using Docker with practical Flask
 ¡Felicitaciones! Has llegado a la rama del **proyecto completo**. Aquí encontrarás:
 
 ### ✅ Configuraciones Incluidas
+
 - ✅ **Dockerfiles optimizados** para producción
 - ✅ **Docker Compose** con servicios completos
 - ✅ **Optimizaciones de seguridad** implementadas
@@ -19,7 +20,9 @@ Learn how to containerize a Python application using Docker with practical Flask
 - ✅ **Documentación completa** de mejores prácticas
 
 ### 🚀 Estado del Proyecto
+
 Este proyecto incluye **todas las configuraciones Docker** desde básicas hasta avanzadas, listo para usar en:
+
 - 🧪 **Desarrollo local**
 - 🧪 **Testing automatizado**
 - 🚀 **Despliegue en producción**
