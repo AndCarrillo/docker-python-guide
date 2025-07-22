@@ -15,23 +15,12 @@ Before starting this module, make sure you have:
 
 ## � Choose Your Framework
 
-| Framework | Description | Difficulty | Time | Start Learning |
-| --------- | ----------- | ---------- | ---- | -------------- |
-| 🌱 **Flask** | Simple web framework, perfect for Docker beginners | **Beginner** | ~30 min | [→ Start Flask Tutorial](#-flask-tutorial) |
+| Framework      | Description                                          | Difficulty   | Time    | Start Learning                                 |
+| -------------- | ---------------------------------------------------- | ------------ | ------- | ---------------------------------------------- |
+| 🌱 **Flask**   | Simple web framework, perfect for Docker beginners   | **Beginner** | ~30 min | [→ Start Flask Tutorial](#-flask-tutorial)     |
 | ⚡ **FastAPI** | Modern async framework with advanced Docker patterns | **Advanced** | ~45 min | [→ Start FastAPI Tutorial](#-fastapi-tutorial) |
 
-> **New to Docker?** → Choose Flask  
-> **Have Docker experience?** → Choose FastAPI
-
-## What you'll learn
-
-In this module, you will:
-
-- ✅ **Initialize Docker assets** using `docker init` and manual methods
-- ✅ **Create optimized Dockerfiles** for Python applications
-- ✅ **Implement security best practices** with non-root users
-- ✅ **Configure health checks** and monitoring
-- ✅ **Run applications** with Docker and Docker Compose
+> **New to Docker?** → Choose Flask | **Have Docker experience?** → Choose FastAPI
 
 ## Getting Started
 
@@ -170,50 +159,26 @@ Thumbs.db
 
 ### Step 4: Build and Run Flask App
 
-**Build the image:**
-
 ```bash
+# Build and run
 docker build -t flask-basic .
-```
-
-**Run the container:**
-
-```bash
 docker run -p 5000:5000 flask-basic
-```
 
-**Test your application:**
-
-- Open http://localhost:5000 in your browser
-- Check health: http://localhost:5000/health
-
-**Stop the container:** Press `Ctrl+C`
-
-### Step 5: Run with Docker Compose (Recommended)
-
-**Create `compose.yaml`:**
-
-```yaml
-services:
-  web:
-    build: .
-    ports:
-      - "5000:5000"
-    environment:
-      - FLASK_ENV=production
-```
-
-**Run with compose:**
-
-```bash
+# Or use Docker Compose (recommended)
 docker compose up --build
 ```
 
+**Test your application:**
+- Open http://localhost:5000 in your browser
+- Check health: http://localhost:5000/health
+- Stop: Press `Ctrl+C`
+
 ### ✅ Flask Tutorial Complete!
 
-You've successfully containerized a Flask application! 
+You've successfully containerized a Flask application!
 
 **What you learned:**
+
 - ✅ Basic Dockerfile structure and best practices
 - ✅ Security with non-root user configuration
 - ✅ Docker build and run commands
@@ -223,11 +188,11 @@ You've successfully containerized a Flask application!
 
 ### 🎯 Next Steps
 
-| Option | Description | Link |
-| ------ | ----------- | ---- |
-| ⚡ **Try FastAPI** | Learn advanced patterns | [→ FastAPI Tutorial](#-fastapi-tutorial) |
-| 📚 **Deep Dive** | Explore advanced concepts | [→ Additional Resources](#-additional-resources) |
-| 🚀 **Next Module** | Continue learning | [Module 2: Develop your app](../../tree/module-02-develop) |
+| Option             | Description               | Link                                                       |
+| ------------------ | ------------------------- | ---------------------------------------------------------- |
+| ⚡ **Try FastAPI** | Learn advanced patterns   | [→ FastAPI Tutorial](#-fastapi-tutorial)                   |
+| 📚 **Deep Dive**   | Explore advanced concepts | [→ Additional Resources](#-additional-resources)           |
+| 🚀 **Next Module** | Continue learning         | [Module 2: Develop your app](../../tree/module-02-develop) |
 
 ---
 
@@ -317,94 +282,71 @@ CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]
 
 ### Step 4: Build and Run FastAPI App
 
-**Build the image:**
-
 ```bash
+# Build and run
 docker build -t fastapi-modern .
-```
-
-**Run the container:**
-
-```bash
 docker run -p 8000:8000 fastapi-modern
+
+# Or use Docker Compose (recommended)  
+docker compose up --build
 ```
 
 **Test your application:**
-
 - Open http://localhost:8000 in your browser
 - API docs: http://localhost:8000/docs
 - Health check: http://localhost:8000/health
-
-### Step 5: Advanced Docker Compose
-
-**Create `compose.yaml`:**
-
-```yaml
-services:
-  api:
-    build: .
-    ports:
-      - "8000:8000"
-    environment:
-      - ENV=production
-    healthcheck:
-      test:
-        [
-          "CMD",
-          "python",
-          "-c",
-          "import urllib.request; urllib.request.urlopen('http://localhost:8000/health')",
-        ]
-      interval: 30s
-      timeout: 10s
-      retries: 3
-      start_period: 10s
-```
-
-**Run with compose:**
-
-```bash
-docker compose up --build
-```
+- Stop: Press `Ctrl+C`
 
 ### ✅ FastAPI Tutorial Complete!
 
 You've mastered advanced containerization with FastAPI!
 
 **What you learned:**
+
 - ✅ Multi-stage builds for optimization and security
 - ✅ Health checks and container monitoring
-- ✅ Production-ready patterns and configurations  
+- ✅ Production-ready patterns and configurations
 - ✅ Advanced Docker Compose with health checks
 
 ---
 
 ### 🎯 Next Steps
 
-| Option | Description | Link |
-| ------ | ----------- | ---- |
-| 🌱 **Try Flask** | Learn the basics first | [→ Flask Tutorial](#-flask-tutorial) |
-| 📚 **Deep Dive** | Explore advanced concepts | [→ Additional Resources](#-additional-resources) |
-| 🚀 **Next Module** | Continue learning | [Module 2: Develop your app](../../tree/module-02-develop) |
+| Option             | Description               | Link                                                       |
+| ------------------ | ------------------------- | ---------------------------------------------------------- |
+| 🌱 **Try Flask**   | Learn the basics first    | [→ Flask Tutorial](#-flask-tutorial)                       |
+| 📚 **Deep Dive**   | Explore advanced concepts | [→ Additional Resources](#-additional-resources)           |
+| 🚀 **Next Module** | Continue learning         | [Module 2: Develop your app](../../tree/module-02-develop) |
 
 ---
 
 ## 📚 Additional Resources
 
-Choose your learning level:
+| Type | Description | Link |
+|------|-------------|------|
+| 📖 **Advanced Guides** | Dockerfile, Security, Optimization | [docs/](docs/) |
+| 🐳 **Official Docs** | Docker Hub Python Images | [hub.docker.com/_/python](https://hub.docker.com/_/python) |
+| 📘 **References** | Dockerfile & Compose docs | [docs.docker.com](https://docs.docker.com) |
 
-| Resource Type | Description | Link |
-| ------------- | ----------- | ---- |
-| 📖 **Dockerfile Guide** | Advanced patterns and optimization | [docs/dockerfile-guide.md](docs/dockerfile-guide.md) |
-| 🔒 **Security Guide** | Container security fundamentals | [docs/security-guide.md](docs/security-guide.md) |
-| ⚡ **Optimization Guide** | Performance and efficiency tips | [docs/optimization-guide.md](docs/optimization-guide.md) |
+---
 
-**Official Documentation:**
+## 🐳 Docker Commands Reference
 
-- [Docker Hub Python Official Images](https://hub.docker.com/_/python) - All available Python base images and tags
-- [Docker Dockerfile Reference](https://docs.docker.com/engine/reference/builder/)
-- [Docker Compose Reference](https://docs.docker.com/compose/compose-file/)
-- [Python Docker Best Practices](https://docs.docker.com/language/python/best-practices/)
+```bash
+# Build and run
+docker build -t my-app .
+docker run -p 5000:5000 my-app
+
+# Docker Compose (recommended)
+docker compose up --build
+docker compose up -d          # Run in background
+docker compose down           # Stop services
+
+# Useful commands
+docker images                 # List images
+docker ps                     # List running containers
+docker logs <container-name>  # View logs
+```
 
 ---
 
@@ -413,6 +355,7 @@ Choose your learning level:
 **Common issues and solutions:**
 
 **Port already in use:**
+
 ```bash
 # Find what's using the port
 lsof -i :5000  # macOS/Linux
@@ -423,6 +366,7 @@ docker run -p 5001:5000 my-app
 ```
 
 **Permission denied:**
+
 ```bash
 # Make sure Docker is running
 docker version
@@ -432,6 +376,7 @@ sudo usermod -aG docker $USER
 ```
 
 **Build fails:**
+
 ```bash
 # Check Dockerfile syntax
 # Ensure requirements.txt exists
@@ -445,8 +390,9 @@ sudo usermod -aG docker $USER
 Ready to continue your Docker journey?
 
 **[Module 2: Develop your app](../../tree/module-02-develop)**
+
 - Development environment with containers
-- Code quality and debugging  
+- Code quality and debugging
 - Hot reload and development workflows
 
 ---
