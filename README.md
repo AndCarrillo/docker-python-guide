@@ -1,125 +1,196 @@
-# 🐍 Python Docker Guide
+# Python Docker Guide
 
 [![Python 3.9+](https://img.shields.io/badge/python-3.9+-blue.svg)](https://www.python.org/downloads/)
-[![Docker](https://img.shields.io/badge/docker-24.0+-blue.svg)](https://docs.docker.com/)
+[![Docker](https://img.shields.## Prerequisites
+
+To complete this guide, you need:
+
+- **Docker Desktop** - [Install Docker Desktop](https://docs.docker.com/get-docker/)
+- **Python 3.9+** - [Download Python](https://www.python.org/downloads/)
+- **Git** - [Install Git](https://git-scm.com/downloads)
+- **Code Editor** - [VS Code](https://code.visualstudio.com/) (recommended)
+
+## How to use this guide
+
+### 🎯 Learning Path
+
+Follow the modules sequentially for the best learning experience:
+
+1. **Start with Module 1** - Learn containerization basics
+2. **Progress through each module** - Build on previous knowledge
+3. **Complete hands-on examples** - Practice with Flask and FastAPI
+4. **Apply to your projects** - Use the patterns in real applications
+
+### 🌿 Branch Structure
+
+Each module has its own branch with complete examples and documentation:
+
+```
+main                     # This overview and navigation
+├── module-01-containerize   # Dockerfiles and containerization
+├── module-02-develop        # Local development setup
+├── module-03-linting-typing # Code quality and type safety
+├── module-04-cicd          # CI/CD with GitHub Actions
+└── module-05-deployment    # Kubernetes and testing
+```
+
+### 🚀 Quick Start
+
+Ready to begin? Start with Module 1:
+
+```bash
+# Clone the repository
+git clone https://github.com/AndCarrillo/docker-python-guide.git
+cd docker-python-guide
+
+# Start with Module 1: Containerize your app
+git checkout module-01-containerize
+
+# Follow the README instructions in that branch
+```
+
+Each module branch contains:
+
+- **📚 README.md** - Complete module guide with step-by-step instructions
+- **🧩 Examples** - Flask and FastAPI applications to practice with
+- **📖 Documentation** - Additional resources and troubleshooting
+
+## Examples Overview
+
+This guide uses **two progressive examples** throughout all modules:
+
+| Example            | Framework | Purpose            | Key Concepts                                         |
+| ------------------ | --------- | ------------------ | ---------------------------------------------------- |
+| **Flask Basic**    | Flask     | Learn fundamentals | Simple containerization, health checks, security     |
+| **FastAPI Modern** | FastAPI   | Advanced patterns  | Multi-stage builds, async, documentation, production |
+
+Both examples evolve through each module, teaching new Docker and development concepts while maintaining familiar application code.
+
+---
+
+## 📚 Additional Resources
+
+- [Docker Documentation](https://docs.docker.com/)
+- [Python Docker Best Practices](https://docs.docker.com/language/python/)
+- [Flask Documentation](https://flask.palletsprojects.com/)
+- [FastAPI Documentation](https://fastapi.tiangolo.com/)
+- [GitHub Actions Documentation](https://docs.github.com/en/actions)
+
+---docker-24.0+-blue.svg)](https://docs.docker.com/)
 [![Flask](https://img.shields.io/badge/Flask-3.0+-green.svg)](https://flask.palletsprojects.com/)
 [![FastAPI](https://img.shields.io/badge/FastAPI-0.116.0+-green.svg)](https://fastapi.tiangolo.com)
 [![GitHub Actions](https://img.shields.io/badge/GitHub%20Actions-enabled-brightgreen.svg)](https://github.com/features/actions)
-[![Docker Hub](https://img.shields.io/badge/Docker%20Hub-registry-blue.svg)](https://hub.docker.com/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Contributions Welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg)](CONTRIBUTING.md)
 
-A comprehensive guide to containerize Python applications (Flask and FastAPI) using Docker, from basic concepts to production deployment.
+The Python language-specific guide teaches you how to containerize a Python application using Docker. In this guide, you'll learn how to:
 
-## 📋 Table of Contents
+- **Containerize and run a Python application**
+- **Set up a local environment to develop a Python application using containers**
+- **Lint, format, typing and best practices**
+- **Configure a CI/CD pipeline for a containerized Python application using GitHub Actions**
+- **Deploy your containerized Python application locally to Kubernetes to test and debug your deployment**
 
-### 🎯 Guide Modules
+Start by containerizing an existing Python application.
 
-| Module                                                                 | Description                                  | Branch                     | Status |
-| ---------------------------------------------------------------------- | -------------------------------------------- | -------------------------- | ------ |
-| [**1. Containerize your app**](#module-1-containerize-your-app)        | Learn to containerize Python applications    | `module-01-containerize`   | 🚧     |
-| [**2. Develop your app**](#module-2-develop-your-app)                  | Local development using containers           | `module-02-develop`        | 🚧     |
-| [**3. Linting and typing**](#module-3-linting-and-typing)              | Code quality: linting, formatting and typing | `module-03-linting-typing` | 🚧     |
-| [**4. CI/CD with GitHub Actions**](#module-4-cicd-with-github-actions) | Automation with GitHub Actions               | `module-04-cicd`           | 🚧     |
-| [**5. Test your deployment**](#module-5-test-your-deployment)          | Testing and deployment strategies            | `module-05-deployment`     | 🚧     |
-
----
-
-## 🎯 Learning Objectives
+## What you'll learn
 
 By completing this guide, you will be able to:
 
-- ✅ Containerize Python applications efficiently
+- ✅ Containerize Python applications (Flask & FastAPI)
 - ✅ Set up a local development environment with containers
-- ✅ Implement code best practices (linting, formatting, typing)
-- ✅ Configure automated CI/CD pipelines
-- ✅ Deploy applications with best practices and monitoring
+- ✅ Implement code quality best practices (linting, formatting, typing)
+- ✅ Configure automated CI/CD pipelines with GitHub Actions
+- ✅ Deploy and test applications locally using Kubernetes
 
-## 🏗️ Framework Focus
+## Modules
 
-This guide focuses on **Flask and FastAPI** - two of the most popular Python web frameworks:
+### 📦 [Containerize your app](../../tree/module-01-containerize)
 
-- **Flask**: Simple, flexible, and perfect for learning containerization fundamentals
-- **FastAPI**: Modern, fast, with automatic API documentation and async support
+Learn how to containerize a Python application.
 
-Each module provides progressive examples that build complexity gradually, making it easy to learn Docker concepts while working with real Python applications.
+**What you'll learn:**
 
----
+- Create optimized Dockerfiles for Python applications
+- Implement security best practices and non-root users
+- Use multi-stage builds to reduce image size
+- Configure health checks and monitoring
 
-## 📚 Detailed Modules
+**Examples:**
 
-### Module 1: Containerize your app
-
-**Branch:** `module-01-containerize`
-
-Learn the fundamentals of containerization with Docker:
-
-- Creating optimized Dockerfiles for Python
-- Multi-stage builds to reduce image size
-- Dependencies and requirements configuration
-- Security best practices
-
-**🔗 [Go to module →](../../tree/module-01-containerize)**
+- **Flask Basic**: Simple containerization fundamentals
+- **FastAPI Modern**: Advanced multi-stage builds with async support
 
 ---
 
-### Module 2: Develop your app
+### �️ [Develop your app](../../tree/module-02-develop)
 
-**Branch:** `module-02-develop`
+Learn how to develop your Python application locally.
 
-Local development environment setup:
+**What you'll learn:**
 
-- Docker Compose for development
-- Hot reload and debugging
-- Environment variables management
-- Database integration
+- Set up local development environment with Docker Compose
+- Configure hot reload and live debugging in containers
+- Manage environment variables and secrets
+- Integrate databases and external services
 
-**🔗 [Go to module →](../../tree/module-02-develop)**
+**Examples:**
 
----
-
-### Module 3: Linting and typing
-
-**Branch:** `module-03-linting-typing`
-
-Code quality and best practices:
-
-- Configuration of Black, Flake8, isort
-- Type checking with mypy
-- Pre-commit hooks
-- VS Code configuration
-
-**🔗 [Go to module →](../../tree/module-03-linting-typing)**
+- **Flask + PostgreSQL**: Development environment with database
+- **FastAPI + Redis**: Async application with caching layer
 
 ---
 
-### Module 4: CI/CD with GitHub Actions
+### 🔍 [Linting and typing](../../tree/module-03-linting-typing)
 
-**Branch:** `module-04-cicd`
+Learn how to set up linting, formatting and type checking for your Python application.
 
-Development pipeline automation:
+**What you'll learn:**
 
-- GitHub Actions workflows
-- Automated testing
-- Docker image build and push
-- Automated deployment
+- Configure Black, Flake8, and isort for code quality
+- Set up mypy for static type checking
+- Implement pre-commit hooks for automated checks
+- Integrate code quality tools with containers
 
-**🔗 [Go to module →](../../tree/module-04-cicd)**
+**Examples:**
+
+- **Flask with Quality Tools**: Complete linting and formatting setup
+- **FastAPI with Type Safety**: Advanced type checking and validation
 
 ---
 
-### Module 5: Test your deployment
+### 🚀 [Automate your builds with GitHub Actions](../../tree/module-04-cicd)
 
-**Branch:** `module-05-deployment`
+Learn how to configure CI/CD using GitHub Actions for your Python application.
 
-Testing and deployment strategies:
+**What you'll learn:**
 
-- Local deployment testing
-- Container orchestration basics
-- Health checks and monitoring
-- Production deployment considerations
+- Create automated test and build pipelines
+- Configure Docker image building and pushing
+- Set up automated deployment workflows
+- Implement security scanning and vulnerability checks
 
-**🔗 [Go to module →](../../tree/module-05-deployment)**
+**Examples:**
+
+- **Flask CI/CD**: Complete GitHub Actions workflow
+- **FastAPI Advanced**: Multi-environment deployment pipeline
+
+---
+
+### 🔧 [Test your deployment](../../tree/module-05-deployment)
+
+Learn how to develop locally using Kubernetes.
+
+**What you'll learn:**
+
+- Deploy applications locally with Kubernetes
+- Configure health checks and monitoring
+- Implement rolling updates and rollback strategies
+- Test and debug containerized applications
+
+**Examples:**
+
+- **Flask on Kubernetes**: Local deployment and testing
+- **FastAPI Production**: Advanced Kubernetes configuration
 
 ---
 
@@ -151,7 +222,30 @@ main/
 
 ---
 
-## 📖 Additional Resources
+## � Quick Start
+
+Ready to begin? Start with Module 1:
+
+```bash
+# Clone the repository
+git clone https://github.com/AndCarrillo/docker-python-guide.git
+cd docker-python-guide
+
+# Switch to Module 1
+git checkout module-01-containerize
+
+# Try the Flask basic example
+cd examples/01-flask-basic
+docker build -t flask-basic .
+docker run -p 5000:5000 flask-basic
+# Visit http://localhost:5000
+```
+
+**Next steps:** Follow the README in each module branch for detailed instructions.
+
+---
+
+## �📖 Additional Resources
 
 - [Docker Documentation](https://docs.docker.com/)
 - [Python Docker Best Practices](https://docs.docker.com/language/python/)
@@ -161,27 +255,20 @@ main/
 
 ## 🤝 Contributing
 
-Found an error or have a suggestion? Contribute!
+Contributions are welcome! Please read our [Contributing Guide](CONTRIBUTING.md) for details on:
 
-1. Fork the project
-2. Create a feature branch (`git checkout -b feature/new-feature`)
-3. Commit your changes (`git commit -m 'Add new feature'`)
-4. Push to the branch (`git push origin feature/new-feature`)
-5. Open a Pull Request
+- How to report issues
+- How to submit improvements
+- Code standards and guidelines
+- Development workflow
 
 ---
 
 ## 📝 License
 
-This project is under the MIT License - see the [LICENSE](LICENSE) file for details.
-
----
-
-## 🏷️ Tags
-
-`#docker` `#python` `#containerization` `#devops` `#cicd` `#github-actions` `#development`
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 ---
 
 **📅 Last updated:** July 2025  
-**👨‍💻 Maintained by:** Andrea Carrillo - [GitHub](https://github.com/AndCarrillo)
+**👨‍💻 Maintained by:** [Andrea Carrillo](https://github.com/AndCarrillo)
