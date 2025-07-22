@@ -21,13 +21,13 @@ Master Docker for Python development through practical, progressive modules:
 
 ## 📚 Learning Path
 
-| Module | Topic                | Level        | Time | Branch                                                            |
-| ------ | -------------------- | ------------ | ---- | ----------------------------------------------------------------- |
-| **01** | 🐳 Containerization  | Beginner     | 45m  | [`module-01-containerize`](../../tree/module-01-containerize)     |
-| **02** | 🔧 Development Setup | Intermediate | 60m  | [`module-02-develop`](../../tree/module-02-develop)               |
-| **03** | ✨ Code Quality      | Intermediate | 45m  | [`module-03-linting-typing`](../../tree/module-03-linting-typing) |
-| **04** | 🚀 CI/CD Pipeline    | Advanced     | 90m  | [`module-04-cicd`](../../tree/module-04-cicd)                     |
-| **05** | ☸️ Deployment        | Advanced     | 75m  | [`module-05-deployment`](../../tree/module-05-deployment)         |
+| Module | Topic                | Level        | Branch                                                            |
+| ------ | -------------------- | ------------ | ----------------------------------------------------------------- |
+| **01** | 🐳 Containerization  | Beginner     | [`module-01-containerize`](../../tree/module-01-containerize)     |
+| **02** | 🔧 Development Setup | Intermediate | [`module-02-develop`](../../tree/module-02-develop)               |
+| **03** | ✨ Code Quality      | Intermediate | [`module-03-linting-typing`](../../tree/module-03-linting-typing) |
+| **04** | 🚀 CI/CD Pipeline    | Advanced     | [`module-04-cicd`](../../tree/module-04-cicd)                     |
+| **05** | ☸️ Deployment        | Advanced     | [`module-05-deployment`](../../tree/module-05-deployment)         |
 
 **🏆 Final Project:** [`project-complete`](../../tree/project-complete) - Complete implementation with all optimizations
 
