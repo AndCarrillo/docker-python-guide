@@ -248,7 +248,7 @@ Learn how to containerize a Python application.
 
 ---
 
-### �️ [Develop your app](../../tree/module-02-develop)
+### 🛠️ [Develop your app](../../tree/module-02-develop)
 
 Learn how to develop your Python application locally.
 
@@ -302,67 +302,22 @@ Learn how to configure CI/CD using GitHub Actions for your Python application.
 
 ---
 
-## � How to use this guide
+## 🤝 Contributing
 
-### Prerequisites
+Contributions are welcome! Please read our [Contributing Guide](CONTRIBUTING.md) for details on:
 
-To complete this guide, you need:
+- How to report issues
+- How to submit improvements
+- Code standards and guidelines
+- Development workflow
 
-- **Docker Desktop** - [Install Docker Desktop](https://docs.docker.com/get-docker/)
-- **Python 3.9+** - [Download Python](https://www.python.org/downloads/)
-- **Git** - [Install Git](https://git-scm.com/downloads)
-- **Code Editor** - [VS Code](https://code.visualstudio.com/) (recommended)
+---
 
-### 🎯 Learning Path
+## 📝 License
 
-Follow the modules sequentially for the best learning experience:
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-1. **Start with Module 1** - Learn containerization basics
-2. **Progress through each module** - Build on previous knowledge
-3. **Complete hands-on examples** - Practice with Flask and FastAPI
-4. **Apply to your projects** - Use the patterns in real applications
+---
 
-### 🌿 Branch Structure
-
-Each module has its own branch with complete examples and documentation:
-
-```
-main                     # This overview and navigation
-├── module-01-containerize   # Dockerfiles and containerization
-├── module-02-develop        # Local development setup
-├── module-03-linting-typing # Code quality and type safety
-├── module-04-cicd          # CI/CD with GitHub Actions
-└── module-05-deployment    # Kubernetes and testing
-```
-
-### 🚀 Quick Start
-
-Ready to begin? Start with Module 1:
-
-```bash
-# Clone the repository
-git clone https://github.com/AndCarrillo/docker-python-guide.git
-cd docker-python-guide
-
-# Start with Module 1: Containerize your app
-git checkout module-01-containerize
-
-# Follow the README instructions in that branch
-```
-
-Each module branch contains:
-
-- **📚 README.md** - Complete module guide with step-by-step instructions
-- **🧩 Examples** - Flask and FastAPI applications to practice with
-- **📖 Documentation** - Additional resources and troubleshooting
-
-## Examples Overview
-
-This guide uses **two progressive examples** throughout all modules:
-
-| Example            | Framework | Purpose            | Key Concepts                                         |
-| ------------------ | --------- | ------------------ | ---------------------------------------------------- |
-| **Flask Basic**    | Flask     | Learn fundamentals | Simple containerization, health checks, security     |
-| **FastAPI Modern** | FastAPI   | Advanced patterns  | Multi-stage builds, async, documentation, production |
-
-Both examples evolve through each module, teaching new Docker and development concepts while maintaining familiar application code.
+**📅 Last updated:** December 2024  
+**👨‍💻 Maintained by:** [Andrea Carrillo](https://github.com/AndCarrillo)
