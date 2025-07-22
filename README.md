@@ -8,16 +8,12 @@ Complete [Module 1: Containerize your app](../../tree/module-01-containerize).
 
 ## Overview
 
-In this section, you'll learn how to set up a development environment for your containerized application. This includes:
-
-- Adding a local database and persisting data
-- Configuring Compose to automatically update your running Compose services as you edit and save your code
-- Managing environment variables and secrets
-- Implementing hot reload for development workflow
+Learn to set up a development environment with:
+- Local databases and data persistence
+- Hot reload with Docker Compose Watch
+- Environment variables and secrets management
 
 ## 🚀 Choose Your Development Path
-
-This module offers two complete development examples. Choose the one that best fits your needs:
 
 <table>
   <tr>
@@ -26,34 +22,10 @@ This module offers two complete development examples. Choose the one that best f
   </tr>
   <tr>
     <td>
-      <strong>Best for:</strong><br>
-      • Traditional web applications<br>
-      • Learning SQL databases<br>
-      • Simple REST APIs<br>
-      • Getting started with Docker
+      <strong>Best for:</strong> Traditional web apps, SQL databases, simple REST APIs
     </td>
     <td>
-      <strong>Best for:</strong><br>
-      • High-performance APIs<br>
-      • Async programming<br>
-      • Caching strategies<br>
-      • Modern Python development
-    </td>
-  </tr>
-  <tr>
-    <td>
-      <strong>Technologies:</strong><br>
-      • Flask web framework<br>
-      • PostgreSQL database<br>
-      • SQLAlchemy ORM<br>
-      • Adminer (DB admin)
-    </td>
-    <td>
-      <strong>Technologies:</strong><br>
-      • FastAPI framework<br>
-      • Redis cache/storage<br>
-      • Async/await patterns<br>
-      • Redis Commander (admin)
+      <strong>Best for:</strong> High-performance APIs, async programming, caching strategies
     </td>
   </tr>
   <tr>
@@ -69,17 +41,6 @@ This module offers two complete development examples. Choose the one that best f
     </td>
   </tr>
 </table>
-
-> **💡 Tip:** You can follow both examples to compare different development approaches!
-
-## Get the sample application
-
-You already have the containerized application from Module 1. In this module, we'll enhance it with development features.
-
-The applications you containerized in Module 1 are now ready for development enhancements:
-
-- **Flask + PostgreSQL** - Located in `examples/flask-postgres/`
-- **FastAPI + Redis** - Located in `examples/fastapi-redis/`
 
 ## Add a local database and persist data
 
@@ -236,12 +197,14 @@ Press `Ctrl+C` in the terminal to stop your application.
 ### 🎯 Flask Example Complete!
 
 **What you accomplished:**
+
 - ✅ Set up Flask with PostgreSQL
 - ✅ Configured Docker Compose for development
 - ✅ Implemented data persistence
 - ✅ Added database administration interface
 
 **Navigation:**
+
 - 📝 [Continue with FastAPI example](#option-2-fastapi--redis-example) to compare approaches
 - 🔄 [Skip to Hot Reload section](#automatically-update-services) if you want to continue with Flask
 - 📚 [View both examples side-by-side](#-examples) for comparison
@@ -354,14 +317,16 @@ Press `Ctrl+C` to stop the application.
 ### ⚡ FastAPI Example Complete!
 
 **What you accomplished:**
+
 - ✅ Set up FastAPI with Redis
 - ✅ Implemented async API endpoints
 - ✅ Added caching functionality
 - ✅ Configured Redis administration interface
 
 **Navigation:**
+
 - 📝 [Compare with Flask example](#option-1-flask--postgresql-example) to see different approaches
-- 🔄 [Continue to Hot Reload section](#automatically-update-services) 
+- 🔄 [Continue to Hot Reload section](#automatically-update-services)
 - 📚 [View examples comparison](#-examples) for detailed overview
 
 ---
@@ -508,81 +473,6 @@ In the next section, you'll learn how you can set up linting, formatting and typ
 
 **[Module 3: Linting, formatting, and type checking →](../../tree/module-03-linting-typing)**
 
-- ✅ Set up local development environment with Docker Compose
-- ✅ Configure hot reload and live debugging in containers
-- ✅ Manage environment variables and secrets
-- ✅ Integrate databases and external services
-
-## 🧩 Examples
-
-This module includes two progressive examples demonstrating different development approaches:
-
-### Quick Comparison
-
-| Feature | 🌶️ Flask + PostgreSQL | ⚡ FastAPI + Redis |
-|---------|----------------------|-------------------|
-| **Framework** | Flask (sync) | FastAPI (async) |
-| **Database** | PostgreSQL (relational) | Redis (key-value) |
-| **Use Case** | Traditional web apps | High-performance APIs |
-| **Learning Focus** | SQL, ORM patterns | Async, caching patterns |
-| **API Docs** | Manual documentation | Auto-generated (OpenAPI) |
-| **Performance** | Standard | High throughput |
-| **Port** | 5000 | 8000 |
-| **Admin Interface** | Adminer (8080) | Redis Commander (8081) |
-
-### 🌶️ Flask + PostgreSQL Example
-
-**Location:** `examples/flask-postgres/`
-
-**Perfect for learning:**
-- Traditional web application patterns
-- SQL database integration with SQLAlchemy
-- CRUD operations with relational data
-- Environment variables and secrets management
-
-**Key Technologies:**
-- Flask web framework
-- PostgreSQL database
-- SQLAlchemy ORM
-- Adminer database administration
-
-### ⚡ FastAPI + Redis Example
-
-**Location:** `examples/fastapi-redis/`
-
-**Perfect for learning:**
-- Modern async Python development
-- High-performance API design
-- Caching strategies with Redis
-- Auto-generated API documentation
-
-**Key Technologies:**
-- FastAPI framework with async/await
-- Redis for caching and storage
-- Automatic OpenAPI documentation
-- Redis Commander administration
-
-## Prerequisites
-
-Before starting this module, make sure you have:
-
-- Completed [Module 1: Containerize your app](../../tree/module-01-containerize)
-- Docker Desktop installed and running
-- Docker Compose installed (included with Docker Desktop)
-- Basic understanding of databases and environment variables
-
-## Getting Started
-
-1. **Clone and switch to this module:**
-
-   ```bash
-   git clone https://github.com/AndCarrillo/docker-python-guide.git
-   cd docker-python-guide
-   git checkout module-02-develop
-   ```
-
-2. **Follow the step-by-step guide below** ⬇️
-
 ---
 
 ## 📚 Step-by-Step Guide
@@ -672,75 +562,6 @@ depends_on:
 
 ---
 
-## 🧩 Examples
-
-### Flask + PostgreSQL Example
-
-**Purpose:** Learn local development with database integration.
-
-**Key concepts:**
-
-- Docker Compose with multiple services
-- Database integration with SQLAlchemy
-- Hot reload for development
-- Database initialization with sample data
-
-**Files:**
-
-```
-examples/flask-postgres/
-├── app.py                    # Flask app with database models
-├── requirements.txt          # Python dependencies
-├── Dockerfile               # Development Dockerfile
-├── docker-compose.yml       # Multi-service configuration
-├── init.sql                 # Database initialization
-├── .dockerignore           # Build optimization
-└── README.md               # Example instructions
-```
-
-**Try it:**
-
-```bash
-cd examples/flask-postgres
-docker-compose up --build
-# Visit http://localhost:5000
-# Database admin: http://localhost:8080
-```
-
-### FastAPI + Redis Example
-
-**Purpose:** Advanced development with caching and async patterns.
-
-**Key concepts:**
-
-- Async FastAPI application
-- Redis for caching and session storage
-- Background tasks and startup events
-- Development tools and admin interfaces
-
-**Files:**
-
-```
-examples/fastapi-redis/
-├── main.py                  # FastAPI app with Redis integration
-├── requirements.txt         # Python dependencies
-├── Dockerfile              # Development Dockerfile
-├── docker-compose.yml      # Multi-service configuration
-├── .dockerignore          # Build optimization
-└── README.md              # Example instructions
-```
-
-**Try it:**
-
-```bash
-cd examples/fastapi-redis
-docker-compose up --build
-# Visit http://localhost:8000/docs
-# Redis admin: http://localhost:8081
-```
-
----
-
 ## 🔧 Common Docker Compose Commands
 
 ### Basic Operations
@@ -760,35 +581,12 @@ docker-compose down
 
 # Stop and remove volumes
 docker-compose down -v
-```
 
-### Development Workflow
-
-```bash
 # View logs
-docker-compose logs
-
-# Follow logs for specific service
 docker-compose logs -f web
 
 # Execute command in running container
 docker-compose exec web bash
-
-# Scale services
-docker-compose up --scale web=3
-```
-
-### Debugging
-
-```bash
-# Check service status
-docker-compose ps
-
-# View service configuration
-docker-compose config
-
-# Restart specific service
-docker-compose restart web
 ```
 
 ---
@@ -890,123 +688,3 @@ Ready for the next module? Continue with:
 ---
 
 **⬅️ [Back to main guide](../../README.md)**
-
-Configuración de entorno de desarrollo local:
-
-- Docker Compose para desarrollo
-- Hot reload y debugging
-- Gestión de variables de entorno
-- Integración con bases de datos
-
-**🔗 [Ir al módulo →](../../tree/module-02-develop)**
-
----
-
-### Módulo 3: Linting and typing
-
-**Branch:** `module-03-linting-typing`
-
-Calidad de código y mejores prácticas:
-
-- Configuración de Black, Flake8, isort
-- Type checking con mypy
-- Pre-commit hooks
-- Configuración de VS Code
-
-**🔗 [Ir al módulo →](../../tree/module-03-linting-typing)**
-
----
-
-### Módulo 4: CI/CD with GitHub Actions
-
-**Branch:** `module-04-cicd`
-
-Automatización del pipeline de desarrollo:
-
-- Workflows de GitHub Actions
-- Testing automatizado
-- Build y push de imágenes Docker
-- Deployment automatizado
-
-**🔗 [Ir al módulo →](../../tree/module-04-cicd)**
-
----
-
-### Módulo 5: Test your deployment
-
-**Branch:** `module-05-deployment`
-
-Testing y deployment en Kubernetes:
-
-- Configuración local de Kubernetes
-- Manifiestos YAML
-- Testing de deployment
-- Monitoring y debugging
-
-**🔗 [Ir al módulo →](../../tree/module-05-deployment)**
-
----
-
-## 🚀 Cómo usar esta guía
-
-### Prerequisitos
-
-- Docker Desktop instalado
-- Python 3.9+ instalado
-- Git configurado
-- Editor de código (recomendado: VS Code)
-
-### Navegación
-
-1. **Secuencial**: Sigue los módulos en orden para un aprendizaje progresivo
-2. **Por temas**: Ve directamente al módulo que te interese
-3. **Práctica**: Cada módulo incluye ejercicios prácticos
-
-### Estructura de branches
-
-```
-main/
-├── module-01-containerize/     # Containerización básica
-├── module-02-develop/          # Desarrollo local
-├── module-03-linting-typing/   # Calidad de código
-├── module-04-cicd/            # CI/CD Pipeline
-└── module-05-deployment/      # Testing y Deployment
-```
-
----
-
-## 📖 Recursos Adicionales
-
-- [Docker Documentation](https://docs.docker.com/)
-- [Python Docker Best Practices](https://docs.docker.com/language/python/)
-- [Kubernetes Documentation](https://kubernetes.io/docs/)
-- [GitHub Actions Documentation](https://docs.github.com/en/actions)
-
----
-
-## 🤝 Contribuciones
-
-¿Encontraste un error o tienes una sugerencia? ¡Contribuye!
-
-1. Fork el proyecto
-2. Crea una rama para tu feature (`git checkout -b feature/nueva-funcionalidad`)
-3. Commit tus cambios (`git commit -m 'Agrega nueva funcionalidad'`)
-4. Push a la rama (`git push origin feature/nueva-funcionalidad`)
-5. Abre un Pull Request
-
----
-
-## 📝 Licencia
-
-Este proyecto está bajo la Licencia MIT - ver el archivo [LICENSE](LICENSE) para más detalles.
-
----
-
-## 🏷️ Tags
-
-`#docker` `#python` `#containerization` `#devops` `#cicd` `#kubernetes` `#github-actions` `#development`
-
----
-
-**📅 Última actualización:** Julio 2025
-**👨‍💻 Mantenido por:** Andrea Carrillo - [GitHub](https://github.com/AndCarrillo)
