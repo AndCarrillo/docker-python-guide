@@ -16,10 +16,12 @@ En esta sección aprenderás a configurar GitHub Actions para automatizar builds
 1. In your project's GitHub repository, open **Settings**, and go to **Secrets and variables > Actions**
 
 2. Under the **Variables** tab, create a new Repository variable:
+
    - Name: `DOCKER_USERNAME`
    - Value: Your Docker ID
 
 3. Create a new **Personal Access Token (PAT)** for Docker Hub:
+
    - Go to Docker Hub → Account Settings → Security
    - Create a new token named `docker-tutorial`
    - Make sure access permissions include **Read and Write**
@@ -37,7 +39,7 @@ A **workflow** is a YAML-based automation script that defines a sequence of step
 In this section, you'll learn how to set up and use GitHub Actions to:
 
 1. **Run automated tests** with pytest and coverage
-2. **Perform code quality checks** with linting and type checking  
+2. **Perform code quality checks** with linting and type checking
 3. **Build your Docker image** and push it to Docker Hub
 4. **Deploy your application** with automated workflows
 
@@ -125,11 +127,11 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
-      
+
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
-          python-version: '3.11'
+          python-version: "3.11"
 
       - name: Install dependencies
         run: |
@@ -212,8 +214,9 @@ Now that you understand the basics, explore these comprehensive examples that de
 **Location:** `examples/flask-cicd/`
 
 A complete pipeline for Flask applications including:
+
 - Automated testing with pytest and coverage
-- Code quality checks with Ruff and Pyright  
+- Code quality checks with Ruff and Pyright
 - Security scanning with Safety and Bandit
 - Multi-stage Docker builds
 - PostgreSQL and Redis integration
@@ -225,6 +228,7 @@ docker-compose up --build
 ```
 
 **Key Features:**
+
 - ✅ Traditional sync API approach
 - ✅ Comprehensive test suite
 - ✅ Production-ready Docker setup
@@ -235,6 +239,7 @@ docker-compose up --build
 **Location:** `examples/fastapi-cicd/`
 
 An advanced pipeline for modern FastAPI applications featuring:
+
 - Matrix testing across Python versions (3.10, 3.11, 3.12)
 - Performance testing with Locust
 - Advanced security scanning
@@ -248,6 +253,7 @@ docker-compose up --build
 ```
 
 **Key Features:**
+
 - ✅ Modern async API patterns
 - ✅ Matrix testing strategy
 - ✅ Performance monitoring
@@ -257,33 +263,35 @@ docker-compose up --build
 
 ### Comparison Between Approaches
 
-| Feature | Basic Workflow | Flask Example | FastAPI Example |
-|---------|----------------|---------------|-----------------|
-| **Complexity** | Simple | Moderate | Advanced |
-| **Testing** | Basic | Comprehensive | Matrix + Performance |
-| **Security** | None | Safety + Bandit | Safety + Bandit + Semgrep |
-| **Dependencies** | Docker only | PostgreSQL + Redis | PostgreSQL + Redis (async) |
-| **Best For** | Learning | Production web apps | High-performance APIs |
+| Feature          | Basic Workflow | Flask Example       | FastAPI Example            |
+| ---------------- | -------------- | ------------------- | -------------------------- |
+| **Complexity**   | Simple         | Moderate            | Advanced                   |
+| **Testing**      | Basic          | Comprehensive       | Matrix + Performance       |
+| **Security**     | None           | Safety + Bandit     | Safety + Bandit + Semgrep  |
+| **Dependencies** | Docker only    | PostgreSQL + Redis  | PostgreSQL + Redis (async) |
+| **Best For**     | Learning       | Production web apps | High-performance APIs      |
 
 ### Workflow Architecture
 
 #### Flask Pipeline
+
 ```yaml
 jobs:
-  test:     # Pytest + Ruff + Pyright + Coverage
+  test: # Pytest + Ruff + Pyright + Coverage
   security: # Safety + Bandit security scanning
-  build:    # Docker build + GitHub Packages push
-  deploy:   # Production deployment + health checks
+  build: # Docker build + GitHub Packages push
+  deploy: # Production deployment + health checks
 ```
 
 #### FastAPI Pipeline
+
 ```yaml
 jobs:
-  test:        # Matrix testing (Python 3.10-3.12)
+  test: # Matrix testing (Python 3.10-3.12)
   performance: # Locust load testing + analysis
-  security:    # Safety + Bandit + Semgrep scanning
-  build:       # Optimized Docker builds + caching
-  deploy:      # Advanced deployment + smoke tests
+  security: # Safety + Bandit + Semgrep scanning
+  build: # Optimized Docker builds + caching
+  deploy: # Advanced deployment + smoke tests
 ```
 
 ### Next Steps
