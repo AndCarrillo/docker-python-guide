@@ -9,13 +9,14 @@ Learn how to set up linting, formatting and type checking for your Python applic
 In this module, you will:
 
 - ✅ Configure Ruff for linting and formatting
-- ✅ Set up Pyright for static type checking  
+- ✅ Set up Pyright for static type checking
 - ✅ Implement pre-commit hooks for automated checks
 - ✅ Integrate code quality tools with containers
 
 ## Prerequisites
 
 Before starting this module, make sure you have completed:
+
 - [Module 2: Develop your app](../../tree/module-02-develop)
 - Basic understanding of Python type hints
 - Familiarity with code quality concepts
@@ -25,11 +26,13 @@ Before starting this module, make sure you have completed:
 This module enhances the examples from previous modules:
 
 ### �️ Flask with Quality Tools
+
 **Location:** `examples/flask-quality/`
 
 Flask application with complete linting, formatting, and type checking setup.
 
-### ⚡ FastAPI with Type Safety  
+### ⚡ FastAPI with Type Safety
+
 **Location:** `examples/fastapi-quality/`
 
 FastAPI application with advanced type checking and validation patterns.
@@ -37,6 +40,7 @@ FastAPI application with advanced type checking and validation patterns.
 ## Getting Started
 
 1. **Clone and switch to this module:**
+
    ```bash
    git clone https://github.com/AndCarrillo/docker-python-guide.git
    cd docker-python-guide
@@ -54,7 +58,7 @@ FastAPI application with advanced type checking and validation patterns.
 In this section, you'll learn how to set up code quality tools for your Python application. This includes:
 
 - **Linting and formatting** with Ruff
-- **Static type checking** with Pyright  
+- **Static type checking** with Pyright
 - **Automating checks** with pre-commit hooks
 
 ### Step 1: Linting and formatting with Ruff
@@ -165,12 +169,14 @@ CMD ["bash"]
 **Purpose:** Learn to integrate code quality tools with a Flask application.
 
 **Key concepts:**
+
 - Ruff configuration for web applications
 - Type hints for Flask routes and models
 - Pre-commit hooks integration
 - Container-based quality checks
 
 **Files:**
+
 ```
 examples/flask-quality/
 ├── app.py                    # Type-annotated Flask application
@@ -188,12 +194,14 @@ examples/flask-quality/
 **Purpose:** Advanced type checking patterns with FastAPI and Pydantic.
 
 **Key concepts:**
+
 - Strict type checking configuration
 - Pydantic model validation
 - Advanced type annotations
 - Automated quality pipeline
 
 **Files:**
+
 ```
 examples/fastapi-quality/
 ├── main.py                  # Fully type-annotated FastAPI app
@@ -270,6 +278,7 @@ pre-commit run --all-files --show-diff-on-failure
 5. Set up pre-commit hooks: `pre-commit install`
 
 **Questions to explore:**
+
 - What quality issues were found initially?
 - How does type checking improve code reliability?
 - What happens when you commit code with issues?
@@ -286,6 +295,7 @@ pre-commit run --all-files --show-diff-on-failure
 4. Try adding code with type errors and see how they're caught
 
 **Questions to explore:**
+
 - How do Pydantic models help with type safety?
 - What advanced type patterns are demonstrated?
 - How does strict mode affect development?
@@ -302,6 +312,7 @@ pre-commit run --all-files --show-diff-on-failure
    ```
 
 **Questions to explore:**
+
 - How do containerized quality tools ensure consistency?
 - What are the trade-offs of container-based vs local tools?
 - How can this be integrated into team workflows?
