@@ -1,4 +1,4 @@
-# Python Docker Guide
+# 🐳 Docker Python Guide
 
 [![Python 3.9+](https://img.shields.io/badge/python-3.9+-blue.svg)](https://www.python.org/downloads/)
 [![Docker](https://img.shields.io/badge/docker-24.0+-blue.svg)](https://docs.docker.com/)
@@ -7,17 +7,32 @@
 [![GitHub Actions](https://img.shields.io/badge/GitHub%20Actions-enabled-brightgreen.svg)](https://github.com/features/actions)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-The Python language-specific guide teaches you how to containerize a Python application using Docker. In this guide, you'll learn how to:
+**Guía completa de Docker para Python** - Aprende a containerizar, desarrollar y desplegar aplicaciones Python usando Docker con ejemplos prácticos paso a paso.
 
-- **Containerize and run a Python application**
-- **Set up a local environment to develop a Python application using containers**
-- **Lint, format, typing and best practices**
-- **Configure a CI/CD pipeline for a containerized Python application using GitHub Actions**
-- **Deploy your containerized Python application locally to Kubernetes to test and debug your deployment**
+## 🎯 ¿Qué aprenderás?
 
-Start by containerizing an existing Python application.
+Este curso modular te enseña desde cero hasta nivel avanzado:
 
-## What you'll learn
+- 🐳 **Containerizar aplicaciones Python** con Flask y FastAPI
+- 🔧 **Configurar entorno de desarrollo** local con Docker Compose  
+- ✨ **Aplicar mejores prácticas** de linting, formatting y typing
+- 🚀 **Implementar CI/CD completo** con GitHub Actions
+- 🏗️ **Desplegar en Kubernetes** y testing de deployment
+
+## 📚 Estructura Modular
+
+### 🚀 Ruta de Aprendizaje Recomendada
+
+| Módulo | Tema | Nivel | Tiempo | Branch |
+|--------|------|-------|--------|--------|
+| **01** | 🐳 **Containerización** | Principiante | ~45 min | [`module-01-containerize`](../../tree/module-01-containerize) |
+| **02** | 🔧 **Desarrollo Local** | Intermedio | ~60 min | [`module-02-develop`](../../tree/module-02-develop) |  
+| **03** | ✨ **Calidad de Código** | Intermedio | ~45 min | [`module-03-linting-typing`](../../tree/module-03-linting-typing) |
+| **04** | 🚀 **CI/CD Pipeline** | Avanzado | ~90 min | [`module-04-cicd`](../../tree/module-04-cicd) |
+| **05** | 🏗️ **Deployment** | Avanzado | ~75 min | [`module-05-deployment`](../../tree/module-05-deployment) |
+
+### 🏆 Proyecto Final
+- 📦 **[`project-complete`](../../tree/project-complete)** - Proyecto final con todas las configuraciones optimizadas
 
 By completing this guide, you will be able to:
 
@@ -27,25 +42,73 @@ By completing this guide, you will be able to:
 - ✅ Configure automated CI/CD pipelines with GitHub Actions
 - ✅ Deploy and test applications locally using Kubernetes
 
-## Prerequisites
+## 🚀 Empezar Ahora
 
-To complete this guide, you need:
+### 📋 Prerrequisitos
 
-- **Docker Desktop** - [Install Docker Desktop](https://docs.docker.com/get-docker/)
-- **Python 3.9+** - [Download Python](https://www.python.org/downloads/)
-- **Git** - [Install Git](https://git-scm.com/downloads)
-- **Code Editor** - [VS Code](https://code.visualstudio.com/) (recommended)
+Para completar esta guía necesitas:
 
-## How to use this guide
+- 🐳 **Docker Desktop** - [Instalar Docker Desktop](https://docs.docker.com/get-docker/)
+- 🐍 **Python 3.9+** - [Descargar Python](https://www.python.org/downloads/)
+- 📂 **Git** - [Instalar Git](https://git-scm.com/downloads)
+- 📝 **Editor de código** - [VS Code](https://code.visualstudio.com/) (recomendado)
 
-### 🎯 Learning Path
+### 🎓 Cómo usar esta guía
 
-Follow the modules sequentially for the best learning experience:
+#### **Opción 1: Flujo Secuencial** (Recomendado)
+Sigue los módulos en orden para una experiencia de aprendizaje completa:
 
-1. **Start with Module 1** - Learn containerization basics
-2. **Progress through each module** - Build on previous knowledge
-3. **Complete hands-on examples** - Practice with Flask and FastAPI
-4. **Apply to your projects** - Use the patterns in real applications
+```bash
+# 1. Clona el repositorio
+git clone https://github.com/AndCarrillo/docker-python-guide.git
+cd docker-python-guide
+
+# 2. Comienza con el Módulo 1
+git checkout module-01-containerize
+# Sigue las instrucciones en el README del módulo
+```
+
+#### **Opción 2: Módulos Específicos**
+Ve directamente al tema que te interese:
+
+```bash
+# Ejemplo: Solo CI/CD
+git checkout module-04-cicd
+```
+
+#### **Opción 3: Proyecto Final**
+Ve el resultado final optimizado:
+
+```bash
+git checkout project-complete
+```
+
+📖 **[Ver guía completa del flujo →](BRANCH-WORKFLOW.md)**
+
+## 🛠️ Tecnologías y Ejemplos
+
+### 🐍 **Frameworks Python Incluidos**
+
+| Framework | Descripción | Uso en el Curso |
+|-----------|-------------|-----------------|
+| **🌱 Flask** | Framework simple y directo | Ejemplos básicos, ideal para principiantes |
+| **⚡ FastAPI** | Framework moderno y rápido | Ejemplos avanzados, patrones de producción |
+
+### 🗂️ **Ejemplos Prácticos**
+
+- **📦 Flask + PostgreSQL** - Aplicación web con base de datos
+- **⚡ FastAPI + Redis** - API moderna con cache y operaciones async
+- **🔧 Multi-stage builds** - Optimización de imágenes Docker
+- **🚀 CI/CD completo** - Pipeline automatizado con GitHub Actions
+- **☸️ Kubernetes local** - Deployment y testing local
+
+### 🎯 **Lo que incluye cada módulo**
+
+- ✅ **Tutoriales paso a paso** con explicaciones detalladas
+- ✅ **Código listo para usar** en cada ejemplo
+- ✅ **Mejores prácticas** y patrones de la industria
+- ✅ **Ejercicios prácticos** para reforzar el aprendizaje
+- ✅ **Troubleshooting** de problemas comunes
 
 ### 🌿 Branch Structure
 
