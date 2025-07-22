@@ -9,6 +9,7 @@ Complete [Module 1: Containerize your app](../../tree/module-01-containerize).
 ## Overview
 
 Learn to set up a development environment with:
+
 - Local databases and data persistence
 - Hot reload with Docker Compose Watch
 - Environment variables and secrets management
