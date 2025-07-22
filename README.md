@@ -15,10 +15,15 @@ Before starting this module, make sure you have:
 
 ## Overview
 
-This section walks you through containerizing and running Python applications using two complementary examples:
+This module teaches you containerization fundamentals using **two separate paths**. Choose the one that matches your experience level:
 
-- **Flask Basic**: Simple containerization fundamentals
-- **FastAPI Modern**: Advanced patterns with multi-stage builds
+## 🌱 Choose Your Learning Path
+
+### Path A: Flask Basic (Recommended for beginners)
+Perfect for learning Docker fundamentals with a simple web framework.
+
+### Path B: FastAPI Modern (For those comfortable with async Python)
+Learn advanced containerization patterns with modern async framework.
 
 ## What you'll learn
 
@@ -27,9 +32,8 @@ In this module, you will:
 - ✅ **Initialize Docker assets** using `docker init` and manual methods
 - ✅ **Create optimized Dockerfiles** for Python applications
 - ✅ **Implement security best practices** with non-root users
-- ✅ **Use multi-stage builds** to reduce image size
 - ✅ **Configure health checks** and monitoring
-- ✅ **Run applications** with Docker Compose
+- ✅ **Run applications** with Docker and Docker Compose
 
 ## Getting Started
 
@@ -43,13 +47,14 @@ git checkout module-01-containerize
 
 ---
 
-## Step-by-Step Guide
+# 🌱 Path A: Flask Basic (Start Here)
 
-### Step 1: Get the Sample Applications
+**Recommended for**: Docker beginners, those new to containerization
 
-We provide two complementary examples that demonstrate different containerization approaches:
+### What you'll build
+A simple Flask web application with health checks and basic API endpoints.
 
-#### Option A: Flask Basic Example
+### Step 1: Navigate to Flask Example
 
 ```bash
 cd examples/flask-basic
@@ -57,7 +62,172 @@ ls -la
 # You'll see: app.py, requirements.txt, Dockerfile, .dockerignore
 ```
 
-#### Option B: FastAPI Modern Example
+### Step 2: Understand the Application
+
+Let's look at what we're containerizing:
+
+**app.py** - Simple Flask application:
+```python
+from flask import Flask, jsonify
+import os
+
+app = Flask(__name__)
+
+@app.route('/')
+def home():
+    return jsonify({
+        "message": "Hello from Flask in Docker!",
+        "status": "running"
+    })
+
+@app.route('/health')
+def health():
+    return jsonify({"status": "healthy"})
+
+if __name__ == '__main__':
+    app.run(host='0.0.0.0', port=5000, debug=False)
+```
+
+### Step 3A: Create Docker Assets (Automatic)
+
+**Option 1: Use Docker Init** (Recommended for beginners)
+
+```bash
+docker init
+```
+
+Answer the prompts:
+- Platform: **Python**
+- Python version: **3.11**
+- Port: **5000**
+- Run command: **python3 app.py**
+
+### Step 3B: Create Docker Assets (Manual)
+
+**Option 2: Create manually** (Better for learning)
+
+Create these files in the `examples/flask-basic` directory:
+
+**Create a file named `Dockerfile`:**
+
+```dockerfile
+FROM python:3.11-slim
+
+# Set Python environment variables
+ENV PYTHONDONTWRITEBYTECODE=1
+ENV PYTHONUNBUFFERED=1
+
+# Set working directory
+WORKDIR /app
+
+# Create non-root user
+RUN adduser --disabled-password --gecos '' --shell /bin/bash appuser
+
+# Copy and install dependencies as root
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Copy application code
+COPY --chown=appuser:appuser . .
+
+# Switch to non-root user
+USER appuser
+
+# Expose port
+EXPOSE 5000
+
+# Run application
+CMD ["python", "app.py"]
+```
+
+**Create a file named `.dockerignore`:**
+
+```dockerignore
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.venv/
+venv/
+
+# Development
+.git/
+.gitignore
+*.md
+.pytest_cache/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+
+# OS
+.DS_Store
+Thumbs.db
+```
+
+### Step 4: Build and Run Flask App
+
+**Build the image:**
+
+```bash
+docker build -t flask-basic .
+```
+
+**Run the container:**
+
+```bash
+docker run -p 5000:5000 flask-basic
+```
+
+**Test your application:**
+- Open http://localhost:5000 in your browser
+- Check health: http://localhost:5000/health
+
+**Stop the container:** Press `Ctrl+C`
+
+### Step 5: Run with Docker Compose (Recommended)
+
+**Create `compose.yaml`:**
+
+```yaml
+services:
+  web:
+    build: .
+    ports:
+      - "5000:5000"
+    environment:
+      - FLASK_ENV=production
+```
+
+**Run with compose:**
+
+```bash
+docker compose up --build
+```
+
+### ✅ Flask Path Complete!
+
+You've successfully containerized a Flask application! You learned:
+
+- ✅ Basic Dockerfile structure
+- ✅ Security with non-root user  
+- ✅ Docker build and run commands
+- ✅ Docker Compose basics
+
+**Ready for more?** Continue to [Path B: FastAPI Modern](#-path-b-fastapi-modern-advanced) or jump to [Key Takeaways](#-key-takeaways).
+
+---
+
+# ⚡ Path B: FastAPI Modern (Advanced)
+
+**Recommended for**: Those comfortable with async Python, after completing Path A
+
+### What you'll build
+A modern FastAPI application with multi-stage builds, advanced optimization, and production patterns.
+
+### Step 1: Navigate to FastAPI Example
 
 ```bash
 cd examples/fastapi-modern
@@ -65,282 +235,243 @@ ls -la
 # You'll see: main.py, requirements.txt, Dockerfile, .dockerignore
 ```
 
-### Step 2: Initialize Docker Assets
+### Step 2: Understand the Application
 
-You have two approaches to create Docker assets:
+**main.py** - FastAPI with async patterns:
+```python
+from fastapi import FastAPI
+from pydantic import BaseModel
+import asyncio
 
-#### 🔧 Use Docker Init (Recommended for beginners)
+app = FastAPI(title="Task Manager", version="1.0.0")
 
-Inside either example directory, run:
+# Sample data store
+tasks = []
 
-```bash
-docker init
+@app.get("/")
+async def root():
+    return {"message": "Hello from FastAPI in Docker!", "tasks_count": len(tasks)}
+
+@app.get("/health")
+async def health():
+    return {"status": "healthy", "service": "task-manager"}
+
+@app.post("/tasks")
+async def create_task(task: dict):
+    task_id = len(tasks) + 1
+    new_task = {"id": task_id, **task}
+    tasks.append(new_task)
+    return new_task
 ```
 
-Docker Init will ask you:
+### Step 3: Create Advanced Docker Assets
 
-```
-Welcome to the Docker Init CLI!
-
-This utility will walk you through creating the following files:
-  - .dockerignore
-  - Dockerfile
-  - compose.yaml
-  - README.Docker.md
-
-? What application platform does your project use? Python
-? What version of Python do you want to use? 3.11
-? What port do you want your app to listen on? 8000 (FastAPI) or 5000 (Flask)
-? What is the command to run your app?
-  # FastAPI: python3 -m uvicorn main:app --host=0.0.0.0 --port=8000
-  # Flask: python3 app.py
-```
-
-#### ⚙️ Manually Create Assets (Recommended for learning)
-
-If you don't have Docker Desktop installed or prefer creating the assets manually, you can create the following files in your project directory.
-
-**Create a file named `Dockerfile` with the following contents:**
+**Create `Dockerfile` (Multi-stage):**
 
 ```dockerfile
-# syntax=docker/dockerfile:1
+# Build stage
+FROM python:3.11-slim as builder
+WORKDIR /app
+COPY requirements.txt .
+RUN pip install --user --no-cache-dir -r requirements.txt
 
-# Comments are provided throughout this file to help you get started.
-# If you need more help, visit the Dockerfile reference guide at
-# https://docs.docker.com/go/dockerfile-reference/
-
-ARG PYTHON_VERSION=3.11
-FROM python:${PYTHON_VERSION}-slim
-
-# Prevents Python from writing pyc files.
+# Production stage
+FROM python:3.11-slim
 ENV PYTHONDONTWRITEBYTECODE=1
-
-# Keeps Python from buffering stdout and stderr to avoid situations where
-# the application crashes without emitting any logs due to buffering.
 ENV PYTHONUNBUFFERED=1
 
 WORKDIR /app
 
-# Create a non-privileged user that the app will run under.
-# See https://docs.docker.com/go/dockerfile-user-best-practices/
-ARG UID=10001
-RUN adduser \
-    --disabled-password \
-    --gecos "" \
-    --home "/nonexistent" \
-    --shell "/sbin/nologin" \
-    --no-create-home \
-    --uid "${UID}" \
-    appuser
+# Create non-root user
+RUN adduser --disabled-password --gecos '' --shell /bin/bash appuser
 
-# Download dependencies as a separate step to take advantage of Docker's caching.
-# Leverage a cache mount to /root/.cache/pip to speed up subsequent builds.
-# Leverage a bind mount to requirements.txt to avoid having to copy them into
-# into this layer.
-RUN --mount=type=cache,target=/root/.cache/pip \
-    --mount=type=bind,source=requirements.txt,target=requirements.txt \
-    python -m pip install -r requirements.txt
+# Copy installed packages from builder stage
+COPY --from=builder /root/.local /root/.local
+ENV PATH=/root/.local/bin:$PATH
 
-# Switch to the non-privileged user to run the application.
+# Copy application
+COPY --chown=appuser:appuser . .
+
 USER appuser
-
-# Copy the source code into the container.
-COPY . .
-
-# Expose the port that the application listens on.
 EXPOSE 8000
 
-# Run the application.
-CMD ["python3", "-m", "uvicorn", "main:app", "--host=0.0.0.0", "--port=8000"]
+# Health check
+HEALTHCHECK --interval=30s --timeout=10s --start-period=5s --retries=3 \
+    CMD python -c "import urllib.request; urllib.request.urlopen('http://localhost:8000/health')"
+
+CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]
 ```
 
-**Create a file named `compose.yaml` with the following contents:**
+### Step 4: Build and Run FastAPI App
+
+**Build the image:**
+
+```bash
+docker build -t fastapi-modern .
+```
+
+**Run the container:**
+
+```bash
+docker run -p 8000:8000 fastapi-modern
+```
+
+**Test your application:**
+- Open http://localhost:8000 in your browser
+- API docs: http://localhost:8000/docs
+- Health check: http://localhost:8000/health
+
+### Step 5: Advanced Docker Compose
+
+**Create `compose.yaml`:**
 
 ```yaml
-# Comments are provided throughout this file to help you get started.
-# If you need more help, visit the Docker Compose reference guide at
-# https://docs.docker.com/go/compose-spec-reference/
-
-# Here the instructions define your application as a service called "server".
-# This service is built from the Dockerfile in the current directory.
-# You can add other services your application may depend on here, such as a
-# database or a cache. For examples, see the Awesome Compose repository:
-# https://github.com/docker/awesome-compose
 services:
-  server:
-    build:
-      context: .
+  api:
+    build: .
     ports:
-      - 8000:8000
+      - "8000:8000"
+    environment:
+      - ENV=production
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8000/health')"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 10s
 ```
 
-**Create a file named `.dockerignore` with the following contents:**
-
-```dockerignore
-# Include any files or directories that you don't want to be copied to your
-# container here (e.g., local build artifacts, temporary files, etc.).
-#
-# For more help, visit the .dockerignore file reference guide at
-# https://docs.docker.com/go/build-context-dockerignore/
-
-**/.DS_Store
-**/__pycache__
-**/.venv
-**/.classpath
-**/.dockerignore
-**/.env
-**/.git
-**/.gitignore
-**/.project
-**/.settings
-**/.toolstarget
-**/.vs
-**/.vscode
-**/*.*proj.user
-**/*.dbmdl
-**/*.jfm
-**/bin
-**/charts
-**/docker-compose*
-**/compose.y*ml
-**/Dockerfile*
-**/node_modules
-**/npm-debug.log
-**/obj
-**/secrets.dev.yaml
-**/values.dev.yaml
-LICENSE
-README.md
-```
-
-**Create a file named `.gitignore` with the following contents:**
-
-```gitignore
-# Byte-compiled / optimized / DLL files
-__pycache__/
-*.py[cod]
-*$py.class
-
-# C extensions
-*.so
-
-# Distribution / packaging
-.Python
-build/
-develop-eggs/
-dist/
-downloads/
-eggs/
-.eggs/
-lib/
-lib64/
-parts/
-sdist/
-var/
-wheels/
-share/python-wheels/
-*.egg-info/
-.installed.cfg
-*.egg
-MANIFEST
-
-# Unit test / coverage reports
-htmlcov/
-.tox/
-.nox/
-.coverage
-.coverage.*
-.cache
-nosetests.xml
-coverage.xml
-*.cover
-*.py,cover
-.hypothesis/
-.pytest_cache/
-cover/
-
-# PEP 582; used by e.g. github.com/David-OConnor/pyflow and github.com/pdm-project/pdm
-__pypackages__/
-
-# Environments
-.env
-.venv
-env/
-venv/
-ENV/
-env.bak/
-venv.bak/
-```
-
-**Understanding the files:**
-
-Our examples already include manually crafted Docker assets that demonstrate both basic and advanced approaches. Study them to understand the differences.
-
-### Step 3: Build and Run
-
-#### Using Docker Compose (Recommended)
-
-For **Flask Basic** example:
+**Run with compose:**
 
 ```bash
-cd examples/flask-basic
 docker compose up --build
-# Visit http://localhost:5000
 ```
 
-For **FastAPI Modern** example:
+### ✅ FastAPI Path Complete!
 
-```bash
-cd examples/fastapi-modern
-docker compose up --build
-# Visit http://localhost:8000
-# API docs: http://localhost:8000/docs
-```
+You've mastered advanced containerization! You learned:
 
-#### Using Docker Build + Run
-
-Alternative approach:
-
-```bash
-# Build
-docker build -t my-python-app .
-
-# Run
-docker run -p 8000:8000 my-python-app
-```
-
-### Step 4: Run in Background
-
-Run the application detached from terminal:
-
-```bash
-docker compose up --build -d
-```
-
-To stop:
-
-```bash
-docker compose down
-```
-
-### Step 5: Understanding the Structure
-
-After running docker init or examining our examples, you should have:
-
-```
-examples/flask-basic/          # or fastapi-modern/
-├── app.py (main.py)          # Application code
-├── requirements.txt          # Python dependencies
-├── .dockerignore            # Files to exclude from build
-├── .gitignore              # Git exclusions
-├── Dockerfile              # Container instructions
-├── compose.yaml            # Multi-container orchestration
-└── README.md               # Example-specific guide
-```
+- ✅ Multi-stage builds for optimization
+- ✅ Health checks and monitoring  
+- ✅ Production-ready patterns
+- ✅ Advanced Docker Compose configurations
 
 ---
 
-## 🔍 Technical Deep Dive
+# 🎯 Key Takeaways
+
+After completing this module, you should understand:
+
+1. **Base Image Selection** - How to choose the right Python base image (`python:3.11-slim`)
+2. **Dockerfile Structure** - Layer optimization, security practices, and best patterns
+3. **Security Basics** - Running as non-root user and excluding sensitive files
+4. **Container Operations** - Building, running, and managing containers
+5. **Docker Compose** - Multi-service orchestration and environment management
+
+## 🔍 Understanding Docker Assets
+
+### Essential Files You Created
+
+**Dockerfile** - Instructions for building your container:
+- Base image selection
+- Dependencies installation  
+- Security configuration (non-root user)
+- Application setup
+
+**.dockerignore** - Files to exclude from build context:
+- Development files (`__pycache__`, `.venv`)
+- Version control (`.git`)
+- Documentation (`*.md`)
+
+**compose.yaml** - Multi-container orchestration:
+- Service definitions
+- Port mapping
+- Environment variables
+- Health checks
+
+### Docker Commands You Learned
+
+```bash
+# Build an image
+docker build -t my-app .
+
+# Run a container
+docker run -p 5000:5000 my-app
+
+# Use Docker Compose (recommended)
+docker compose up --build
+docker compose up -d          # Run in background
+docker compose down           # Stop services
+
+# Useful commands
+docker images                 # List images
+docker ps                     # List running containers
+docker logs <container-name>  # View logs
+```
+
+## 📚 Additional Resources
+
+**For deeper learning:**
+
+- 📖 [Dockerfile Best Practices Guide](docs/dockerfile-guide.md) - Advanced Dockerfile patterns
+- 🔒 [Container Security Basics](docs/security-guide.md) - Security fundamentals  
+- ⚡ [Container Optimization Guide](docs/optimization-guide.md) - Performance tips
+
+**Official Documentation:**
+- [Docker Dockerfile Reference](https://docs.docker.com/engine/reference/builder/)
+- [Docker Compose Reference](https://docs.docker.com/compose/compose-file/)
+- [Python Docker Best Practices](https://docs.docker.com/language/python/best-practices/)
+
+## 🆘 Troubleshooting
+
+**Common issues and solutions:**
+
+**Port already in use:**
+```bash
+# Find what's using the port
+lsof -i :5000  # macOS/Linux
+netstat -ano | findstr :5000  # Windows
+
+# Use a different port
+docker run -p 5001:5000 my-app
+```
+
+**Permission denied:**
+```bash
+# Make sure Docker is running
+docker version
+
+# On Linux, add user to docker group
+sudo usermod -aG docker $USER
+```
+
+**Build fails:**
+```bash
+# Check Dockerfile syntax
+# Ensure requirements.txt exists
+# Verify file paths in COPY commands
+```
+
+## 🚀 Next Steps
+
+Ready for the next module?
+
+**[Module 2: Develop your app](../../tree/module-02-develop)** 
+- Development environment with containers
+- Code quality and debugging
+- Hot reload and development workflows
+
+---
+
+## 🤝 Need Help?
+
+- 📖 Check the [main README](../../README.md) for general guidance
+- 🐛 [Open an issue](../../issues) if you find problems
+- 💬 [Start a discussion](../../discussions) for questions
+
+---
+
+**⬅️ [Back to main guide](../../README.md)**
 
 ### Understanding Docker Assets
 
