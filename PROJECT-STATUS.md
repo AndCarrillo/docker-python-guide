@@ -46,7 +46,7 @@
 
 **Content to create**:
 - [ ] Module README.md with objectives and structure
-- [ ] Practical examples (Flask, FastAPI, Django)
+- [ ] Practical examples (Flask, FastAPI)
 - [ ] Step-by-step exercises
 - [ ] Optimized Dockerfiles
 - [ ] Best practices documentation
@@ -61,8 +61,7 @@ module-01-containerize/
 │   └── troubleshooting.md       # Troubleshooting
 ├── examples/
 │   ├── flask-basic/            # Basic Flask example
-│   ├── fastapi-advanced/       # Advanced FastAPI example
-│   └── django-production/      # Production Django example
+│   └── fastapi-advanced/       # Advanced FastAPI example
 ├── exercises/
 │   ├── 01-basic-dockerfile/    # Exercise 1
 │   ├── 02-multistage-build/    # Exercise 2
