@@ -1,53 +1,45 @@
-# Containerize your app
+# Module 1: Containerize your app
 
 > **Module branch:** `module-01-containerize`
 
-Learn how to containerize a Python application.
-
-## What you'll learn
-
-In this module, you will:
-
-- ✅ Create optimized Dockerfiles for Python applications
-- ✅ Implement security best practices and non-root users
-- ✅ Use multi-stage builds to reduce image size
-- ✅ Configure health checks and monitoring
-
-## Examples
-
-This module includes two progressive examples:
-
-### 🌶️ Flask Basic Example
-
-**Location:** `examples/flask-basic/`
-
-A simple Flask application that demonstrates the fundamental concepts of containerization.
-
-### ⚡ FastAPI Modern Example
-
-**Location:** `examples/fastapi-modern/`
-
-An advanced FastAPI application that showcases multi-stage builds and production optimization.
+Learn how to containerize a Python application using Docker with practical Flask and FastAPI examples.
 
 ## Prerequisites
 
 Before starting this module, make sure you have:
 
-- Docker Desktop installed and running
-- Python 3.9+ installed
-- Basic understanding of Python and web frameworks
+- ✅ **Docker Desktop** - [Install Docker Desktop](https://docs.docker.com/get-docker/)
+- ✅ **Python 3.9+** - [Download Python](https://www.python.org/downloads/)
+- ✅ **Git client** - Command-line or GUI client
+- ✅ **Code Editor** - [VS Code](https://code.visualstudio.com/) (recommended)
+
+## Overview
+
+This section walks you through containerizing and running Python applications using two complementary examples:
+
+- **Flask Basic**: Simple containerization fundamentals
+- **FastAPI Modern**: Advanced patterns with multi-stage builds
+
+## What you'll learn
+
+In this module, you will:
+
+- ✅ **Initialize Docker assets** using `docker init` and manual methods
+- ✅ **Create optimized Dockerfiles** for Python applications
+- ✅ **Implement security best practices** with non-root users
+- ✅ **Use multi-stage builds** to reduce image size
+- ✅ **Configure health checks** and monitoring
+- ✅ **Run applications** with Docker Compose
 
 ## Getting Started
 
-1. **Clone and switch to this module:**
+Clone the repository and switch to this module:
 
-   ```bash
-   git clone https://github.com/AndCarrillo/docker-python-guide.git
-   cd docker-python-guide
-   git checkout module-01-containerize
-   ```
-
-2. **Follow the step-by-step guide below** ⬇️
+```bash
+git clone https://github.com/AndCarrillo/docker-python-guide.git
+cd docker-python-guide
+git checkout module-01-containerize
+```
 
 ---
 
@@ -55,15 +47,138 @@ Before starting this module, make sure you have:
 
 ### Step 1: Understanding Python Base Images
 
-Before creating a Dockerfile, you need to choose the right Python base image. Docker offers several options:
+## Before creating a Dockerfile, you need to choose the right Python base image. Docker offers several options:
 
-- **`python:3.11-slim`** - Recommended for most applications (smaller size)
-- **`python:3.11`** - Full featured but larger
-- **`python:3.11-alpine`** - Smallest but may have compatibility issues
+## 🚀 Step-by-Step Guide
 
-**Best Practice:** Use `python:3.11-slim` for a good balance of size and compatibility.
+### Step 1: Get the Sample Applications
 
-### Step 2: Basic Dockerfile Structure
+We provide two complementary examples that demonstrate different containerization approaches:
+
+#### Option A: Flask Basic Example
+
+```bash
+cd examples/flask-basic
+ls -la
+# You'll see: app.py, requirements.txt, Dockerfile, .dockerignore
+```
+
+#### Option B: FastAPI Modern Example
+
+```bash
+cd examples/fastapi-modern
+ls -la
+# You'll see: main.py, requirements.txt, Dockerfile, .dockerignore
+```
+
+### Step 2: Initialize Docker Assets
+
+You have two approaches to create Docker assets:
+
+#### 🔧 Use Docker Init (Recommended for beginners)
+
+Inside either example directory, run:
+
+```bash
+docker init
+```
+
+Docker Init will ask you:
+
+```
+Welcome to the Docker Init CLI!
+
+This utility will walk you through creating the following files:
+  - .dockerignore
+  - Dockerfile
+  - compose.yaml
+  - README.Docker.md
+
+? What application platform does your project use? Python
+? What version of Python do you want to use? 3.11
+? What port do you want your app to listen on? 8000 (FastAPI) or 5000 (Flask)
+? What is the command to run your app?
+  # FastAPI: python3 -m uvicorn main:app --host=0.0.0.0 --port=8000
+  # Flask: python3 app.py
+```
+
+#### ⚙️ Manual Creation (Recommended for learning)
+
+Our examples already include manually crafted Docker assets. Study them to understand:
+
+- **Dockerfile**: Multi-stage builds and security practices
+- **.dockerignore**: Optimized file exclusions
+- **compose.yaml**: Development and production configurations
+
+### Step 3: Build and Run
+
+#### Using Docker Compose (Recommended)
+
+For **Flask Basic** example:
+
+```bash
+cd examples/flask-basic
+docker compose up --build
+# Visit http://localhost:5000
+```
+
+For **FastAPI Modern** example:
+
+```bash
+cd examples/fastapi-modern
+docker compose up --build
+# Visit http://localhost:8000
+# API docs: http://localhost:8000/docs
+```
+
+#### Using Docker Build + Run
+
+Alternative approach:
+
+```bash
+# Build
+docker build -t my-python-app .
+
+# Run
+docker run -p 8000:8000 my-python-app
+```
+
+### Step 4: Run in Background
+
+Run the application detached from terminal:
+
+```bash
+docker compose up --build -d
+```
+
+To stop:
+
+```bash
+docker compose down
+```
+
+### Step 5: Understanding the Structure
+
+After running docker init or examining our examples, you should have:
+
+```
+examples/flask-basic/          # or fastapi-modern/
+├── app.py (main.py)          # Application code
+├── requirements.txt          # Python dependencies
+├── .dockerignore            # Files to exclude from build
+├── .gitignore              # Git exclusions
+├── Dockerfile              # Container instructions
+├── compose.yaml            # Multi-container orchestration
+└── README.md               # Example-specific guide
+```
+
+---
+
+## 🔍 Technical Deep Dive
+
+### Understanding Docker Assets
+
+#### Dockerfile Structure
 
 A Python Dockerfile typically follows this structure:
 
@@ -83,16 +198,67 @@ RUN pip install --no-cache-dir -r requirements.txt
 # 5. Copy application code
 COPY . .
 
-# 6. Expose port
-EXPOSE 5000
+# 6. Create non-root user (security)
+RUN adduser --disabled-password --gecos '' appuser
+USER appuser
 
-# 7. Define startup command
-CMD ["python", "app.py"]
+# 7. Expose port
+EXPOSE 8000
+
+# 8. Define startup command
+CMD ["python3", "-m", "uvicorn", "main:app", "--host=0.0.0.0", "--port=8000"]
 ```
 
-### Step 3: Security Best Practices
+#### Base Image Selection
 
-Always implement these security measures:
+- **`python:3.11-slim`** - Recommended for most applications (smaller size)
+- **`python:3.11`** - Full featured but larger
+- **`python:3.11-alpine`** - Smallest but may have compatibility issues
+
+**Best Practice:** Use `python:3.11-slim` for a good balance of size and compatibility.
+
+#### .dockerignore Best Practices
+
+```dockerignore
+# Version control
+.git
+.gitignore
+
+# Python
+__pycache__
+*.pyc
+*.pyo
+*.pyd
+.Python
+env/
+.venv/
+venv/
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Documentation
+*.md
+!README.md
+
+# Testing
+.pytest_cache
+.coverage
+htmlcov/
+
+# Development
+.env.local
+.env.development
+```
+
+### Security Best Practices
 
 1. **Run as non-root user:**
 
@@ -114,7 +280,7 @@ Always implement these security measures:
        && rm -rf /var/lib/apt/lists/*
    ```
 
-### Step 4: Multi-stage Builds
+### Multi-stage Builds
 
 For production applications, use multi-stage builds to reduce image size:
 
@@ -130,7 +296,7 @@ FROM python:3.11-slim
 WORKDIR /app
 COPY --from=builder /root/.local /root/.local
 COPY . .
-CMD ["python", "app.py"]
+CMD ["python", "main.py"]
 ```
 
 ---

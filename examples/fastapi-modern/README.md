@@ -1,27 +1,31 @@
-# 🚀 FastAPI Containerization Example
+# FastAPI Modern Example
 
-A comprehensive FastAPI application demonstrating advanced containerization techniques and production best practices.
+> **Part of Module 1: Containerize your app**
 
-## 📋 Features
+This example demonstrates advanced containerization concepts with FastAPI, including multi-stage builds, security best practices, and production optimization.
 
-- **Async API**: Full async/await support with FastAPI
-- **Authentication**: Bearer token authentication
-- **Security**: CORS, trusted hosts, input validation
-- **Monitoring**: Health checks and readiness probes
-- **Documentation**: Auto-generated OpenAPI docs
-- **Production Ready**: Multi-stage builds and optimization
+## What you'll learn
 
-## 🏗️ Architecture
+- Multi-stage Docker builds for size optimization
+- Security implementation with non-root users
+- Health checks and monitoring
+- Production-ready FastAPI deployment
+- API documentation with OpenAPI/Swagger
 
-```
-fastapi-api/
-├── app.py                 # Main FastAPI application
-├── requirements.txt       # Python dependencies
-├── Dockerfile            # Multi-stage production build
-├── gunicorn_config.py    # Production server configuration
-├── .dockerignore         # Build context optimization
-└── README.md            # This file
-```
+## Application Overview
+
+Simple FastAPI application with:
+
+- **Root endpoint** (`/`) - Welcome message with environment info
+- **Health check** (`/health`) - Container health monitoring
+- **Info endpoint** (`/info`) - Application metadata
+- **Auto-generated docs** (`/docs`) - Swagger UI documentation
+- **ReDoc documentation** (`/redoc`) - Alternative API docs
+  ├── gunicorn_config.py # Production server configuration
+  ├── .dockerignore # Build context optimization
+  └── README.md # This file
+
+````
 
 ## 🚀 Quick Start
 
@@ -33,7 +37,7 @@ docker build --target development -t fastapi-app:dev .
 
 # Production build
 docker build --target production -t fastapi-app:prod .
-```
+````
 
 ### 2. Run the Application
 
