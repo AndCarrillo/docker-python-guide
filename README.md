@@ -43,7 +43,7 @@ git checkout module-01-containerize
 
 ---
 
-##  Step-by-Step Guide
+## Step-by-Step Guide
 
 ### Step 1: Get the Sample Applications
 
@@ -530,48 +530,6 @@ docker build -t fastapi-modern .
 docker run -p 8000:8000 fastapi-modern
 # Visit http://localhost:8000/docs
 ```
-
----
-
-## � Hands-on Exercises
-
-### Exercise 1: Basic Flask Container
-
-1. Navigate to `examples/flask-basic/`
-2. Examine the Dockerfile and understand each instruction
-3. Build the image: `docker build -t my-flask-app .`
-4. Run the container: `docker run -p 5000:5000 my-flask-app`
-5. Test the application at http://localhost:5000
-
-**Questions to explore:**
-
-- What base image is used and why?
-- How is the non-root user implemented?
-- What files are excluded by .dockerignore?
-
-### Exercise 2: FastAPI Multi-stage Build
-
-1. Navigate to `examples/fastapi-modern/`
-2. Study the multi-stage Dockerfile
-3. Build the image: `docker build -t my-fastapi-app .`
-4. Run the container: `docker run -p 8000:8000 my-fastapi-app`
-5. Explore the automatic API docs at http://localhost:8000/docs
-
-**Questions to explore:**
-
-- How does the multi-stage build reduce image size?
-- What production optimizations are implemented?
-- How do health checks work?
-
-### Exercise 3: Optimization Challenge
-
-1. Compare the image sizes:
-   ```bash
-   docker images | grep flask-basic
-   docker images | grep fastapi-modern
-   ```
-2. Try building without multi-stage build
-3. Measure the difference in size and build time
 
 ---
 
