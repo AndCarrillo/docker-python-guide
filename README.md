@@ -15,6 +15,63 @@ In this section, you'll learn how to set up a development environment for your c
 - Managing environment variables and secrets
 - Implementing hot reload for development workflow
 
+## 🚀 Choose Your Development Path
+
+This module offers two complete development examples. Choose the one that best fits your needs:
+
+<table>
+  <tr>
+    <th style="text-align: center;">🌶️ Flask + PostgreSQL</th>
+    <th style="text-align: center;">⚡ FastAPI + Redis</th>
+  </tr>
+  <tr>
+    <td>
+      <strong>Best for:</strong><br>
+      • Traditional web applications<br>
+      • Learning SQL databases<br>
+      • Simple REST APIs<br>
+      • Getting started with Docker
+    </td>
+    <td>
+      <strong>Best for:</strong><br>
+      • High-performance APIs<br>
+      • Async programming<br>
+      • Caching strategies<br>
+      • Modern Python development
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <strong>Technologies:</strong><br>
+      • Flask web framework<br>
+      • PostgreSQL database<br>
+      • SQLAlchemy ORM<br>
+      • Adminer (DB admin)
+    </td>
+    <td>
+      <strong>Technologies:</strong><br>
+      • FastAPI framework<br>
+      • Redis cache/storage<br>
+      • Async/await patterns<br>
+      • Redis Commander (admin)
+    </td>
+  </tr>
+  <tr>
+    <td style="text-align: center;">
+      <a href="#option-1-flask--postgresql-example">
+        <strong>→ Start with Flask</strong>
+      </a>
+    </td>
+    <td style="text-align: center;">
+      <a href="#option-2-fastapi--redis-example">
+        <strong>→ Start with FastAPI</strong>
+      </a>
+    </td>
+  </tr>
+</table>
+
+> **💡 Tip:** You can follow both examples to compare different development approaches!
+
 ## Get the sample application
 
 You already have the containerized application from Module 1. In this module, we'll enhance it with development features.
@@ -61,7 +118,7 @@ services:
       watch:
         - action: rebuild
           path: .
-          
+
   db:
     image: postgres:15-alpine
     restart: always
@@ -165,13 +222,31 @@ curl -X 'GET' \
 **Access database admin interface:**
 
 Open http://localhost:8080 in your browser (Adminer interface):
+
 - System: PostgreSQL
 - Server: db
-- Username: postgres  
+- Username: postgres
 - Password: mysecretpassword
 - Database: flask_dev
 
 Press `Ctrl+C` in the terminal to stop your application.
+
+---
+
+### 🎯 Flask Example Complete!
+
+**What you accomplished:**
+- ✅ Set up Flask with PostgreSQL
+- ✅ Configured Docker Compose for development
+- ✅ Implemented data persistence
+- ✅ Added database administration interface
+
+**Navigation:**
+- 📝 [Continue with FastAPI example](#option-2-fastapi--redis-example) to compare approaches
+- 🔄 [Skip to Hot Reload section](#automatically-update-services) if you want to continue with Flask
+- 📚 [View both examples side-by-side](#-examples) for comparison
+
+---
 
 ### Option 2: FastAPI + Redis Example
 
@@ -202,7 +277,7 @@ services:
       watch:
         - action: rebuild
           path: .
-          
+
   redis:
     image: redis:7-alpine
     restart: always
@@ -268,10 +343,28 @@ curl -X 'GET' \
 ```
 
 **Access interfaces:**
+
 - API Documentation: http://localhost:8000/docs
 - Redis Admin: http://localhost:8081
 
 Press `Ctrl+C` to stop the application.
+
+---
+
+### ⚡ FastAPI Example Complete!
+
+**What you accomplished:**
+- ✅ Set up FastAPI with Redis
+- ✅ Implemented async API endpoints
+- ✅ Added caching functionality
+- ✅ Configured Redis administration interface
+
+**Navigation:**
+- 📝 [Compare with Flask example](#option-1-flask--postgresql-example) to see different approaches
+- 🔄 [Continue to Hot Reload section](#automatically-update-services) 
+- 📚 [View examples comparison](#-examples) for detailed overview
+
+---
 
 ## Automatically update services
 
@@ -364,6 +457,7 @@ In this section, you took a look at setting up your Compose file to add local se
 ## Key concepts learned
 
 ### Service Communication
+
 Services in Docker Compose can communicate using service names:
 
 ```python
@@ -373,6 +467,7 @@ REDIS_HOST = "redis"
 ```
 
 **Why this works:**
+
 - Docker Compose creates a network automatically
 - Services are accessible by their service name
 - Internal port is used (not mapped port)
@@ -380,12 +475,14 @@ REDIS_HOST = "redis"
 ### Development Optimizations
 
 **Hot reload with volume mounting:**
+
 ```yaml
 volumes:
-  - .:/app  # Mount source code for live changes
+  - .:/app # Mount source code for live changes
 ```
 
 **Environment variables:**
+
 ```yaml
 environment:
   - FLASK_DEBUG=1
@@ -393,9 +490,10 @@ environment:
 ```
 
 **Service dependencies:**
+
 ```yaml
 depends_on:
-  - db  # Start database before web app
+  - db # Start database before web app
 ```
 
 ## Related information
@@ -415,21 +513,54 @@ In the next section, you'll learn how you can set up linting, formatting and typ
 - ✅ Manage environment variables and secrets
 - ✅ Integrate databases and external services
 
-## Examples
+## 🧩 Examples
 
-This module includes two progressive examples:
+This module includes two progressive examples demonstrating different development approaches:
 
-### �️ Flask + PostgreSQL Example
+### Quick Comparison
+
+| Feature | 🌶️ Flask + PostgreSQL | ⚡ FastAPI + Redis |
+|---------|----------------------|-------------------|
+| **Framework** | Flask (sync) | FastAPI (async) |
+| **Database** | PostgreSQL (relational) | Redis (key-value) |
+| **Use Case** | Traditional web apps | High-performance APIs |
+| **Learning Focus** | SQL, ORM patterns | Async, caching patterns |
+| **API Docs** | Manual documentation | Auto-generated (OpenAPI) |
+| **Performance** | Standard | High throughput |
+| **Port** | 5000 | 8000 |
+| **Admin Interface** | Adminer (8080) | Redis Commander (8081) |
+
+### 🌶️ Flask + PostgreSQL Example
 
 **Location:** `examples/flask-postgres/`
 
-A Flask application with database integration demonstrating local development patterns.
+**Perfect for learning:**
+- Traditional web application patterns
+- SQL database integration with SQLAlchemy
+- CRUD operations with relational data
+- Environment variables and secrets management
+
+**Key Technologies:**
+- Flask web framework
+- PostgreSQL database
+- SQLAlchemy ORM
+- Adminer database administration
 
 ### ⚡ FastAPI + Redis Example
 
 **Location:** `examples/fastapi-redis/`
 
-An advanced FastAPI application with caching layer and async database operations.
+**Perfect for learning:**
+- Modern async Python development
+- High-performance API design
+- Caching strategies with Redis
+- Auto-generated API documentation
+
+**Key Technologies:**
+- FastAPI framework with async/await
+- Redis for caching and storage
+- Automatic OpenAPI documentation
+- Redis Commander administration
 
 ## Prerequisites
 
