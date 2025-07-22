@@ -1,12 +1,414 @@
-# Develop your app
+# Module 2: Develop your app
 
 > **Module branch:** `module-02-develop`
 
-Learn how to develop your Python application locally using containers.
+## Prerequisites
 
-## What you'll learn
+Complete [Module 1: Containerize your app](../../tree/module-01-containerize).
 
-In this module, you will:
+## Overview
+
+In this section, you'll learn how to set up a development environment for your containerized application. This includes:
+
+- Adding a local database and persisting data
+- Configuring Compose to automatically update your running Compose services as you edit and save your code
+- Managing environment variables and secrets
+- Implementing hot reload for development workflow
+
+## Get the sample application
+
+You already have the containerized application from Module 1. In this module, we'll enhance it with development features.
+
+The applications you containerized in Module 1 are now ready for development enhancements:
+
+- **Flask + PostgreSQL** - Located in `examples/flask-postgres/`
+- **FastAPI + Redis** - Located in `examples/fastapi-redis/`
+
+## Add a local database and persist data
+
+You can use containers to set up local services, like a database. In this section, you'll update the compose.yaml file to define a database service and a volume to persist data.
+
+### Option 1: Flask + PostgreSQL Example
+
+Navigate to the Flask example directory:
+
+```bash
+cd examples/flask-postgres
+```
+
+In the `examples/flask-postgres` directory, open the `compose.yaml` file in an IDE or text editor. The current file from Module 1 needs to be enhanced with database services.
+
+Update your `compose.yaml` file with the following content:
+
+```yaml
+services:
+  web:
+    build:
+      context: .
+    ports:
+      - "5000:5000"
+    environment:
+      - FLASK_ENV=development
+      - DATABASE_URL=postgresql://postgres:${POSTGRES_PASSWORD}@db:5432/flask_dev
+    depends_on:
+      db:
+        condition: service_healthy
+    volumes:
+      - .:/app
+    secrets:
+      - db-password
+    develop:
+      watch:
+        - action: rebuild
+          path: .
+          
+  db:
+    image: postgres:15-alpine
+    restart: always
+    secrets:
+      - db-password
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_DB=flask_dev
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD_FILE=/run/secrets/db-password
+    expose:
+      - 5432
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - "8080:8080"
+    depends_on:
+      - db
+
+volumes:
+  postgres_data:
+
+secrets:
+  db-password:
+    file: db/password.txt
+```
+
+Before you run the application using Compose, notice that this Compose file specifies a `password.txt` file to hold the database's password. You must create this file as it's not included in the source repository.
+
+In the `examples/flask-postgres` directory, create a new directory named `db` and inside that directory create a file named `password.txt` that contains the password for the database:
+
+```bash
+mkdir -p db
+echo "mysecretpassword" > db/password.txt
+```
+
+You should now have the following contents in your `examples/flask-postgres` directory:
+
+```
+examples/flask-postgres/
+├── db/
+│   └── password.txt
+├── app.py
+├── requirements.txt
+├── .dockerignore
+├── compose.yaml
+├── Dockerfile
+└── README.md
+```
+
+Now, run the following docker compose up command to start your application:
+
+```bash
+docker compose up --build
+```
+
+### Test your application
+
+Now test your API endpoints. Open a new terminal then make requests to the server:
+
+**Create a new task:**
+
+```bash
+curl -X 'POST' \
+  'http://localhost:5000/tasks' \
+  -H 'accept: application/json' \
+  -H 'Content-Type: application/json' \
+  -d '{
+  "title": "Learn Docker",
+  "description": "Complete Module 2 of Docker Python Guide"
+}'
+```
+
+You should receive a response like:
+
+```json
+{
+  "id": 1,
+  "title": "Learn Docker",
+  "description": "Complete Module 2 of Docker Python Guide",
+  "completed": false
+}
+```
+
+**Get all tasks:**
+
+```bash
+curl -X 'GET' \
+  'http://localhost:5000/tasks' \
+  -H 'accept: application/json'
+```
+
+**Access database admin interface:**
+
+Open http://localhost:8080 in your browser (Adminer interface):
+- System: PostgreSQL
+- Server: db
+- Username: postgres  
+- Password: mysecretpassword
+- Database: flask_dev
+
+Press `Ctrl+C` in the terminal to stop your application.
+
+### Option 2: FastAPI + Redis Example
+
+Navigate to the FastAPI example directory:
+
+```bash
+cd examples/fastapi-redis
+```
+
+In the `examples/fastapi-redis` directory, open the `compose.yaml` file. Update it with the following content:
+
+```yaml
+services:
+  api:
+    build:
+      context: .
+    ports:
+      - "8000:8000"
+    environment:
+      - REDIS_URL=redis://redis:6379
+      - ENVIRONMENT=development
+    depends_on:
+      redis:
+        condition: service_healthy
+    volumes:
+      - .:/app
+    develop:
+      watch:
+        - action: rebuild
+          path: .
+          
+  redis:
+    image: redis:7-alpine
+    restart: always
+    volumes:
+      - redis_data:/data
+    expose:
+      - 6379
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  redis-admin:
+    image: rediscommander/redis-commander:latest
+    restart: always
+    ports:
+      - "8081:8081"
+    environment:
+      - REDIS_HOSTS=local:redis:6379
+    depends_on:
+      - redis
+
+volumes:
+  redis_data:
+```
+
+Start the services:
+
+```bash
+docker compose up --build
+```
+
+### Test the FastAPI application
+
+**Create users:**
+
+```bash
+curl -X 'POST' \
+  'http://localhost:8000/users' \
+  -H 'accept: application/json' \
+  -H 'Content-Type: application/json' \
+  -d '{
+  "name": "John Doe",
+  "email": "john@example.com"
+}'
+```
+
+**Get users (cached):**
+
+```bash
+curl -X 'GET' \
+  'http://localhost:8000/users' \
+  -H 'accept: application/json'
+```
+
+**Check cache statistics:**
+
+```bash
+curl -X 'GET' \
+  'http://localhost:8000/cache/stats' \
+  -H 'accept: application/json'
+```
+
+**Access interfaces:**
+- API Documentation: http://localhost:8000/docs
+- Redis Admin: http://localhost:8081
+
+Press `Ctrl+C` to stop the application.
+
+## Automatically update services
+
+Use Compose Watch to automatically update your running Compose services as you edit and save your code. For more details about Compose Watch, see [Use Compose Watch](https://docs.docker.com/compose/file-watch/).
+
+The `compose.yaml` files above already include the Compose Watch instructions in the `develop.watch` section:
+
+```yaml
+develop:
+  watch:
+    - action: rebuild
+      path: .
+```
+
+### Test hot reload with Flask
+
+Run your Flask application with Compose Watch:
+
+```bash
+cd examples/flask-postgres
+docker compose watch
+```
+
+In a terminal, test the application:
+
+```bash
+curl http://localhost:5000/
+```
+
+Response: `Hello from Flask in Docker!`
+
+Now open `examples/flask-postgres/app.py` in your IDE and update the home route:
+
+```python
+@app.route('/')
+def home():
+-    return jsonify({"message": "Hello from Flask in Docker!", "status": "running"})
++    return jsonify({"message": "Hello from Flask in Docker!!!", "status": "running"})
+```
+
+Save the changes to `app.py` and wait a few seconds for the application to rebuild. Test the application again:
+
+```bash
+curl http://localhost:5000/
+```
+
+You should see: `Hello from Flask in Docker!!!`
+
+### Test hot reload with FastAPI
+
+Run your FastAPI application with Compose Watch:
+
+```bash
+cd examples/fastapi-redis
+docker compose watch
+```
+
+Open `examples/fastapi-redis/main.py` and update the root endpoint:
+
+```python
+@app.get("/")
+async def root():
+-    return {"message": "Hello from FastAPI in Docker!", "users_count": len(users)}
++    return {"message": "Hello from FastAPI in Docker!!!", "users_count": len(users)}
+```
+
+Save the file and test:
+
+```bash
+curl http://localhost:8000/
+```
+
+The changes will be reflected automatically!
+
+Press `Ctrl+C` in the terminal to stop your application.
+
+## Summary
+
+In this section, you took a look at setting up your Compose file to add local services and persist data. You also learned how to use Compose Watch to automatically rebuild and run your container when you update your code.
+
+**What you accomplished:**
+
+- ✅ **Enhanced applications** with database integration (PostgreSQL/Redis)
+- ✅ **Configured multi-service environments** using Docker Compose
+- ✅ **Implemented data persistence** with Docker volumes
+- ✅ **Set up hot reload** for development workflow
+- ✅ **Added admin interfaces** for database management
+- ✅ **Learned service communication** between containers
+
+## Key concepts learned
+
+### Service Communication
+Services in Docker Compose can communicate using service names:
+
+```python
+# Instead of localhost, use service name
+DATABASE_URL = "postgresql://user:pass@db:5432/devdb"
+REDIS_HOST = "redis"
+```
+
+**Why this works:**
+- Docker Compose creates a network automatically
+- Services are accessible by their service name
+- Internal port is used (not mapped port)
+
+### Development Optimizations
+
+**Hot reload with volume mounting:**
+```yaml
+volumes:
+  - .:/app  # Mount source code for live changes
+```
+
+**Environment variables:**
+```yaml
+environment:
+  - FLASK_DEBUG=1
+  - ENVIRONMENT=development
+```
+
+**Service dependencies:**
+```yaml
+depends_on:
+  - db  # Start database before web app
+```
+
+## Related information
+
+- [Compose file reference](https://docs.docker.com/compose/compose-file/)
+- [Compose file watch](https://docs.docker.com/compose/file-watch/)
+- [Multi-stage builds](https://docs.docker.com/build/building/multi-stage/)
+
+## Next steps
+
+In the next section, you'll learn how you can set up linting, formatting and type checking to follow the best practices in Python apps.
+
+**[Module 3: Linting, formatting, and type checking →](../../tree/module-03-linting-typing)**
 
 - ✅ Set up local development environment with Docker Compose
 - ✅ Configure hot reload and live debugging in containers
