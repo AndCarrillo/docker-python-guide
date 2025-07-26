@@ -193,6 +193,7 @@ You've successfully containerized a Flask application!
 **Congratulations! You've successfully containerized your first Python application!**
 
 **What you learned:**
+
 - ✅ Created a simple Flask application
 - ✅ Written a basic Dockerfile
 - ✅ Built your first Docker image
@@ -200,19 +201,19 @@ You've successfully containerized a Flask application!
 
 **Continue your Docker journey:**
 
-| Next Step           | Description                    | Link                                                       |
-| ------------------- | ------------------------------ | ---------------------------------------------------------- |
-| 🚀 **Next Module** | Learn development with Docker  | [Module 2: Develop](../../tree/module-02-develop)         |
-| 📚 **Resources**    | Docker documentation          | [Docker Docs](https://docs.docker.com)                   |
+| Next Step          | Description                   | Link                                              |
+| ------------------ | ----------------------------- | ------------------------------------------------- |
+| 🚀 **Next Module** | Learn development with Docker | [Module 2: Develop](../../tree/module-02-develop) |
+| 📚 **Resources**   | Docker documentation          | [Docker Docs](https://docs.docker.com)            |
 
 ---
 
 ## 📚 Additional Resources
 
-| Type                   | Description                        | Link                                                        |
-| ---------------------- | ---------------------------------- | ----------------------------------------------------------- |
-| 🐳 **Official Docs**   | Docker Hub Python Images           | [hub.docker.com/\_/python](https://hub.docker.com/_/python) |
-| 📘 **References**      | Dockerfile documentation           | [docs.docker.com](https://docs.docker.com)                  |
+| Type                 | Description              | Link                                                        |
+| -------------------- | ------------------------ | ----------------------------------------------------------- |
+| 🐳 **Official Docs** | Docker Hub Python Images | [hub.docker.com/\_/python](https://hub.docker.com/_/python) |
+| 📘 **References**    | Dockerfile documentation | [docs.docker.com](https://docs.docker.com)                  |
 
 ---
 
@@ -235,6 +236,7 @@ docker stop <container-name>        # Stop container
 **Common issues and solutions:**
 
 **Port already in use:**
+
 ```bash
 # Find what's using the port
 netstat -ano | findstr :5000  # Windows
@@ -245,11 +247,13 @@ docker run -p 5001:5000 flask-basic
 ```
 
 **Build fails:**
+
 - Check that Docker Desktop is running
 - Ensure `requirements.txt` exists in the same directory
 - Verify all file names are correct in the Dockerfile
 
 **Container won't start:**
+
 - Check logs: `docker logs <container-name>`
 - Ensure your app runs locally first: `python app.py`
 
@@ -262,6 +266,7 @@ Ready to set up a development environment with Docker?
 **[Module 2: Development Setup](../../tree/module-02-develop)**
 
 Learn how to:
+
 - Use Docker Compose for development
 - Set up hot reload
 - Work with databases in containers
