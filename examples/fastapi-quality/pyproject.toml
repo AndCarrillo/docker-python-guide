@@ -4,6 +4,6 @@ requires = ["setuptools>=45", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "flask-quality-example"
+name = "fastapi-quality-example"
 version = "0.1.0"
-description = "Flask application with code quality tools"
+description = "FastAPI application with code quality tools"
