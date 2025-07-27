@@ -1,0 +1,7 @@
+fastapi
+uvicorn
+watchfiles
+debugpy
+black
+flake8
+mypy
