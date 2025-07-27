@@ -132,7 +132,7 @@ kubectl delete namespace python-guide
 ✅ Despliegue de aplicación Python  
 ✅ Configuración de servicios y networking  
 ✅ Verificación y pruebas  
-✅ Monitoreo y troubleshooting  
+✅ Monitoreo y troubleshooting
 
 ## Próximos Pasos
 
