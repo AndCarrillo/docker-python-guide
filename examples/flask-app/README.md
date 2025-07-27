@@ -78,6 +78,20 @@ docker run -p 5000:5000 flask-minimal-app
 
 ---
 
+## Integración continua (CI)
+
+Este proyecto incluye un workflow de GitHub Actions en `.github/workflows/ci.yml` que ejecuta automáticamente:
+- Instalación de dependencias
+- Linting (`flake8`)
+- Formateo (`black --check`)
+- Type checking (`mypy`)
+- Tests (`pytest`)
+- Build de la imagen Docker
+
+El workflow se ejecuta en cada push o pull request sobre la carpeta `flask-app`.
+
+---
+
 ---
 
 This project is intentionally minimal for learning containerization and development basics. Advanced features are introduced in later modules.
