@@ -28,11 +28,13 @@ examples/fastapi-quality/
 ## Quick Start (Current State)
 
 1. Start the services:
+
 ```bash
 docker compose up --build
 ```
 
 2. Test the application:
+
 ```bash
 # Home endpoint
 curl http://localhost:8000/

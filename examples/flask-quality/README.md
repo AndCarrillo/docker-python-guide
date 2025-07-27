@@ -28,11 +28,13 @@ examples/flask-quality/
 ## Quick Start (Current State)
 
 1. Start the services:
+
 ```bash
 docker compose up --build
 ```
 
 2. Test the application:
+
 ```bash
 # Home endpoint
 curl http://localhost:5000/
@@ -53,7 +55,7 @@ curl http://localhost:5000/tasks
 Follow the Module 3 guide to enhance this application with:
 
 - 🔧 **Ruff** for linting and formatting
-- 🔍 **Pyright** for static type checking  
+- 🔍 **Pyright** for static type checking
 - 🪝 **Pre-commit hooks** for automated quality checks
 - 📝 **Type annotations** throughout the codebase
 - 🐳 **Container-based quality tools** integration

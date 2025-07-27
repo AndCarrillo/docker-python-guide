@@ -9,7 +9,7 @@ Complete [Develop your app](../../tree/module-02-develop).
 In this section, you'll learn how to set up code quality tools for your Python application. This includes:
 
 - Linting and formatting with Ruff
-- Static type checking with Pyright  
+- Static type checking with Pyright
 - Automating checks with pre-commit hooks
 
 ## Linting and formatting with Ruff
