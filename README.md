@@ -34,17 +34,11 @@ select = [
     "ARG001", # unused arguments in functions
 ]
 ignore = [
-    "E501",  # line too long, handled by formatter
+    "E501",  # line too long, handled by black
     "B008",  # do not perform function calls in argument defaults
     "W191",  # indentation contains tabs
     "B904",  # Allow raising exceptions without from e, for HTTPException
 ]
-
-[tool.ruff.format]
-quote-style = "double"
-indent-style = "space"
-skip-source-first-line = false
-line-ending = "auto"
 ```
 
 ### Using Ruff
@@ -119,3 +113,5 @@ These tools help maintain code quality and catch errors early in development.
 - Configure GitHub Actions to run these checks automatically
 - Customize linting rules to match your team's style preferences
 - Explore advanced type checking features
+
+**[Automate your builds with GitHub Actions »](../../tree/module-04-cicd)**
