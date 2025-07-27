@@ -1,4 +1,0 @@
-# Development dependencies for code quality
-ruff==0.2.2
-pyright==1.1.350
-pre-commit==3.6.0
