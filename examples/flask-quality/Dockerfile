@@ -1,4 +1,4 @@
-# Development Dockerfile for Flask + PostgreSQL
+# Development Dockerfile for Flask with Quality Tools
 FROM python:3.11-slim
 
 # Install system dependencies
@@ -12,12 +12,14 @@ WORKDIR /app
 
 # Copy requirements first for better caching
 COPY requirements.txt .
-
-# Install Python dependencies
 RUN pip install --no-cache-dir -r requirements.txt
 
+# Copy development requirements
+COPY requirements-dev.txt .
+RUN pip install --no-cache-dir -r requirements-dev.txt
+
 # Copy application code
-COPY app.py .
+COPY . .
 
 # Create non-root user
 RUN adduser --disabled-password --gecos '' --shell /bin/bash appuser && \
@@ -27,9 +29,5 @@ USER appuser
 # Expose port
 EXPOSE 5000
 
-# Health check
-HEALTHCHECK --interval=30s --timeout=30s --start-period=5s --retries=3 \
-    CMD curl -f http://localhost:5000/health || exit 1
-
-# Run the application with hot reload
+# Run the application with development settings
 CMD ["python", "app.py"]
