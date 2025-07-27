@@ -30,6 +30,20 @@ The app will be available at [http://localhost:8000](http://localhost:8000)
 
 ---
 
+## Testing
+
+This project uses [pytest](https://docs.pytest.org/) for testing.
+
+### Run tests
+
+```sh
+pytest
+```
+
+All tests are in the `tests/` directory.
+
+---
+
 ## Code Quality: Linting, Formatting, and Type Checking
 
 This project uses [pre-commit](https://pre-commit.com/) to automate code quality checks:

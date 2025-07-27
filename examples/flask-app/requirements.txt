@@ -1,6 +1,7 @@
 flask
 python-dotenv
 debugpy
+pytest
 black
 flake8
 mypy
